@@ -28,12 +28,11 @@ But that didn’t happen.
 My father died in October 2019, a week after my 29th birthday. The company suffered losing its founder and falling into a mess of corporate politics and tactics. Every dream of developing cutting-edge anything was replaced by survival. Two months later, COVID hit.
 
 This is the first time I’ve written all of this. Believe me it’s therapeutic.
-
-With my dad gone and the company now led by my other brother, I had to keep working on something I didn’t love. I kept hoping to return to those “better days.” But over time, I lost my creativity. My skills athrophied and my drive vanished. Looking back now, I still can’t fully understand how it happened. Maybe trauma pushed me into autopilot.
+With my dad gone and the company now led by my other brother, I had to keep working on something I didn’t love. I kept hoping to return to those “better days.” But over time, I lost my creativity. My skills atrophied and my drive vanished. My self-esteem also plummeted, along with my ability to make decisions and feel worthy. Coming from a small town where people assume you're just the guy who fixes their Windows computer—without ever trying to understand what your work truly involves—made me question the value of everything I'd worked so hard to learn and believe in. Looking back now, I still can’t fully understand how it happened. Maybe trauma pushed me into autopilot.
 
 Over the last five years, I’ve tried many times to reignite that spark. Never quite consistently. But right now, something feels different, stronger. More stable. And I know how quickly it can fade, so I want to be accountable this time.
 
-Right now, I’m finally feeling ready again. Ready to explore, create, and document my journey, whether it’s building something new, diving back into cutting-edge tech, or just figuring myself out along the way.
+Right now, I’m finally feeling ready again. Ready to explore, create, and document my journey, whether it’s building something new, diving back into cutting-edge tech and state-of-the-art research, or just figuring myself out along the way.
 
 That’s what this blog is for.
 
@@ -43,4 +42,4 @@ And if someone out there feels the same way stuck, dimmed, lost.. I want you to 
 
 One more thing: English isn’t my first language. And writing is something I never really learned. So this might suck. I might use an LLM or something to make it more readable. We’ll see.
 
-*Let the journey keep going — and may it never stall again.*
+*Let the journey keep going and may it never stall again.*
