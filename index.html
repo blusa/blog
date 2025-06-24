@@ -1,10 +1,11 @@
---
+---
+title: A blog for Computer Vision and tech for a.GPT era.
 layout: home
 ---
 
 {% for post in paginator.posts %}
   <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-  <p>{{ post.content }}</p>
+  {{ post.content }}
 {% endfor %}
 
 <div class="pagination">
