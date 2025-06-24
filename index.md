@@ -1,3 +1,19 @@
+--
+title: A blog for Computer Vision and tech for a.GPT era.
+layout: home
 ---
-title: A path to Computer Vision for the real world
----
+
+{% for post in paginator.posts %}
+  <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+  <p>{{ post.excerpt }}</p>
+{% endfor %}
+
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}">← Anterior</a>
+  {% endif %}
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}">Siguiente →</a>
+  {% endif %}
+</div>
