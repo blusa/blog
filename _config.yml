@@ -1,5 +1,22 @@
-theme: minima
 title: voxxel.ai
-description: Log of Computer Vision Applications for the real world after the AI agent madness. 
+description: Log of Computer Vision Applications for the real world after the AI agent madness.
 author: blusa
+theme: minima
+
+# Dominio completo del sitio
 url: "https://voxxel.ai"
+
+# No estás usando subcarpeta, así que esto queda vacío
+baseurl: ""
+
+# Permite paginar tus entradas (ej: 5 por página)
+paginate: 5
+paginate_path: "/page:num"
+
+# Activa el plugin de paginación
+plugins:
+  - jekyll-paginate
+
+# Si en el futuro tenés assets como imágenes o scripts, estos te ayudan
+markdown: kramdown
+highlighter: rouge
