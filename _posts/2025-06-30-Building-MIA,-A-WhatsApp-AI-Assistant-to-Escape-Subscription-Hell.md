@@ -143,8 +143,9 @@ async def webhook(request: Request, background_tasks: BackgroundTasks,):
         # There's a message router that will check on the sender, message type 
         # to route it as a:
         # 1. TXT message -> Goes to the LLM or Command parser (if begins with '/')
-        # 2. Audio Message -> Goes to OpenAI's whisper API for transcription
-        #   to later be processed as a TXT message.
+        # 2. Audio Message -> Gets the resource (Downloads the audio message) 
+        #       and then goes to OpenAI's whisper API for transcription
+        #       to later be processed as a TXT message.
         # 3. Location -> I need this for TZ inference to be used for notifications.
         background_tasks.add_task(MessageRouter.route, message, sender_name)
 
