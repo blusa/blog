@@ -19,6 +19,9 @@ layout: default
     {{ content }}
   </div>
 
+  <!-- Email signup after post content -->
+  {% include email-signup.html %}
+
   {%- if site.disqus.shortname -%}
     {%- include disqus_comments.html -%}
   {%- endif -%}
