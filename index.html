@@ -4,10 +4,7 @@ layout: home
 ---
 
 <!-- Post excerpts with read more and tags support -->
-<div class="home">
-  <h1 class="page-heading">{{ page.title }}</h1>
-  
-  <div class="post-list">
+<div class="post-list">
     {% for post in paginator.posts %}
       <article class="post-preview">
         <h2 class="post-title">
@@ -44,20 +41,19 @@ layout: home
     {% endfor %}
   </div>
 
-  <!-- Pagination -->
-  {% if paginator.total_pages > 1 %}
-  <div class="pagination">
-    {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-link">← Previous</a>
-    {% endif %}
-    
-    <span class="pagination-info">
-      Page {{ paginator.page }} of {{ paginator.total_pages }}
-    </span>
-    
-    {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-link">Next →</a>
-    {% endif %}
-  </div>
+<!-- Pagination -->
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-link">← Previous</a>
+  {% endif %}
+  
+  <span class="pagination-info">
+    Page {{ paginator.page }} of {{ paginator.total_pages }}
+  </span>
+  
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-link">Next →</a>
   {% endif %}
 </div>
+{% endif %}
