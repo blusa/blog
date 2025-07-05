@@ -20,3 +20,9 @@ plugins:
 # Si en el futuro tenés assets como imágenes o scripts, estos te ayudan
 markdown: kramdown
 highlighter: rouge
+
+# Utterances comments configuration
+utterances:
+  repo: "blusa/blusa.github.io"  # Replace with your GitHub username/repository-name
+  issue_term: "pathname"  # Maps comments to posts by pathname
+  theme: "github-light"   # Options: github-light, github-dark, preferred-color-scheme, etc.
