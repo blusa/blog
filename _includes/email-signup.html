@@ -3,13 +3,20 @@
   <h3>Subscribe to get notified of new posts</h3>
   <p>Get updates on Computer Vision and AI developments</p>
   
-  <form action="https://docs.google.com/forms/d/e/1FAIpQLScKZYv3dpdgGDUFPKNj4SDg3ysolRHIzosJc94jsw3p27QzFA/formResponse" method="POST" class="signup-form" target="_blank">
+  <form action="https://docs.google.com/forms/d/e/1FAIpQLScKZYv3dpdgGDUFPKNj4SDg3ysolRHIzosJc94jsw3p27QzFA/formResponse" method="POST" class="signup-form" target="hidden_iframe" onsubmit="submitted=true;">
     <div class="form-group">
       <input type="email" name="entry.292149715" placeholder="Enter your email" required class="email-input">
       <button type="submit" class="subscribe-btn">Subscribe</button>
     </div>
   </form>
+  
+  <!-- Hidden iframe to prevent redirect -->
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='{{ site.url }}{{ site.baseurl }}/thank-you';}"></iframe>
 </div>
+
+<script>
+var submitted=false;
+</script>
 
 <style>
 .email-signup {
