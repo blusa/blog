@@ -3,17 +3,61 @@ title: A blog for Computer Vision and tech for a.GPT era.
 layout: home
 ---
 
-{% for post in paginator.posts %}
-  <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-  {{ post.content }}
-{% endfor %}
+<!-- Post excerpts with read more and tags support -->
+<div class="home">
+  <h1 class="page-heading">{{ page.title }}</h1>
+  
+  <div class="post-list">
+    {% for post in paginator.posts %}
+      <article class="post-preview">
+        <h2 class="post-title">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h2>
+        
+        <p class="post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%B %-d, %Y" }}
+          </time>
+          {% if post.author %} • {{ post.author }}{% endif %}
+        </p>
+        
+        <div class="post-excerpt">
+          {% if post.excerpt %}
+            {{ post.excerpt | strip_html | truncatewords: 50 }}
+          {% else %}
+            {{ post.content | strip_html | truncatewords: 50 }}
+          {% endif %}
+        </div>
+        
+        {% if post.tags.size > 0 %}
+          <div class="post-tags">
+            {% for tag in post.tags %}
+              <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+        
+        <a href="{{ post.url | relative_url }}" class="read-more">Read more →</a>
+      </article>
+      
+      {% unless forloop.last %}<hr class="post-divider">{% endunless %}
+    {% endfor %}
+  </div>
 
-<div class="pagination">
-  {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | relative_url }}">← Anterior</a>
-  {% endif %}
-
-  {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | relative_url }}">Siguiente →</a>
+  <!-- Pagination -->
+  {% if paginator.total_pages > 1 %}
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-link">← Previous</a>
+    {% endif %}
+    
+    <span class="pagination-info">
+      Page {{ paginator.page }} of {{ paginator.total_pages }}
+    </span>
+    
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-link">Next →</a>
+    {% endif %}
+  </div>
   {% endif %}
 </div>
