@@ -9,7 +9,7 @@ It’s been several years since I started feeling stuck. If you come from a Comp
 
 At 23, I was the first in my graduating class to earn my degree. A week later, I moved to France to work at INRIA. Coming from a research-oriented university (and family) it felt like the perfect step. I spent most of 2014 there, working in Computer Vision.
 
-Back then, AlexNet and early Convolutional Neural Networks were just starting to outperform traditional techniques. I did my thesis adapting AlexNet to detect tennis scenes from YouTube videos. There was no TensorFlow or PyTorch — just Caffe. I somehow got it running on an old NVIDIA Geforce card. No one at my university believed deep learning would become a general-purpose tool. Even at INRIA, few saw it coming.
+Back then, AlexNet and early Convolutional Neural Networks were just starting to outperform traditional techniques. I did my thesis adapting AlexNet to detect tennis scenes from YouTube videos. There was no TensorFlow or PyTorch, just Caffe. I somehow got it running on an old NVIDIA Geforce card. No one at my university believed deep learning would become a general-purpose tool. Even at INRIA, few saw it coming.
 
 After some time at INRIA, though, I felt there wasn’t much happening for me there anymore. I wanted more. So, after the mandatory one-month Eurotrip, I went back to Córdoba with a friend (colleague, neighbor, and honestly, brother-from-another-mother) and we started working on some startup ideas. I felt alive again. Creative. Energized. Those startups didn’t succeed, but they became a launchpad for what came next.
 
@@ -28,7 +28,7 @@ But that didn’t happen.
 My father died in October 2019, a week after my 29th birthday. The company suffered losing its founder and falling into a mess of corporate politics and tactics. Every dream of developing cutting-edge anything was replaced by survival. Two months later, COVID hit.
 
 This is the first time I’ve written all of this. Believe me it’s therapeutic.
-With my dad gone and the company now led by my other brother, I had to keep working on something I didn’t love. I kept hoping to return to those “better days.” But over time, I lost my creativity. My skills atrophied and my drive vanished. My self-esteem also plummeted, along with my ability to make decisions and feel worthy. Coming from a small town where people assume you're just the guy who fixes their Windows computer—without ever trying to understand what your work truly involves—made me question the value of everything I'd worked so hard to learn and believe in. Looking back now, I still can’t fully understand how it happened. Maybe trauma pushed me into autopilot.
+With my dad gone and the company now led by my other brother, I had to keep working on something I didn’t love. I kept hoping to return to those “better days.” But over time, I lost my creativity. My skills atrophied and my drive vanished. My self-esteem also plummeted, along with my ability to make decisions and feel worthy. Coming from a small town where people assume you're just the guy who fixes their Windows computer, without ever trying to understand what your work truly involves, made me question the value of everything I'd worked so hard to learn and believe in. Looking back now, I still can’t fully understand how it happened. Maybe trauma pushed me into autopilot.
 
 Over the last five years, I’ve tried many times to reignite that spark. Never quite consistently. But right now, something feels different, stronger. More stable. And I know how quickly it can fade, so I want to be accountable this time.
 
@@ -38,7 +38,7 @@ That’s what this blog is for.
 
 I want to use it to rebuild myself. Writing helps me do that. I’ll write about projects I’m working on, technical findings, and occasional brain dumps like this one.
 
-And if someone out there feels the same way stuck, dimmed, lost.. I want you to know you’re not alone. You're not the only one trying to start over.
+And if someone out there feels the same way stuck, dimmed, lost, I want you to know you're not alone. You're not the only one trying to start over.
 
 One more thing: English isn’t my first language. And writing is something I never really learned. So this might suck. I might use an LLM or something to make it more readable. We’ll see.
 
