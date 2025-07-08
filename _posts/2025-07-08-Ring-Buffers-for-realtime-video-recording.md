@@ -6,6 +6,8 @@ Imagine you're building a system to detect when an elderly person falls from the
 
 This creates a fundamental problem: we need to capture not just the moment of detection, but also the sequence of events leading up to it. Why? Because caregivers need visual context to understand what happened, and researchers need complete event sequences to improve their models. The question becomes: how do you store the "before" when you only know it matters "after"?
 
+This isn't just an elder care problem. Self-driving cars need to record the moments leading up to sudden braking events or near-misses. Robots working alongside humans need to capture the sequence when something goes wrong during manipulation tasks. Augmented reality systems need context when hand tracking fails or objects disappear. Security systems need the buildup to detected intrusions. Manufacturing lines need the lead-up to quality control failures. The pattern is everywhere in computer vision: the interesting stuff happens before you know it's interesting.
+
 ## Why Ring Buffers for Video Recording?
 
 The key insight is that video events don't announce themselves beforehand. Ring buffers solve the fundamental problem of capturing pre-event context when you only know it matters post-event. In our elder care scenario, we need both the fall sequence leading up to the detection and the aftermath, a dual-phase recording that captures pre-trigger + post-trigger frames.
@@ -145,9 +147,9 @@ This architecture helps the critical recording function to remain responsive eve
 
 So here's the thing nobody talks about enough: building production computer vision systems is way harder than just getting your model to work. All those Medium articles? They're garbage. They show you how to get 99% accuracy on CIFAR-10 and call it a day.
 
-Look, I've learned this the hard way: you can have the most accurate fall detection model in the world, but if you can't handle the video stream properly, it's just useless code. The gap between "my model works in Jupyter" and "my model works on a device someone's grandmother depends on" is huge.
+Look, I've learned this the hard way: you can have the most accurate fall detection model in the world, but if you can't handle the video stream properly, it's just useless code. The same goes for autonomous vehicles that can't record near-miss incidents, robots that lose manipulation context, or AR systems that can't debug tracking failures. The gap between "my model works in Jupyter" and "my model works in the real world" is huge, whether that's an elderly care device, a Tesla, or a factory robot.
 
-Edge AI makes this even worse. You can't just rent bigger servers when your elderly care device needs to run on a Jetson Nano with 4GB of RAM. Suddenly you're dealing with:
+Edge AI makes this even worse. You can't just rent bigger servers when your elderly care device needs to run on a Jetson Nano with 4GB of RAM, or when your autonomous vehicle needs real-time processing in a moving car, or when your AR headset has strict power and thermal constraints. Suddenly you're dealing with:
 
 - Memory constraints that force you to think about every single frame
 - Concurrent programming (which, let's be honest, most of us avoided in school)
@@ -160,4 +162,6 @@ Stop obsessing over model architectures and learn the systems side. You will hav
 
 The ring buffer is just one piece of the puzzle, but it's a perfect example of how old-school computer science concepts still matter. Sometimes the most important part of your system is the part that just quietly does its job in the background. 
 
-Don't get me wrong, the fancy AI models are important too. Better architectures, smarter training techniques, more efficient inference, that stuff matters. But it only matters if you can actually deploy it reliably. We'll explore both sides in future posts: the boring infrastructure that makes things work and the cutting-edge AI that makes them smart. 
+Don't get me wrong, the fancy AI models are important too. Better architectures, smarter training techniques, more efficient inference, that stuff matters. But it only matters if you can actually deploy it reliably. We'll explore both sides in future posts: the boring infrastructure that makes things work and the cutting-edge AI that makes them smart.
+
+Whether you're building elder care systems, autonomous vehicles, collaborative robots, or AR applications, the engineering challenges are remarkably similar. Ring buffers for event capture, process separation for reliability, memory management for edge deployment. The computer vision domain changes, but the fundamental systems engineering remains the same. Master these patterns once, and you can apply them everywhere. 
