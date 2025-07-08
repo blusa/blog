@@ -133,7 +133,7 @@ except queue.Empty:
     continue  # Normal operation
 ```
 
-## Key Takeaways for my implementation
+## Some takeaways
 
 1. **Separate concerns**: Frame capture, detection, and recording should be independent processes
 2. **Choose communication wisely**: ZeroMQ for data, multiprocessing.Queue for control
@@ -167,8 +167,3 @@ The gap between "my model works in Jupyter" and "my model works on a device some
 Stop obsessing over model architectures and learn the systems side. Because at the end of the day, reliability trumps accuracy when you're dealing with real-world applications. Your 99.9% accurate model is worthless if it crashes every 10 minutes.
 
 The ring buffer is just one piece of the puzzle, but it's a perfect example of how old-school computer science concepts still matter. Sometimes the most important part of your system is the part that just quietly does its job in the background.
-
----
-
-*Have you dealt with similar challenges in your computer vision projects? I'd love to hear about your experiences with real-time systems and edge deployment.*
-
