@@ -10,7 +10,7 @@ This creates a fundamental problem: we need to capture not just the moment of de
 
 The key insight is that video events don't announce themselves beforehand. Ring buffers solve the fundamental problem of capturing pre-event context when you only know it matters post-event. In our elder care scenario, we need both the fall sequence leading up to the detection and the aftermath, a dual-phase recording that captures pre-trigger + post-trigger frames.
 
-This is where video applications differ from typical ring buffer uses. You're not just maintaining a rolling window of recent data but you're maintaining a recording system that can retroactively decide what was important. The critical advantage for video applications is predictable memory usage regardless of how long the system runs - crucial when dealing with frames arriving at 25Hz or higher.
+This is where video applications differ from typical ring buffer uses. You're not just maintaining a rolling window of recent data but you're maintaining a recording system that can retroactively decide what was important. The critical advantage for video applications is predictable memory usage regardless of how long the system runs, crucial when dealing with frames arriving at 25Hz or higher.
 
 ## Decoupling Recording from Detection
 
@@ -65,7 +65,7 @@ When your 10Hz detection algorithm finally recognizes a fall, it doesn't matter 
 - **Efficient resource usage** (detection can run slower)
 - **Scalable performance** (adjust detection frequency based on hardware)
 
-This separation is what makes ring buffers so powerful for real-time applications - they bridge the gap between continuous data streams and intermittent processing capabilities.
+This separation is what makes ring buffers so powerful for real-time applications, they bridge the gap between continuous data streams and intermittent processing capabilities.
 
 ## Implementation Challenges & Solutions
 
@@ -141,7 +141,7 @@ except queue.Empty:
 
 This architecture helps the critical recording function to remain responsive even when AI detection models struggle under computational load, exactly what you need for reliable edge AI deployment.
 
-## The Engineering Reality
+## Final thoughts
 
 So here's the thing nobody talks about enough: building production computer vision systems is way harder than just getting your model to work. All those Medium articles? They're garbage. They show you how to get 99% accuracy on CIFAR-10 and call it a day.
 
@@ -158,4 +158,6 @@ And guess what saves your ass? Ring buffers. Not transformer models, not the lat
 
 Stop obsessing over model architectures and learn the systems side. You will have time to make those better but at the end of the day, reliability trumps accuracy when you're dealing with real-world applications. Your 99.9% accurate model is worthless if it crashes every 10 minutes.
 
-The ring buffer is just one piece of the puzzle, but it's a perfect example of how old-school computer science concepts still matter. Sometimes the most important part of your system is the part that just quietly does its job in the background. We'll explore more of this boring-but-actually-important stuff in other posts.
+The ring buffer is just one piece of the puzzle, but it's a perfect example of how old-school computer science concepts still matter. Sometimes the most important part of your system is the part that just quietly does its job in the background. 
+
+Don't get me wrong, the fancy AI models are important too. Better architectures, smarter training techniques, more efficient inference, that stuff matters. But it only matters if you can actually deploy it reliably. We'll explore both sides in future posts: the boring infrastructure that makes things work and the cutting-edge AI that makes them smart. 
