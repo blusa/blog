@@ -141,9 +141,11 @@ except queue.Empty:
 
 This architecture helps the critical recording function to remain responsive even when AI detection models struggle under computational load, exactly what you need for reliable edge AI deployment.
 
-## The Engineering Reality of Edge Computer Vision
+## The Engineering Reality
 
-So here's the thing nobody talks about enough: building production computer vision systems is way harder than just getting your model to work. All those YouTube tutorials and Medium articles? They're garbage. They show you how to get 99% accuracy on CIFAR-10 and call it a day.
+So here's the thing nobody talks about enough: building production computer vision systems is way harder than just getting your model to work. All those Medium articles? They're garbage. They show you how to get 99% accuracy on CIFAR-10 and call it a day.
+
+Look, I've learned this the hard way: you can have the most accurate fall detection model in the world, but if you can't handle the video stream properly, it's just useless code. The gap between "my model works in Jupyter" and "my model works on a device someone's grandmother depends on" is huge.
 
 Edge AI makes this even worse. You can't just rent bigger servers when your elderly care device needs to run on a Jetson Nano with 4GB of RAM. Suddenly you're dealing with:
 
@@ -152,18 +154,8 @@ Edge AI makes this even worse. You can't just rent bigger servers when your elde
 - Real-time requirements where "close enough" isn't good enough
 - Hardware limitations that make your beautiful architecture crumble
 
-And guess what? Ring buffers. That's what saves your ass. Not transformer models, not the latest PyTorch release. A basic computer science concept from the 1970s.
+And guess what saves your ass? Ring buffers. Not transformer models, not the latest PyTorch release. A basic computer science concept from the 1970s.
 
-## Language Considerations
+Stop obsessing over model architectures and learn the systems side. You will have time to make those better but at the end of the day, reliability trumps accuracy when you're dealing with real-world applications. Your 99.9% accurate model is worthless if it crashes every 10 minutes.
 
-Oh, and there's Python's Global Interpreter Lock to deal with. The GIL basically means you can't do real multi-threading for CPU-heavy stuff, which is why we ended up with all this process-based architecture and the inter-process communication mess that comes with it. If you're working in C++, Rust, or Go, you could probably do this whole thing with threads and shared memory, which would be cleaner and faster. But the core ideas are the same: keep things separate, don't block the critical paths, and design for whatever hardware constraints you're stuck with.
-
-## Final Thoughts
-
-Look, I've learned this the hard way: you can have the most accurate fall detection model in the world, but if you can't handle the video stream properly, it's just useless code. 
-
-The gap between "my model works in Jupyter" and "my model works on a device someone's grandmother depends on" is huge. And it's filled with boring shit like ring buffers that don't make it into the flashy AI demos. We'll explore more of this boring-but-actually-important stuff in other posts.
-
-Stop obsessing over model architectures and learn the systems side. Because at the end of the day, reliability trumps accuracy when you're dealing with real-world applications. Your 99.9% accurate model is worthless if it crashes every 10 minutes.
-
-The ring buffer is just one piece of the puzzle, but it's a perfect example of how old-school computer science concepts still matter. Sometimes the most important part of your system is the part that just quietly does its job in the background.
+The ring buffer is just one piece of the puzzle, but it's a perfect example of how old-school computer science concepts still matter. Sometimes the most important part of your system is the part that just quietly does its job in the background. We'll explore more of this boring-but-actually-important stuff in other posts.
