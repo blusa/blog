@@ -14,29 +14,7 @@ The key insight is that video events don't announce themselves beforehand. Ring 
 
 This is where video applications differ from typical ring buffer uses. You're not just maintaining a rolling window of recent data but you're maintaining a recording system that can retroactively decide what was important. The critical advantage for video applications is predictable memory usage regardless of how long the system runs, crucial when dealing with frames arriving at 25Hz or higher.
 
-```mermaid
-timeline
-    title Ring Buffer Event Recording Timeline
-    
-    section Pre-Event (Ring Buffer)
-        Frame 1 : Stored in buffer
-        Frame 2 : Stored in buffer
-        Frame 3 : Stored in buffer
-        Frame 4 : Stored in buffer
-        Frame 5 : Stored in buffer
-        
-    section Event Detection
-        Frame 6 : Fall detected!
-               : Trigger recording
-               : Snapshot pre-trigger frames
-               
-    section Post-Event Recording
-        Frame 7 : Recording active
-        Frame 8 : Recording active
-        Frame 9 : Recording active
-        Frame 10 : Recording complete
-                 : Save video file
-```
+![Ring Buffer Event Recording Timeline](/assets/images/post3/ringbuf_event_recording_timeline.png)
 
 ## Decoupling Recording from Detection
 
@@ -56,43 +34,7 @@ Your ring buffer recording should run as a **separate thread or service** from y
 
 In edge AI scenarios, this separation becomes even more important. Your fall detection model might be so compute-intensive that it can only process every 2nd or 3rd frame:
 
-```mermaid
-gantt
-    title Frame Rate Mismatch Timeline
-    dateFormat X
-    axisFormat %s
-    
-    section Sensor (25Hz)
-    F1 :active, 0, 1
-    F2 :active, 1, 2
-    F3 :active, 2, 3
-    F4 :active, 3, 4
-    F5 :active, 4, 5
-    F6 :active, 5, 6
-    F7 :active, 6, 7
-    F8 :active, 7, 8
-    F9 :active, 8, 9
-    F10 :active, 9, 10
-    
-    section Recording (25Hz)
-    F1 :done, 0, 1
-    F2 :done, 1, 2
-    F3 :done, 2, 3
-    F4 :done, 3, 4
-    F5 :done, 4, 5
-    F6 :done, 5, 6
-    F7 :done, 6, 7
-    F8 :done, 7, 8
-    F9 :done, 8, 9
-    F10 :done, 9, 10
-    
-    section Detection (10Hz)
-    F1 :crit, 0, 2
-    F3 :crit, 2, 4
-    F5 :crit, 4, 6
-    F7 :milestone, 6, 6
-    F9 :crit, 8, 10
-```
+![Frame Rate Mismatch](/assets/images/post3/frame_rate_mismatch.png)
 
 **The Problem**: If your detection algorithm running at 10Hz detects a fall at frame F7, the crucial frames F1-F6 might have already been discarded by a naive recording system.
 
@@ -106,31 +48,12 @@ gantt
 
 The key advantage of ring buffers becomes clear when you compare memory usage over time:
 
-```mermaid
-xychart-beta
-    title "Memory Usage: Naive Recording vs Ring Buffer"
-    x-axis [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    y-axis "Memory Usage (MB)" 0 --> 3000
-    line [0, 150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500]
-    line [0, 150, 300, 450, 450, 450, 450, 450, 450, 450, 450]
-```
+![Memory Usage](/assets/images/post3/memory_usage.png)
 
 **Processing Separation**:
 
-```mermaid
-graph TD
-    A[Camera Sensor] --> B[Process 1: Ring Buffer<br/>25Hz continuous capture]
-    A --> C[Process 2: Detection Model<br/>10Hz AI inference]
-    C --> D[Process 3: Event Handler<br/>Trigger recording]
-    D --> B
-    B --> E[Video File Output]
-    
-    style A fill:#e1f5fe
-    style B fill:#f3e5f5
-    style C fill:#fff3e0
-    style D fill:#e8f5e8
-    style E fill:#fce4ec
-```
+![Flowchart](/assets/images/post3/flowchart.png)
+
 
 **Power Management**: The ring buffer thread should be lightweight, just memory copies. Save the heavy lifting (AI inference) for the detection thread that benefit from NPU/GPU processors.
 
