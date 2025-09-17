@@ -12,8 +12,6 @@ Let's not get lost in theory. This is about running on a real device with flaky 
 
 Think nodes and edges. Nodes are tiny processes: camera readers, detectors, ring-buffers, exporters. Edges are channels with names like `frames:raw` or `triggers:person`, they tell you what flows where.
 
-![Flowchart](/assets/images/post4/flowchart_arch.png)
-
 This gives you modularity (swap detectors), extensibility (add processors), and reasonable fault isolation (one process crashes, the rest keep chugging). The trick is to keep each processor small and the contracts obvious.
 
 ## Patterns you actually use
@@ -64,11 +62,13 @@ exporter:
     backoff_base_seconds: 2
 ```
 
-## Message bus the glue
+## Message bus: the glue
 
 Pick a bus that survives restarts and is language-agnostic. ZeroMQ is cheap and easy. Use clear channel names: `type:subtype:detail`.
 
 For `frames:` channels: conflate, set RCVHWM, avoid blocking reads unless you want the whole pipeline to stall.
+
+![Flowchart](/assets/images/post4/flowchart_arch.png)
 
 Here are two tiny Python mockups you can copy into your project: a minimal ZeroMQ publisher/subscriber helper and a `BaseProcessor` process that all processors can inherit from.
 
@@ -134,7 +134,7 @@ class BaseProcessor(mp.Process):
             self.cleanup()
 ```
 
-## Trigger flow concrete
+## Trigger flow: concrete
 
 1. Camera publishes `frames:raw` with metadata (frame_id, fps, thermal).
 2. Detector samples (maybe every Nth), publishes `triggers:person` with confidence + thumbnail.
