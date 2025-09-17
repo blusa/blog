@@ -2,7 +2,7 @@
 layout: post
 ---
 
-# Architecture of a real Edge AI sensor code
+# Architecture of a real Edge AI sensor 
 
 In the last post we explored the relevance of something silly as ring buffers for capturing the frames and data captured from a camera for understanding the human behavior that occured before and after an event of interest occurs. That's fine and relevant, now we will see how to incorporate that functionality into a real sensor that is already deployed. For the moment we want to record every time a person is present in the scene.
 
@@ -40,21 +40,7 @@ Example config knobs I reach for:
 - buffer length in seconds
 - trigger cooldown
 
-With a YAML file you rewire behavior without shipping new binaries. It’s boring but extremely useful.
- 
-
-## Process design dumb and config-driven
-
-One responsibility per process. Small state. A queue. A YAML file to tune behavior.
-
-Useful knobs:
-
-- detection confidence
-- NPU cores to use
-- buffer seconds
-- trigger cooldown
-
-Make defaults sane. Expose the rest in config.
+With a YAML file you rewire behavior without shipping new binaries. It’s boring but extremely useful. Make defaults sane. Expose the rest in config.
 
 Example `config.yaml`:
 
