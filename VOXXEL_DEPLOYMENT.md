@@ -10,6 +10,7 @@ Landing estática en español sobre visión artificial para minería: eficiencia
 - Carpeta publicada: `/docs`
 - `docs/CNAME` conserva el dominio; `docs/.nojekyll` publica los archivos sin Jekyll.
 - No requiere compilación ni dependencias de ejecución. HTML, CSS, JavaScript, videos y fuentes se sirven desde `docs/`.
+- `docs/404.html` ofrece una página de error con acceso al inicio. Los cambios de estilo y JavaScript usan un identificador de versión en sus URLs para evitar mezclar archivos en caché durante una publicación.
 
 Para actualizar el sitio, modificar `docs/` en esta rama y hacer un push. No publicar la raíz del repositorio: contiene el blog anterior.
 
@@ -28,3 +29,7 @@ La página incluye demostraciones ilustrativas y un estimador de ahorro. No se c
 El formulario del piloto genera un brief descargable en el navegador. No envía datos, no crea leads en un CRM y no usa un correo inventado; la integración comercial queda pendiente de definir el canal de contacto.
 
 Videos y fotografía bajo licencia Pexels; los enlaces de origen y la licencia están en el diálogo de créditos de la landing. Las licencias SIL de las fuentes se incluyen en `docs/assets/`.
+
+El criterio del refinamiento visual de noviembre está documentado en `VOXXEL_DESIGN.md`.
+
+La landing anterior al refinamiento se conserva en la etiqueta `archive/voxxel-before-refinement-2026-11-03`, commit `37ee5452fafb899a4ba0948571fbbeb7c45d8ba2`. Para volver a esa versión se puede revertir el commit del refinamiento y publicar el revert en `voxxel-landing`, sin cambiar el dominio ni reescribir el historial.

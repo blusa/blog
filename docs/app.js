@@ -9,35 +9,67 @@
 
   const nav = $('#navigation');
   const menu = $('.menu-toggle');
-  const closeMenu = () => { nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', 'Abrir menú'); };
-  menu.addEventListener('click', () => {
-    const open = menu.getAttribute('aria-expanded') !== 'true';
+  const mobileNav = window.matchMedia('(max-width: 700px)');
+  function setMenu(open) {
     nav.classList.toggle('open', open);
+    nav.inert = mobileNav.matches && !open;
     menu.setAttribute('aria-expanded', String(open));
     menu.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    document.body.classList.toggle('menu-open', open);
+    $('main').inert = open;
+    $('.footer').inert = open;
+  }
+  const closeMenu = () => setMenu(false);
+  menu.addEventListener('click', () => {
+    const open = menu.getAttribute('aria-expanded') !== 'true';
+    setMenu(open);
+    if (open) $('a', nav).focus();
   });
-  $$('#navigation a').forEach(link => link.addEventListener('click', closeMenu));
-  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
-
-  let scrollQueued = false;
-  const showScrollProgress = () => {
-    const height = document.documentElement.scrollHeight - window.innerHeight;
-    $('.scroll-progress').style.transform = `scaleX(${height > 0 ? Math.min(1, window.scrollY / height) : 0})`;
-    scrollQueued = false;
-  };
-  window.addEventListener('scroll', () => { if (!scrollQueued) { requestAnimationFrame(showScrollProgress); scrollQueued = true; } }, { passive: true });
+  $$('#navigation a').forEach(link => link.addEventListener('click', event => {
+    closeMenu();
+    if (mobileNav.matches) {
+      event.preventDefault();
+      const section = $(link.hash);
+      const heading = $('h2', section);
+      if (location.hash !== link.hash) history.pushState(null, '', link.hash);
+      heading.setAttribute('tabindex', '-1');
+      heading.focus({ preventScroll: true });
+      section.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'start' });
+    }
+  }));
+  $('.header .brand').addEventListener('click', closeMenu);
+  document.addEventListener('keydown', event => {
+    if (menu.getAttribute('aria-expanded') !== 'true') return;
+    if (event.key === 'Escape') { closeMenu(); menu.focus(); }
+    if (event.key === 'Tab') {
+      const first = $('.header .brand');
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); menu.focus(); }
+      else if (!event.shiftKey && document.activeElement === menu) { event.preventDefault(); first.focus(); }
+    }
+  });
+  mobileNav.addEventListener('change', closeMenu);
+  closeMenu();
+  if ('IntersectionObserver' in window) {
+    const navObserver = new IntersectionObserver(entries => {
+      entries.filter(entry => entry.isIntersecting).forEach(entry => {
+        $$('#navigation a').forEach(link => {
+          if (link.hash === `#${entry.target.id}`) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-20% 0px -65% 0px' });
+    $$('#navigation a').forEach(link => navObserver.observe($(link.hash)));
+  }
 
   const moduleData = {
-    waits: { zone: 'ÁREA DE ESPERA', label: 'ESPERA REGISTRADA', value: '06:24', suffix: ' min', insight: 'Un punto de partida para mejorar el flujo.', rows: [['09:41', 'T-014', 'Ingreso a zona', 'Registrado'], ['09:47', 'T-014', 'Inicio de atención', 'Ver evidencia ↗']] },
-    trips: { zone: 'CONTROL DE INGRESOS', label: 'VIAJE IDENTIFICADO', value: 'T-014', suffix: '', insight: 'Un evento para contrastar con el parte del servicio.', rows: [['09:41', 'T-014', 'Ingreso registrado', 'Con evidencia'], ['10:02', 'T-014', 'Salida registrada', 'Para conciliar']] },
-    fleet: { zone: 'FLUJO DE VEHÍCULOS', label: 'ESTADO OBSERVABLE', value: 'En carga', suffix: '', insight: 'Llegadas y ciclos para evaluar el uso de la flota.', rows: [['09:47', 'T-014', 'En atención', 'Registrado'], ['09:49', 'T-022', 'En espera', 'Ver evidencia ↗']] }
+    waits: { zone: 'Área de espera', label: 'Espera registrada', value: '06:24', suffix: ' min', insight: 'Un punto de partida para mejorar el flujo.', rows: [['09:41', 'T-014', 'Ingreso a zona', 'Registrado'], ['09:47', 'T-014', 'Inicio de atención', 'Con evidencia']] },
+    trips: { zone: 'Control de ingresos', label: 'Viaje identificado', value: 'T-014', suffix: '', insight: 'Un evento para contrastar con el parte del servicio.', rows: [['09:41', 'T-014', 'Ingreso registrado', 'Con evidencia'], ['10:02', 'T-014', 'Salida registrada', 'Para conciliar']] },
+    fleet: { zone: 'Flujo de vehículos', label: 'Estado observable', value: 'En carga', suffix: '', insight: 'Llegadas y ciclos para evaluar el uso de la flota.', rows: [['09:47', 'T-014', 'En atención', 'Registrado'], ['09:49', 'T-022', 'En espera', 'Con evidencia']] }
   };
-  let selectedModule = 'waits';
   let selectedGoal = 'waits';
   function activateModule(key) {
     const data = moduleData[key];
     if (!data) return;
-    selectedModule = key;
     selectedGoal = key;
     $$('.module-tab').forEach(tab => { const selected = tab.dataset.module === key; tab.classList.toggle('active', selected); tab.setAttribute('aria-selected', String(selected)); tab.tabIndex = selected ? 0 : -1; });
     $('#module-panel').setAttribute('aria-labelledby', `tab-${key}`);
@@ -49,7 +81,7 @@
     $('#metric-insight').textContent = data.insight;
     $('#activity-log').replaceChildren(...data.rows.map(row => {
       const container = document.createElement('div');
-      row.forEach((value, index) => { const node = document.createElement(index === 1 ? 'b' : index === 3 ? 'i' : 'span'); node.textContent = value; if (index === 3) node.className = 'log-status'; container.appendChild(node); });
+      row.forEach((value, index) => { const node = document.createElement(index === 1 ? 'b' : 'span'); node.textContent = value; if (index === 3) node.className = 'log-status'; container.appendChild(node); });
       return container;
     }));
   }
@@ -69,7 +101,7 @@
   }
   tabKeys($$('.module-tab'), activateModule, 'module');
 
-  const securityLabels = { ppe: 'PUNTO DE PASO / CONTROL DE EPP', access: 'SECTOR RESTRINGIDO / PRESENCIA PARA REVISIÓN', assets: 'PERÍMETRO / EVENTO PARA CONTRASTAR' };
+  const securityLabels = { ppe: 'Casco y chaleco en puntos de paso', access: 'Zonas y horarios definidos por tu equipo', assets: 'Movimientos en perímetros y accesos' };
   function activateSecurity(key) {
     if (!securityLabels[key]) return;
     selectedGoal = key;
@@ -82,27 +114,38 @@
 
   const videos = $$('video');
   const manuallyPaused = new Set();
+  const visibleVideos = new Set();
   function updateVideoControl(video) {
     const button = $(`[data-video-toggle="${video.id}"]`);
-    if (!button) return;
+    if (!button || button.disabled) return;
     $('.pause-symbol', button).textContent = video.paused ? '▶' : 'Ⅱ';
     const text = $('.control-text', button);
     if (text) text.textContent = video.paused ? 'Reproducir' : 'Pausar';
     button.setAttribute('aria-label', video.paused ? 'Reproducir video' : 'Pausar video');
     button.setAttribute('aria-pressed', String(!video.paused));
-    video.closest('.media-surface').classList.toggle('motion-paused', video.paused);
   }
   async function playVideo(video) {
+    const button = $(`[data-video-toggle="${video.id}"]`);
+    if (button.disabled) return;
+    button.setAttribute('aria-busy', 'true');
+    if (video.readyState < 2) $('.control-text', button).textContent = 'Cargando';
     try { await video.play(); } catch { updateVideoControl(video); }
+    finally { button.removeAttribute('aria-busy'); }
   }
   videos.forEach(video => {
     if (reducedMotion.matches || saveData) { video.removeAttribute('autoplay'); video.pause(); }
     ['play', 'pause', 'loadeddata', 'ended'].forEach(event => video.addEventListener(event, () => updateVideoControl(video)));
-    video.addEventListener('error', () => {
+    const videoError = () => {
       const label = $('.video-fallback', video.closest('.media-surface'));
       if (label) label.hidden = false;
-      updateVideoControl(video);
-    });
+      const button = $(`[data-video-toggle="${video.id}"]`);
+      button.disabled = true;
+      button.removeAttribute('aria-busy');
+      button.setAttribute('aria-label', 'Video no disponible');
+      $('.control-text', button).textContent = 'No disponible';
+    };
+    video.addEventListener('error', videoError);
+    $$('source', video).forEach(source => source.addEventListener('error', videoError));
     updateVideoControl(video);
     $(`[data-video-toggle="${video.id}"]`).addEventListener('click', () => {
       if (video.paused) { manuallyPaused.delete(video.id); playVideo(video); }
@@ -112,22 +155,50 @@
   if ('IntersectionObserver' in window) {
     const videoObserver = new IntersectionObserver(entries => entries.forEach(entry => {
       const video = entry.target;
+      if (entry.isIntersecting) visibleVideos.add(video); else visibleVideos.delete(video);
       if (entry.isIntersecting && !manuallyPaused.has(video.id) && !reducedMotion.matches && !saveData && !document.hidden) playVideo(video);
       else if (!entry.isIntersecting) video.pause();
     }), { threshold: .25 });
     videos.forEach(video => videoObserver.observe(video));
     const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { if (!reducedMotion.matches) entry.target.classList.add('motion-enter'); revealObserver.unobserve(entry.target); } }), { threshold: .1 });
-    $$('.section-heading, .workflow-heading, .savings-copy, .pilot-content').forEach(element => revealObserver.observe(element));
+    $$('.section-heading, .workflow-heading, .savings-copy, .pilot-content, .faq-heading').forEach(element => revealObserver.observe(element));
   }
-  document.addEventListener('visibilitychange', () => { if (document.hidden) videos.forEach(video => video.pause()); });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) videos.forEach(video => video.pause());
+    else if (!reducedMotion.matches && !saveData) visibleVideos.forEach(video => { if (!manuallyPaused.has(video.id)) playVideo(video); });
+  });
   reducedMotion.addEventListener('change', () => { if (reducedMotion.matches) videos.forEach(video => video.pause()); });
+
+  const statement = $('.word-reveal');
+  const words = $$('span', statement);
+  if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+    statement.classList.add('is-observed');
+    let inView = false;
+    let queued = false;
+    const revealWords = () => {
+      queued = false;
+      if (!inView) return;
+      words.forEach((word, index) => {
+        if (word.getBoundingClientRect().top < window.innerHeight * .85 - index * 24) word.classList.add('is-visible');
+      });
+      if (words.every(word => word.classList.contains('is-visible'))) {
+        window.removeEventListener('scroll', queueReveal);
+        window.removeEventListener('resize', queueReveal);
+        statementObserver.disconnect();
+      }
+    };
+    const queueReveal = () => { if (!queued && inView) { queued = true; requestAnimationFrame(revealWords); } };
+    const statementObserver = new IntersectionObserver(entries => { inView = entries[0].isIntersecting; queueReveal(); });
+    statementObserver.observe(statement);
+    window.addEventListener('scroll', queueReveal, { passive: true });
+    window.addEventListener('resize', queueReveal);
+  }
 
   const calcInputs = Object.fromEntries(['trips', 'minutes', 'days', 'rate'].map(key => [key, $(`#${key}`)]));
   let savingsScenario = null;
   function updateCalculator() {
     const values = Object.fromEntries(Object.entries(calcInputs).map(([key, input]) => [key, input.valueAsNumber]));
     const valid = Object.values(calcInputs).every(input => input.value !== '' && input.checkValidity() && Number.isFinite(input.valueAsNumber));
-    ['trips', 'minutes'].forEach(key => { const input = calcInputs[key]; const fill = (input.valueAsNumber - Number(input.min)) / (Number(input.max) - Number(input.min)) * 100; input.style.setProperty('--fill', `${fill}%`); });
     $('#trips-value').textContent = number.format(values.trips);
     $('#minutes-value').textContent = `${number.format(values.minutes)} min`;
     $('#calc-error').hidden = valid;
@@ -170,6 +241,7 @@
   }
   $$('[data-open-pilot]').forEach(button => button.addEventListener('click', () => {
     pilotGoal.value = button.classList.contains('calculator-cta') ? 'waits' : selectedGoal;
+    pilotPoint.value = { waits: 'Zona de carga', trips: 'Balanza', fleet: 'Zona de carga', ppe: 'Punto de control de EPP', access: 'Zona restringida', assets: 'Perímetro / depósito' }[pilotGoal.value];
     pilotGoal.dispatchEvent(new Event('change'));
     $('#form-status').textContent = '';
     openDialog($('#pilot-dialog'), button);
