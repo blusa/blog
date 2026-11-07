@@ -1,0 +1,38 @@
+{
+  "round": 7,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 8.8, "clarity": 8.9, "data": 8.9, "credibility": 8.9, "design": 8.8, "delivery": 9.0, "overall": 8.9},
+      "fixes": [
+        "07 modelo / 09 seguridad: aclarar si la línea de seguridad se cobra como punto nuevo con abono o como módulo sobre el punto existente",
+        "14 anexo A: «¿Quién más hace esto?» y «Las cámaras ya cuentan vehículos» repiten la misma frase final; posicionamiento propio sin presuponer qué hacen los competidores",
+        "15 anexo B, ítem 4: las dos fuentes del RIGI dan totales distintos; aclarar que el detalle es anterior y el total vigente es el oficial"
+      ],
+      "rechecked": [
+        {"fix": "¿Quién más hace esto?", "status": "resuelto"},
+        {"fix": "Tarjetas de equipo", "status": "resuelto"},
+        {"fix": "Resaltado de portada", "status": "resuelto"},
+        {"fix": "Costo de venta en el guión", "status": "resuelto"},
+        {"fix": "Seguridad en el plan", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 8.9, "clarity": 8.9, "data": 8.8, "credibility": 8.7, "design": 8.9, "delivery": 8.9, "overall": 8.8},
+      "fixes": [
+        "14 «¿Quién más hace esto?» y concordancia con 08: reemplazar «cuentan o alertan» por capacidades verificadas de proveedores concretos (Softlabs, Verkada); apuesta propia sin afirmar exclusividad",
+        "07 guión sobre costo de conseguir clientes: reconocer que aún no está medido y cómo se medirá; USD 4.500 es margen bruto supuesto antes de ventas y estructura"
+      ],
+      "rechecked": [
+        {"fix": "RIGI USD 28.000 M", "status": "resuelto"},
+        {"fix": "Competidores y privacidad", "status": "parcial"},
+        {"fix": "Tarjetas de equipo", "status": "resuelto"},
+        {"fix": "Resaltado de portada", "status": "resuelto"},
+        {"fix": "Costo de adquisición", "status": "parcial"},
+        {"fix": "Seguridad en el plan", "status": "resuelto"}
+      ]
+    }
+  }
+}
