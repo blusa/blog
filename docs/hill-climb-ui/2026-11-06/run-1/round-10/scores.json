@@ -1,0 +1,32 @@
+{
+  "round": 10,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 9.1, "clarity": 9.1, "data": 9.2, "credibility": 9.1, "design": 9.0, "delivery": 9.2, "overall": 9.1},
+      "fixes": [
+        "04 ejemplo, título y texto chico: llevar el punto de equilibrio al título («Un minuto menos por viaje paga el servicio. Cinco dejan USD 78.000 al año»), alinear el remate del guión y escribir «USD 1.300 por mes»",
+        "14 preguntas: agregar «¿Hay permanencia mínima? ¿Qué pasa si un cliente se da de baja?» con respuesta punteada para el CEO",
+        "14 preguntas: escribir «¿Una cantera paga USD 1.200 por mes por una cámara de seguridad?»"
+      ],
+      "rechecked": [
+        {"fix": "04 punto de equilibrio", "status": "resuelto"},
+        {"fix": "06 cinco puntos por cliente", "status": "resuelto"},
+        {"fix": "14 punto de seguridad", "status": "resuelto"},
+        {"fix": "03 definición de punto", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 9.0, "clarity": 9.1, "data": 9.0, "credibility": 9.0, "design": 9.0, "delivery": 9.0, "overall": 9.0},
+      "fixes": [],
+      "rechecked": [
+        {"fix": "04 punto de equilibrio", "status": "resuelto"},
+        {"fix": "06 cinco puntos", "status": "resuelto"},
+        {"fix": "14 y guión 07", "status": "resuelto"},
+        {"fix": "03 definición de punto", "status": "resuelto"}
+      ]
+    }
+  }
+}
