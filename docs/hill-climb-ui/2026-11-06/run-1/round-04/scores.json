@@ -1,0 +1,32 @@
+{
+  "round": 4,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 8.5, "clarity": 8.7, "data": 8.6, "credibility": 8.4, "design": 8.4, "delivery": 8.6, "overall": 8.5},
+      "fixes": [
+        "03 solución: el título «Les enseñamos a contar» choca con la 08 y el anexo A («contar no es medir la espera»); cambiar a «Les enseñamos a medir» y corregir «solo graban» en el guión",
+        "11 equipo: decir si el «Socio de operación minera» es la primera persona comercial de la 10 y la 12, o corregir la 12 para que la cuenta de personas sea la misma en 10, 11, 12 y el guión",
+        "Modo presentación con guión: el guión de la 06 no entra en la franja de 250 px; altura según el contenido o recortar; capturar la 06 con guión visible"
+      ],
+      "rechecked": [
+        {"fix": "Franja del guión", "status": "parcial"},
+        {"fix": "Cámaras que ya cuentan", "status": "parcial"},
+        {"fix": "Personas comerciales", "status": "parcial"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 8.8, "clarity": 8.8, "data": 8.7, "credibility": 8.5, "design": 8.8, "delivery": 8.8, "overall": 8.7},
+      "fixes": [
+        "03 solución, titular y primera frase del guión: sustituir «Les enseñamos a contar» y reemplazar «solo graban» por la explicación del registro de llegada, espera, carga y salida y su vínculo con el ahorro"
+      ],
+      "rechecked": [
+        {"fix": "06 escenario de trabajo a validar", "status": "resuelto"},
+        {"fix": "10 valor anualizado", "status": "resuelto"},
+        {"fix": "01 escena como ejemplo", "status": "resuelto"}
+      ]
+    }
+  }
+}
