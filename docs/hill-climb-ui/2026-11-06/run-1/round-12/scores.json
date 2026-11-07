@@ -1,0 +1,34 @@
+{
+  "round": 12,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 9.3, "clarity": 9.3, "data": 9.4, "credibility": 9.3, "design": 9.2, "delivery": 9.3, "overall": 9.3},
+      "fixes": [
+        "Vista del orador, láminas 07 y 09: igualar el nombre del encabezado con el rótulo («Modelo de negocio», «Expansión · desde el mes 6»)",
+        "05 ahora, guión: pasar la frase de 2035 a un «si preguntan» o subir el rótulo a 50 segundos",
+        "05 ahora, gráfico: relleno sólido hasta 4.742 (primer semestre real) dentro de la barra punteada de 2026",
+        "05 ahora, leyenda y guión: «más de USD 9.000 M», como la fuente"
+      ],
+      "rechecked": [
+        {"fix": "05 barra 2026 estimado", "status": "resuelto"},
+        {"fix": "04 título en dos líneas", "status": "resuelto"},
+        {"fix": "14 crecer dentro de cada cliente", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 9.1, "clarity": 9.2, "data": 9.1, "credibility": 9.0, "design": 8.8, "delivery": 9.0, "overall": 9.0},
+      "fixes": [
+        "05, modo presentación 1440×900: recuperar el pie de fuentes y el paginador, que quedaron fuera del encuadre"
+      ],
+      "rechecked": [
+        {"fix": "05/15 estimación 2026", "status": "resuelto"},
+        {"fix": "04 título", "status": "resuelto"},
+        {"fix": "14 competencia", "status": "resuelto"},
+        {"fix": "Orador 04", "status": "resuelto"}
+      ]
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "round": 1,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 8.2, "clarity": 8.5, "data": 7.5, "credibility": 7.4, "design": 7.9, "delivery": 8.0, "overall": 7.9},
+      "fixes": [
+        "06 mercado: alinear el «primer mercado» con el plan (canteras y minas medianas) y calcular el 15% sobre el mercado donde van a estar los 10 clientes",
+        "06 mercado, columna «Después»: poner un orden de magnitud rotulado como supuesto; usar los 310 proyectos en cartera de Invecq",
+        "03 solución, proyector: el pie y el pager quedan recortados; bajar la altura de la foto o los espacios del log",
+        "10 plan, «Repetir»: justificar 7 clientes nuevos en seis meses con un embudo rotulado o bajar la meta y propagar",
+        "03 solución, figura «Cámara 01»: usa la misma foto de la 02; otra imagen o recorte, con «imagen ilustrativa» sobre la foto",
+        "Vista del orador: el reloj arranca al abrir la ventana; iniciarlo al presentar, botón de reinicio y tiempo previsto acumulado",
+        "Modo presentación: probar la sincronización desde file:// o indicar en el guión cómo servirlo",
+        "06 mercado, celular: «USD 3,7 M» deja la «M» sola; nowrap en celdas numéricas",
+        "14 anexo A: agregar la pregunta técnica (noche, polvo, lluvia, precisión) con respuesta punteada para el CTO",
+        "07 modelo, «Piloto pago»: recuadro punteado con el precio del piloto",
+        "11 equipo, tarjeta CTO: recuadro punteado «en [proyecto o empresa]»"
+      ],
+      "rechecked": [
+        {"fix": "Costo de servir y margen bruto", "status": "resuelto"},
+        {"fix": "Lugar para el producto en la solución", "status": "resuelto"},
+        {"fix": "Vista del orador", "status": "resuelto"},
+        {"fix": "HTML autónomo e impresión", "status": "resuelto"},
+        {"fix": "Título de equipo", "status": "resuelto"},
+        {"fix": "Mercado de abajo hacia arriba", "status": "resuelto"},
+        {"fix": "FADEEAC", "status": "resuelto"},
+        {"fix": "Rótulo SRT", "status": "resuelto"},
+        {"fix": "Rango 2035", "status": "resuelto"},
+        {"fix": "Jugadores nombrados", "status": "resuelto"},
+        {"fix": "Tabla en celular", "status": "resuelto"},
+        {"fix": "Fusión por qué ahora", "status": "resuelto"},
+        {"fix": "Plan: logística y meta 15 a 50", "status": "parcial"},
+        {"fix": "Tarjeta minería argentina", "status": "resuelto"},
+        {"fix": "Frenar en el cierre, anexos A y B", "status": "resuelto"},
+        {"fix": "Pager duplicado", "status": "resuelto"},
+        {"fix": "Récord 2011 y RIGI expandido", "status": "resuelto"},
+        {"fix": "Línea de base", "status": "resuelto"},
+        {"fix": "Cuenta en celular", "status": "resuelto"},
+        {"fix": "scroll-margin", "status": "resuelto"},
+        {"fix": "Cierre con pedido", "status": "resuelto"},
+        {"fix": "Sueldos en el 40%", "status": "resuelto"},
+        {"fix": "Fuentes primarias", "status": "parcial"},
+        {"fix": "Espacio vacío en 10, 11 y 15", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 8.3, "clarity": 8.5, "data": 7.2, "credibility": 7.0, "design": 8.0, "delivery": 7.8, "overall": 7.8},
+      "fixes": [
+        "06 mercado, tabla: separar minas en producción, ampliaciones y proyectos futuros; los 13 RIGI incluyen ampliaciones de operaciones existentes",
+        "06 mercado y 10 plan: alinear el mercado inicial con la estrategia comercial; en celular conservar «supuesto» junto a los puntos por operación",
+        "02, 05, 08 y 14 con guiones: completar la eliminación de afirmaciones generales («no tienen una opción a su medida», «se anota a mano», contratistas no equipados, «alto, meses», «todo lo que pasa»)",
+        "07, 12 y 14: unificar quién paga cámaras, instalación y visitas; perímetro del costo de servir",
+        "04 ejemplo, nota al pie: quitar «o se usa para mover más carga» de la definición de ahorro",
+        "13 cierre y vista del orador: el botón Siguiente y las teclas del orador pasan al anexo A; aplicar el mismo límite",
+        "03 solución a 1440: recuperar el pie y el número de lámina",
+        "05 ahora y 15 fuentes: etiquetas del gráfico legibles en celular; texto más grande en el anexo B"
+      ],
+      "rechecked": [
+        {"fix": "04 ejemplo: horas vs. ahorro", "status": "parcial"},
+        {"fix": "06 mercado de abajo hacia arriba", "status": "parcial"},
+        {"fix": "Absolutos y Wenco", "status": "parcial"},
+        {"fix": "Costos y responsabilidades", "status": "parcial"},
+        {"fix": "Guión fuera del proyector", "status": "resuelto"},
+        {"fix": "Camino a 15 y 50 puntos", "status": "resuelto"},
+        {"fix": "Valor, inversión y escenarios", "status": "resuelto"},
+        {"fix": "Pie y número en oportunidad", "status": "resuelto"},
+        {"fix": "Voxxel visible en celular", "status": "resuelto"},
+        {"fix": "Barra en celular", "status": "resuelto"},
+        {"fix": "Titular de equipo", "status": "resuelto"},
+        {"fix": "Orden del relato", "status": "resuelto"},
+        {"fix": "Evento ilustrativo y definición de punto", "status": "resuelto"},
+        {"fix": "Seguridad condicionada", "status": "resuelto"},
+        {"fix": "Texto proyectado y supuestos", "status": "parcial"}
+      ]
+    }
+  }
+}

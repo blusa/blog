@@ -1,0 +1,29 @@
+{
+  "round": 13,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 9.3, "clarity": 9.4, "data": 9.5, "credibility": 9.3, "design": 9.3, "delivery": 9.4, "overall": 9.4},
+      "fixes": [
+        "05 ahora, celular: la nota del gráfico y el pie explican dos veces «sólido el semestre, punteado la estimación»; dejar una sola leyenda",
+        "05 ahora, gráfico: rotular el tramo sólido de 2026 con «4.742»",
+        "05 ahora, proyector: mover el ancho máximo del SVG a la figura para que el pie corte a la misma anchura que las barras"
+      ],
+      "rechecked": [
+        {"fix": "Orador 07 y 09", "status": "resuelto"},
+        {"fix": "05 guión 2035 a «si preguntan»", "status": "resuelto"},
+        {"fix": "05 relleno sólido 4.742", "status": "resuelto"},
+        {"fix": "05 «más de USD 9.000 M»", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 9.1, "clarity": 9.2, "data": 9.1, "credibility": 9.0, "design": 9.1, "delivery": 9.1, "overall": 9.1},
+      "fixes": [],
+      "rechecked": [
+        {"fix": "05 pie dentro del 16:9", "status": "resuelto"}
+      ]
+    }
+  }
+}

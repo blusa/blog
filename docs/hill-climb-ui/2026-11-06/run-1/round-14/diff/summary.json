@@ -1,0 +1,176 @@
+{
+  "01-portada-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "01-portada-light-390": {
+    "regions": 2,
+    "changed_pct": 0.84,
+    "resized": false
+  },
+  "02-problema-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "02-problema-light-390": {
+    "regions": 3,
+    "changed_pct": 1.36,
+    "resized": false
+  },
+  "03-solucion-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "03-solucion-light-390": {
+    "regions": 9,
+    "changed_pct": 1.22,
+    "resized": false
+  },
+  "04-ejemplo-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "04-ejemplo-light-390": {
+    "regions": 13,
+    "changed_pct": 2.9,
+    "resized": false
+  },
+  "05-ahora-dark-1440": {
+    "regions": 2,
+    "changed_pct": 2.24,
+    "resized": false
+  },
+  "05-ahora-light-390": {
+    "regions": 6,
+    "changed_pct": 47.07,
+    "resized": true
+  },
+  "06-mercado-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "06-mercado-light-390": {
+    "regions": 7,
+    "changed_pct": 19.57,
+    "resized": false
+  },
+  "07-modelo-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "07-modelo-light-390": {
+    "regions": 14,
+    "changed_pct": 14.59,
+    "resized": false
+  },
+  "08-diferencial-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "08-diferencial-light-390": {
+    "regions": 12,
+    "changed_pct": 3.36,
+    "resized": false
+  },
+  "09-seguridad-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "09-seguridad-light-390": {
+    "regions": 7,
+    "changed_pct": 10.54,
+    "resized": false
+  },
+  "10-plan-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "10-plan-light-390": {
+    "regions": 7,
+    "changed_pct": 21.52,
+    "resized": false
+  },
+  "11-equipo-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "11-equipo-light-390": {
+    "regions": 4,
+    "changed_pct": 13.04,
+    "resized": false
+  },
+  "12-inversion-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "12-inversion-light-390": {
+    "regions": 10,
+    "changed_pct": 6.39,
+    "resized": false
+  },
+  "13-cierre-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "13-cierre-light-390": {
+    "regions": 3,
+    "changed_pct": 26.29,
+    "resized": true
+  },
+  "14-preguntas-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "14-preguntas-light-390": {
+    "regions": 1,
+    "changed_pct": 72.53,
+    "resized": true
+  },
+  "15-fuentes-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "15-fuentes-light-390": {
+    "regions": 7,
+    "changed_pct": 17.46,
+    "resized": false
+  },
+  "zz-celular-inicio-light-390": {
+    "regions": 6,
+    "changed_pct": 1.36,
+    "resized": false
+  },
+  "zz-guion-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "zz-guion-mercado-dark-1440": {
+    "regions": 0,
+    "changed_pct": 0.0,
+    "resized": false
+  },
+  "zz-orador-dark-1440": {
+    "regions": 1,
+    "changed_pct": 0.53,
+    "resized": false
+  },
+  "only_before": [
+    "progress"
+  ],
+  "only_after": []
+}

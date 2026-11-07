@@ -1,0 +1,37 @@
+{
+  "round": 3,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 8.5, "clarity": 8.7, "data": 8.5, "credibility": 8.2, "design": 8.3, "delivery": 8.5, "overall": 8.4},
+      "fixes": [
+        "Modo presentación con guión visible: el margen derecho de 340 px angosta el texto y recorta el tercer párrafo; botones en la línea del encabezado y ancho completo, o franja de unos 260 px; probar con el guión de la 10",
+        "08 diferencial y 14 anexo A: «Cámaras de seguridad: solo graban» no resiste; las cámaras actuales cuentan vehículos, cruce de línea y patentes; reflejarlo y agregar «¿la cámara ya cuenta?» al anexo A",
+        "12 inversión, 10 plan y 11 equipo: decir cuántas personas comerciales paga la ronda y quién es la primera, con la misma cuenta en las tres láminas y en el guión de la 12"
+      ],
+      "rechecked": [
+        {"fix": "10 plan: embudo y meta contratada", "status": "resuelto"},
+        {"fix": "Plan B de la vista del orador", "status": "resuelto"},
+        {"fix": "Ancla CeNAM-17", "status": "resuelto"},
+        {"fix": "Etiqueta única del segmento", "status": "resuelto"},
+        {"fix": "Numeración kicker = pager", "status": "resuelto"},
+        {"fix": "Botones flotantes sobre el pager", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 8.6, "clarity": 8.7, "data": 8.3, "credibility": 8.2, "design": 8.7, "delivery": 8.5, "overall": 8.5},
+      "fixes": [
+        "06 mercado, nota y guión: «supuesto conservador» → «escenario de trabajo a validar»; distinguir las 1.730 empresas censadas (2016) de las 500 operaciones supuestas; retirar «menos de un tercio» como justificación",
+        "10 plan, cifra bajo «50 puntos contratados» y guión: rotular USD 720.000 como valor anualizado de abonos contratados; la facturación depende de activar los puntos",
+        "01 portada, guión: eliminar «cientos de veces por día en cada mina y cantera, y casi nunca queda registrado»; presentar la escena como ejemplo"
+      ],
+      "rechecked": [
+        {"fix": "2 vs 5 puntos", "status": "resuelto"},
+        {"fix": "Competencia y 02 acotados", "status": "resuelto"},
+        {"fix": "Gráfico en celular", "status": "resuelto"}
+      ]
+    }
+  }
+}

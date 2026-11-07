@@ -1,0 +1,50 @@
+{
+  "round": 2,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 8.4, "clarity": 8.6, "data": 8.1, "credibility": 7.9, "design": 8.2, "delivery": 8.4, "overall": 8.2},
+      "fixes": [
+        "10 plan, «Repetir», con 12 inversión y 13 cierre: los 7 clientes nuevos no pueden pilotear, pasar a abono y ampliarse entre el mes 12 y el 18; arrancar el embudo en «Vender», o definir la meta como puntos contratados, o bajar la meta y propagarla",
+        "01 portada, guión, y aviso de la barra: «usá el link publicado» no sirve sin link; plan B no técnico (flecha en las dos ventanas)",
+        "06 mercado, nota al pie y anexo B: anclar los 500 en el total nacional del CeNAM-17 (unas 1.730 empresas productoras)",
+        "06 mercado, fila 1, y 05, 10 y 14: una sola etiqueta para el segmento de entrada y «plantas de tratamiento»",
+        "Todas las láminas, kicker, y anexo B: numerar el kicker igual que el pager",
+        "Modo presentación con guión visible: los botones flotantes tapan el pager; moverlos a la franja del guión"
+      ],
+      "rechecked": [
+        {"fix": "06 mercado alineado con el plan", "status": "resuelto"},
+        {"fix": "06 mercado, «Después» con orden de magnitud", "status": "parcial"},
+        {"fix": "03 solución, pie recortado", "status": "resuelto"},
+        {"fix": "10 plan, 7 clientes con embudo", "status": "resuelto"},
+        {"fix": "03 solución, foto repetida", "status": "resuelto"},
+        {"fix": "Vista del orador, reloj y previsto", "status": "resuelto"},
+        {"fix": "Sincronización desde file://", "status": "parcial"},
+        {"fix": "06 celular, «M» sola", "status": "resuelto"},
+        {"fix": "14 anexo A, pregunta técnica", "status": "resuelto"},
+        {"fix": "07 precio del piloto", "status": "resuelto"},
+        {"fix": "11 CTO, dónde", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 8.5, "clarity": 8.6, "data": 8.0, "credibility": 7.8, "design": 8.4, "delivery": 8.3, "overall": 8.3},
+      "fixes": [
+        "06 mercado y 10 plan: explicar la relación entre 2 puntos por operación en el mercado y 5 puntos por cliente en el plan, o unificar",
+        "14 anexo A, «¿Y si lo hace una empresa grande?»: no atribuir una estrategia uniforme a los competidores; 02 título y guión: acotar la afirmación sobre esperas no medidas",
+        "05 por qué ahora, gráfico en celular: composición propia con etiquetas de 12 a 14 px efectivos"
+      ],
+      "rechecked": [
+        {"fix": "06 mercado sin sumar RIGI", "status": "resuelto"},
+        {"fix": "06 mercado y 10 plan alineados, «supuesto» en celular", "status": "parcial"},
+        {"fix": "Afirmaciones generales en 02, 05, 08 y 14", "status": "parcial"},
+        {"fix": "Quién paga qué", "status": "resuelto"},
+        {"fix": "04 ahorro sin «mover más carga»", "status": "resuelto"},
+        {"fix": "Orador se detiene en el cierre", "status": "resuelto"},
+        {"fix": "03 pie a 1440", "status": "resuelto"},
+        {"fix": "05 gráfico y 15 fuentes legibles", "status": "parcial"}
+      ]
+    }
+  }
+}

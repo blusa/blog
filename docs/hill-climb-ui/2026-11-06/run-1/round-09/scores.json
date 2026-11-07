@@ -1,0 +1,32 @@
+{
+  "round": 9,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 8.9, "clarity": 9.0, "data": 9.1, "credibility": 9.0, "design": 8.9, "delivery": 9.1, "overall": 9.0},
+      "fixes": [
+        "04 ejemplo, texto chico y guión: agregar el punto de equilibrio (1 minuto menos por viaje = USD 1.300 por mes, ya cubre el abono de USD 1.200)",
+        "06 mercado, guión y nota: los 5 puntos del plan combinan operaciones más grandes y cámaras de seguridad desde el mes 6, como dice la 10",
+        "14 preguntas: sumar «¿Una cantera paga USD 1.200 por mes por una cámara de seguridad?» con la respuesta de la 09 y validación en pilotos",
+        "03 solución, guión: usar la misma definición de punto que la 07 y la 09 («un punto es una cámara activa»)"
+      ],
+      "rechecked": [
+        {"fix": "10 plan, guión de seguridad", "status": "resuelto"},
+        {"fix": "09 definición de punto", "status": "resuelto"},
+        {"fix": "03 guión alineado con 08", "status": "resuelto"},
+        {"fix": "03 espera de 12 minutos", "status": "resuelto"},
+        {"fix": "07 pie en línea base", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 9.0, "clarity": 9.1, "data": 9.0, "credibility": 9.0, "design": 9.0, "delivery": 9.0, "overall": 9.0},
+      "fixes": [],
+      "rechecked": [
+        {"fix": "Punto facturable unificado", "status": "resuelto"},
+        {"fix": "03 guión con cliente objetivo", "status": "resuelto"}
+      ]
+    }
+  }
+}

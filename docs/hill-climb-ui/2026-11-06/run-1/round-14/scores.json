@@ -1,0 +1,28 @@
+{
+  "round": 14,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 10.0, "clarity": 10.0, "data": 10.0, "credibility": 10.0, "design": 10.0, "delivery": 10.0, "overall": 10.0},
+      "fixes": [],
+      "rechecked": [
+        {"fix": "05 una sola leyenda en celular", "status": "resuelto"},
+        {"fix": "05 cifra 4.742 en el tramo sólido", "status": "resuelto"},
+        {"fix": "05 ancho máximo en la figura", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 10.0, "clarity": 10.0, "data": 8.8, "credibility": 8.9, "design": 10.0, "delivery": 8.9, "overall": 8.9},
+      "fixes": [
+        "06 mercado, nota y guión; 15 fuentes: reemplazar «1.730 empresas productoras» (anticipo periodístico) por la cifra oficial del CENAM-17: 1.144 establecimientos con producción en 2016 (1.006 empresas con producción, 1.588 censadas), cuadro I.b, p. 40"
+      ],
+      "rechecked": [
+        {"fix": "05 leyenda única", "status": "resuelto"},
+        {"fix": "05 4.742 rotulado", "status": "resuelto"},
+        {"fix": "05 ancho de la figura", "status": "resuelto"}
+      ]
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "desktop": [
+    "01-portada-dark-1440.png",
+    "02-problema-dark-1440.png",
+    "03-solucion-dark-1440.png",
+    "04-ejemplo-dark-1440.png",
+    "05-ahora-dark-1440.png",
+    "06-mercado-dark-1440.png",
+    "07-modelo-dark-1440.png",
+    "08-diferencial-dark-1440.png",
+    "09-seguridad-dark-1440.png",
+    "10-plan-dark-1440.png",
+    "11-equipo-dark-1440.png",
+    "12-inversion-dark-1440.png",
+    "13-cierre-dark-1440.png",
+    "14-preguntas-dark-1440.png",
+    "15-fuentes-dark-1440.png"
+  ],
+  "mobile": [
+    "01-portada-light-390.png",
+    "02-problema-light-390.png",
+    "03-solucion-light-390.png",
+    "04-ejemplo-light-390.png",
+    "05-ahora-light-390.png",
+    "06-mercado-light-390.png",
+    "07-modelo-light-390.png",
+    "08-diferencial-light-390.png",
+    "09-seguridad-light-390.png",
+    "10-plan-light-390.png",
+    "11-equipo-light-390.png",
+    "12-inversion-light-390.png",
+    "13-cierre-light-390.png",
+    "14-preguntas-light-390.png",
+    "15-fuentes-light-390.png"
+  ],
+  "overflow": {
+    "mobile": 0
+  },
+  "errors": []
+}
