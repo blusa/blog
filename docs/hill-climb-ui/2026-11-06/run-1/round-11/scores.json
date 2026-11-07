@@ -1,0 +1,30 @@
+{
+  "round": 11,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 9.2, "clarity": 9.2, "data": 9.2, "credibility": 9.2, "design": 9.0, "delivery": 9.3, "overall": 9.2},
+      "fixes": [
+        "05 ahora, gráfico y guión: sumar la barra «2026 · estimado» de USD 9.000 M (CAEM) punteada, ampliar el anexo B y decir en el guión el primer semestre de 2026",
+        "04 ejemplo, título: forzar el corte antes de «Cinco» para que «Cinco ahorran USD 78.000 al año.» quede entera en una línea",
+        "14 preguntas, competencia: recuperar «crecer dentro de cada cliente» en la respuesta fusionada"
+      ],
+      "rechecked": [
+        {"fix": "04 título con punto de equilibrio", "status": "resuelto"},
+        {"fix": "14 permanencia mínima", "status": "resuelto"},
+        {"fix": "14 «por mes» en seguridad", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 9.1, "clarity": 9.2, "data": 9.0, "credibility": 9.0, "design": 9.0, "delivery": 9.1, "overall": 9.1},
+      "fixes": [],
+      "rechecked": [
+        {"fix": "04 título y remate", "status": "resuelto"},
+        {"fix": "14 permanencia y baja", "status": "resuelto"},
+        {"fix": "14 precio de seguridad por mes", "status": "resuelto"}
+      ]
+    }
+  }
+}
