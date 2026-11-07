@@ -1,0 +1,34 @@
+{
+  "round": 8,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 8.8, "clarity": 8.9, "data": 9.0, "credibility": 8.9, "design": 8.8, "delivery": 9.0, "overall": 8.9},
+      "fixes": [
+        "10 plan, guión: la seguridad «se activa sobre los mismos puntos» contradice el pie de la 09; cada cámara con reglas de seguridad es un punto más",
+        "09 seguridad: decir si una cámara que ya mide camiones y suma reglas de seguridad cuenta como uno o dos puntos",
+        "03 solución, guión: alinear con la 08 («algunas cuentan vehículos o miden colas por zona; nadie arma el registro de cada camión»)",
+        "03 solución, registro de ejemplo: alargar la espera (12 min) para que los 5 minutos de la 04 sean una parte",
+        "07 modelo, tarjeta «Más puntos» y pie: volver a dos renglones para que el pie quede en la línea base"
+      ],
+      "rechecked": [
+        {"fix": "Cobro de la línea de seguridad", "status": "parcial"},
+        {"fix": "Respuestas repetidas en el anexo A", "status": "resuelto"},
+        {"fix": "Dos fuentes del RIGI", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 8.9, "clarity": 8.9, "data": 8.9, "credibility": 8.8, "design": 8.9, "delivery": 8.9, "overall": 8.9},
+      "fixes": [
+        "07/09/10: unificar la definición de punto facturable y evitar doble conteo en los 50 puntos; corregir el guión de la 10",
+        "03, guión: describir el cliente objetivo (operaciones con cámaras que no convierten el video en un registro por camión) en vez de «a lo sumo, cuentan vehículos»"
+      ],
+      "rechecked": [
+        {"fix": "Competidores verificados", "status": "resuelto"},
+        {"fix": "Costo de adquisición", "status": "resuelto"}
+      ]
+    }
+  }
+}
