@@ -1,0 +1,59 @@
+{
+  "round": 0,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 7.4, "clarity": 8.0, "data": 6.8, "credibility": 6.5, "design": 7.7, "delivery": 6.9, "overall": 7.1},
+      "fixes": [
+        "08 modelo / 13 inversión: agregar el lado de los costos como supuesto rotulado o recuadro punteado: costo de servir por punto (equipo, nube, soporte) y margen bruto estimado",
+        "04 solución: reservar lugar para una captura real del tablero y una foto de evento con hora, como recuadro punteado si todavía no existe",
+        "Modo presentación: vista de presentador en segunda ventana sincronizada con guión, reloj y lámina siguiente; hoy el guión se proyecta a la sala",
+        "Archivo: hacerlo HTML autónomo (doctype, html lang=es, meta charset utf-8, meta viewport) y agregar @media print con @page 16:9 para exportar a PDF",
+        "12 equipo: cambiar el título a lo que hay hoy; hoy promete un perfil que la tercera tarjeta dice que falta",
+        "07 mercado: sumar la cuenta de abajo hacia arriba con fuente pública (operaciones en producción) × puntos por operación × abono, y explicitar que «USD 1,4 M cada 100 puntos» asume USD 1.200 por punto",
+        "05 ejemplo: sacar el 33,7% de FADEEAC o reformularlo como costo logístico en pesos y moverlo a Logística de la 07",
+        "06 seguridad: que rótulo y número digan lo mismo (minas, canteras e hidrocarburos) o pasar a una tasa de incidencia",
+        "02 oportunidad: mostrar el rango 2035 en el gráfico (CAEM 22.000 y oficial 36.250)",
+        "09 diferencial: nombrar en las cabeceras a los jugadores conocidos (Modular Mining DISPATCH, Caterpillar MineStar, Hexagon)",
+        "09 diferencial, celular: columna Voxxel primera o fija, o tarjetas apiladas por debajo de 900 px",
+        "02 y 10: fusionar «Por qué ahora» en «Oportunidad» o dejar la 10 sin repetir el RIGI de 25.230 M",
+        "11 plan: resolver la contradicción con la 07 (piloto logístico en meses 0 a 6 vs. logística «después») y justificar o bajar la meta de 15 a 50 puntos",
+        "07 mercado, tarjeta Minería argentina: separar producción, aprobados y presentados o simplificar la frase",
+        "Modo presentación: frenar la navegación en la 14 cierre y abrir los anexos con teclas A y B",
+        "Modo presentación: ocultar el .pager interno cuando body.presenting",
+        "02 oportunidad: «más del doble del récord anterior, de 2011» no dice récord de qué; expandir RIGI una vez",
+        "04 y 08: unificar «punto de partida» y «línea de base» en un solo término",
+        "05 ejemplo, celular: apilar cada término con su rótulo; hoy los operadores quedan sueltos a fin de línea",
+        "Celular: agregar scroll-margin-top igual al alto de la barra a .slot",
+        "14 cierre: reemplazar «Una pregunta» por una línea que cierre el arco y repetir el pedido junto al contacto",
+        "13 inversión: aclarar en «Producto y pilotos 40%» si incluye sueldos del equipo técnico",
+        "16 fuentes: reemplazar prensa por fuentes primarias donde existan",
+        "10, 11 y 15, proyector: la mitad inferior queda vacía; centrar el bloque o agrandar el contenido"
+      ],
+      "rechecked": []
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 7.3, "clarity": 8.0, "data": 6.7, "credibility": 5.5, "design": 7.1, "delivery": 6.2, "overall": 6.8},
+      "fixes": [
+        "05 ejemplo: separar horas liberadas de ahorro efectivo; mostrar la conversión de minutos a horas, rotular el escenario junto al resultado, quitar 'supuestos prudentes' y 'es un número bajo' del guión; retirar FADEEAC de esa justificación",
+        "07 mercado: reemplazar inversiones/exportaciones/camiones como aproximación por sitios elegibles × puntos por sitio × abono anual, usando SIACAM y rotulando supuestos; explicitar el precio",
+        "03 problema, 09 diferencial y 10 ahora: retirar los absolutos 'nadie mide la espera' y 'no tienen a quién comprárselo'; reconocer que Wenco mide tiempos de cola; eliminar 'hace cinco años no era viable' sin fuente",
+        "08 modelo, 13 inversión y 15 preguntas: explicar qué costos absorbe Voxxel y cuáles paga el cliente; sustituir 'casi nada' y 'el costo de venta ya está pagado' por condiciones verificables; cómo se validará el margen por punto",
+        "Modo Guión: distinguir ensayo de presentación pública; iniciar con el guión oculto y ofrecer consultarlo fuera de la pantalla proyectada",
+        "11 plan y 13 inversión: explicar el camino comercial hacia 15 y 50 puntos; condicionar la expansión a logística, provincias y países a resultados de la primera etapa",
+        "02 oportunidad y 10 ahora: distinguir valor exportado, volumen e inversión aprobada; 'Llegó la inversión' sin equiparar aprobados con desembolsos; 2030 y 2035 como escenarios",
+        "02 oportunidad, presentación 1440: recuperar el pie de fuentes y número de lámina, dar margen inferior al último indicador; litio puede pasar al anexo",
+        "09 diferencial, celular: la columna Voxxel queda fuera; bloques verticales por criterio",
+        "Celular: la barra de controles tapa títulos o contenido en las capturas; reservar espacio o regenerar capturas",
+        "12 equipo: separar capacidades actuales de perfiles a sumar y ajustar el titular",
+        "Orden: llegar antes a problema, solución, ahorro y modelo; reducir repetición RIGI; seguridad como expansión; portada y cierre conectados con financiar la etapa",
+        "04 solución: mostrar un ejemplo ilustrativo de evento con imagen, hora y espera; aclarar qué es un 'punto'",
+        "06 seguridad: cambiar 'sin costo de instalación nuevo' por una condición; hacer visible que los 2.465 casos incluyen petróleo y gas; alinear con el plan",
+        "10, 15 y 16: aumentar el texto proyectado; en 05 y 11 subir de jerarquía las aclaraciones de supuestos; en 16 relacionar cada fuente con su lámina"
+      ],
+      "rechecked": []
+    }
+  }
+}

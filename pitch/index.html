@@ -1,5 +1,11 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Voxxel.ai Pitch</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
@@ -13,15 +19,14 @@
   --paper:#f1f2e9; --paper-2:#e6e8da; --paper-3:#d9dccb;
   --lime:#d7f45b; --lime-deep:#4f5e0f;
   --stone:#a2aa98; --stone-deep:#59624f;
-  --signal:#ff8a5b;
-  /* tokens de tema (claro) */
   --bg:var(--paper-2); --surface:var(--paper); --surface-2:var(--paper-3);
   --fg:var(--ink); --fg-soft:var(--stone-deep); --rule:rgba(17,20,16,.16);
-  --accent-text:var(--lime-deep); --accent-fill:var(--lime); --on-accent:var(--ink);
+  --accent-text:var(--lime-deep);
   --chrome:rgba(241,242,233,.92);
   --display:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
   --body:'DM Sans',ui-sans-serif,system-ui,sans-serif;
   --mono:ui-monospace,SFMono-Regular,Consolas,monospace;
+  --bar-h:62px;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0b0d0a; --surface:var(--ink); --surface-2:var(--ink-2);
@@ -33,17 +38,18 @@
   --accent-text:var(--lime); --chrome:rgba(11,13,10,.9); color-scheme:dark}
 
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--chrome)}
 h1,h2,h3,p{margin:0}
 h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.035em;text-wrap:balance}
 :focus-visible{outline:2px solid var(--accent-text);outline-offset:3px}
 ::selection{background:var(--lime);color:var(--ink)}
+img{max-width:100%}
 
 /* Barra de control */
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--chrome);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--chrome);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px}
-.bar-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bar-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap}
 .logo{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.04em}
 .logo b{color:var(--accent-text);font-weight:600}
 .bar .spacer{flex:1}
@@ -51,88 +57,117 @@ h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.035em;text-
 .btn:hover{background:var(--surface-2)}
 .btn[aria-pressed="true"]{background:var(--fg);color:var(--surface);border-color:var(--fg)}
 .btn-primary{background:var(--lime);color:var(--ink);border-color:var(--lime)}
-.btn-primary:hover{background:var(--paper);border-color:var(--paper)}
+.btn-primary:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 .hint{font:400 13px/18px var(--body);color:var(--fg-soft)}
+.bar-msg{flex-basis:100%;font:400 13px/18px var(--body);color:var(--fg-soft)}
+@media (max-width:700px){.bar .hint,.bar #speaker-btn{display:none}}
 
 /* Mazo */
 .deck{max-width:1280px;margin:0 auto;display:grid;gap:28px;padding-block:28px 64px;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.slot{display:grid;gap:10px;scroll-margin-top:calc(var(--bar-h) + 12px)}
 .slide{container-type:inline-size;position:relative;overflow:hidden;border-radius:6px;background:var(--surface);color:var(--fg);border:1px solid var(--rule)}
 .slide.dark{--surface:var(--ink);--surface-2:var(--ink-2);--fg:var(--paper);--fg-soft:var(--stone);--rule:rgba(225,234,212,.18);--accent-text:var(--lime);background:var(--ink);color:var(--paper)}
-.in{position:relative;z-index:1;display:grid;gap:clamp(16px,2.4cqw,36px);padding:clamp(22px,4.4cqw,64px) clamp(20px,5.6cqw,80px) clamp(18px,3cqw,44px);min-height:100%}
+.in{position:relative;z-index:1;display:grid;gap:clamp(16px,2.2cqw,34px);padding:clamp(22px,4.2cqw,60px) clamp(20px,5.4cqw,78px) clamp(18px,2.8cqw,40px);min-height:100%}
 @media (min-width:900px){
   .slide{aspect-ratio:16/9}
   .in{position:absolute;inset:0;display:flex;flex-direction:column}
   .in>.foot{margin-top:auto}
   .in>:not(.kicker):not(.foot):has(+ .foot){margin-block:auto}
 }
-.kicker{display:flex;gap:12px;align-items:center;font:600 clamp(11px,1cqw,15px)/1.3 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--fg-soft)}
+.kicker{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font:600 clamp(11px,1cqw,15px)/1.3 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--fg-soft)}
 .kicker .n{font-family:var(--mono);font-weight:500;color:var(--accent-text);letter-spacing:.02em}
 .h-hero{font-size:clamp(44px,8.6cqw,132px);line-height:.92;letter-spacing:-.055em}
-.h1{font-size:clamp(30px,4.6cqw,70px);line-height:1;letter-spacing:-.045em;max-width:20ch}
-.h2{font-size:clamp(20px,2.2cqw,34px);line-height:1.12}
+.h1{font-size:clamp(30px,4.4cqw,66px);line-height:1;letter-spacing:-.045em;max-width:22ch}
+.h2{font-size:clamp(20px,2.1cqw,32px);line-height:1.12}
 .lead{font-size:clamp(17px,1.75cqw,26px);line-height:1.35;color:var(--fg-soft);max-width:44ch}
 .lead strong{color:var(--fg);font-weight:600}
-.small{font-size:clamp(13px,1.05cqw,16px);line-height:1.45;color:var(--fg-soft)}
-.src{font-size:clamp(11px,.85cqw,13px);line-height:1.35;color:var(--fg-soft)}
+.small{font-size:clamp(14px,1.15cqw,17px);line-height:1.45;color:var(--fg-soft)}
+.small strong{color:var(--fg);font-weight:600}
+.src{font-size:clamp(11px,.9cqw,13px);line-height:1.35;color:var(--fg-soft)}
 .hl{background:var(--lime);color:var(--ink);padding:0 .12em;border-radius:2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:end}
-.pager{font-family:var(--mono);font-size:clamp(11px,.85cqw,13px);color:var(--fg-soft)}
+.foot{display:flex;justify-content:space-between;gap:6px 16px;flex-wrap:wrap;align-items:end}
+.foot>:first-child{max-width:80ch}
+.pager{font-family:var(--mono);font-size:clamp(11px,.9cqw,13px);color:var(--fg-soft);margin-left:auto}
+.tag-assume{display:inline-block;font:600 clamp(10px,.85cqw,12px)/1.4 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:var(--paper-3);border-radius:2px;padding:1px 6px}
+.slide.dark .tag-assume{background:var(--ink-3);color:var(--paper)}
 
 /* Grillas */
 .cols{display:grid;gap:clamp(16px,2.4cqw,36px)}
 @media (min-width:900px){
   .cols-2{grid-template-columns:1.05fr 1fr}
   .cols-3{grid-template-columns:repeat(3,1fr)}
-  .cols-4{grid-template-columns:repeat(4,1fr)}
-  .cols-x{grid-template-columns:1fr 1.2fr}
+  .cols-x{grid-template-columns:1fr 1.15fr}
+  .cols-w{grid-template-columns:1.55fr 1fr}
 }
 .cols>*{min-width:0}
-.stat{display:grid;gap:6px;align-content:start;border-top:2px solid var(--fg);padding-top:clamp(10px,1.2cqw,18px)}
-.stat .v{font-family:var(--display);font-weight:500;font-size:clamp(34px,4.4cqw,66px);line-height:.95;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.stack{display:grid;gap:clamp(12px,1.6cqw,24px);align-content:start}
+.stat{display:grid;gap:4px;align-content:start;border-top:2px solid var(--fg);padding-top:clamp(10px,1.1cqw,16px)}
+.stat .v{font-family:var(--display);font-weight:500;font-size:clamp(32px,4cqw,60px);line-height:.95;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
 .stat .v small{font-size:.42em;letter-spacing:-.02em;margin-left:.15em}
+.stat .t{font-family:var(--display);font-weight:500;font-size:clamp(20px,2cqw,30px);line-height:1.05;letter-spacing:-.03em}
 .stat .l{font-size:clamp(14px,1.25cqw,19px);line-height:1.3}
-.stat .s{font-size:clamp(11px,.85cqw,13px);color:var(--fg-soft)}
+.stat .s{font-size:clamp(13px,1.05cqw,16px);line-height:1.4;color:var(--fg-soft)}
+.stat .s strong{color:var(--fg);font-weight:600}
 .stat.key{border-top-color:var(--lime)}
 .stat.key .v{color:var(--accent-text)}
 
-/* Foto de fondo */
+/* Fotos */
 .photo{position:absolute;inset:0;z-index:0}
 .photo img{width:100%;height:100%;object-fit:cover;display:block}
-.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,20,16,.94) 0%,rgba(17,20,16,.78) 45%,rgba(17,20,16,.25) 100%)}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,20,16,.95) 0%,rgba(17,20,16,.8) 45%,rgba(17,20,16,.25) 100%)}
 .photo.full::after{background:linear-gradient(180deg,rgba(17,20,16,.55) 0%,rgba(17,20,16,.82) 70%,rgba(17,20,16,.95) 100%)}
-.figure-img{border-radius:4px;overflow:hidden;position:relative;min-height:220px}
+.figure-img{border-radius:4px;overflow:hidden;position:relative;min-height:240px;margin:0}
 .figure-img img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
 .figure-img figcaption{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;font-size:12px;color:var(--paper);background:linear-gradient(0deg,rgba(17,20,16,.85),transparent)}
 
 /* Lista con marcas */
-.points{display:grid;gap:clamp(12px,1.6cqw,24px);margin:0;padding:0;list-style:none}
+.points{display:grid;gap:clamp(12px,1.5cqw,22px);margin:0;padding:0;list-style:none}
 .points li{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
-.points .dot{width:10px;height:10px;border-radius:50%;background:var(--lime);margin-top:.5em;box-shadow:0 0 0 3px color-mix(in srgb,var(--lime) 25%,transparent)}
+.points .dot{width:10px;height:10px;border-radius:50%;background:var(--lime);margin-top:.5em}
 .points b{display:block;font-family:var(--display);font-weight:500;font-size:clamp(18px,1.8cqw,27px);line-height:1.15;letter-spacing:-.025em}
-.points span{display:block;font-size:clamp(14px,1.2cqw,18px);line-height:1.4;color:var(--fg-soft);margin-top:4px}
+.points span{display:block;font-size:clamp(14px,1.25cqw,19px);line-height:1.4;color:var(--fg-soft);margin-top:4px}
 
 /* Pasos */
-.steps{display:grid;gap:clamp(12px,1.6cqw,24px);counter-reset:s}
+.steps{display:grid;gap:clamp(12px,1.5cqw,22px)}
 @media (min-width:900px){.steps{grid-template-columns:repeat(3,1fr)}}
-.step{background:var(--surface-2);border-radius:4px;padding:clamp(16px,2cqw,30px);display:grid;gap:10px;align-content:start;position:relative}
+.step{background:var(--surface-2);border-radius:4px;padding:clamp(16px,1.9cqw,28px);display:grid;gap:10px;align-content:start}
 .step .num{font-family:var(--mono);font-size:clamp(12px,1cqw,15px);color:var(--accent-text)}
-.step h3{font-size:clamp(24px,3cqw,46px);line-height:1;letter-spacing:-.045em}
+.step h3{font-size:clamp(24px,2.8cqw,42px);line-height:1;letter-spacing:-.045em}
 .step p{font-size:clamp(14px,1.25cqw,19px);line-height:1.4;color:var(--fg-soft)}
-.step .out{font-size:clamp(12px,1cqw,15px);font-weight:600;color:var(--fg);border-top:1px solid var(--rule);padding-top:10px;margin-top:4px}
+.step .out{font-size:clamp(13px,1.1cqw,16px);font-weight:600;color:var(--fg);border-top:1px solid var(--rule);padding-top:10px;margin-top:4px}
+.vsteps{display:grid;gap:clamp(10px,1.3cqw,20px);margin:0;padding:0;list-style:none}
+.vsteps li{display:grid;grid-template-columns:clamp(96px,11cqw,160px) 1fr;gap:16px;align-items:baseline;border-top:1px solid var(--rule);padding-top:clamp(10px,1.2cqw,16px)}
+.vsteps h3{font-size:clamp(26px,3cqw,46px);line-height:1;letter-spacing:-.045em}
+.vsteps p{font-size:clamp(15px,1.4cqw,21px);line-height:1.35;color:var(--fg-soft)}
+.vsteps p strong{color:var(--fg);font-weight:600}
+
+/* Registro de ejemplo */
+.event{margin:0;display:grid;grid-template-rows:auto auto auto;background:var(--ink);color:var(--paper);border-radius:6px;overflow:hidden;border:1px solid rgba(225,234,212,.18)}
+.event-img{position:relative;aspect-ratio:16/7;max-width:100%}
+.event-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 55%}
+.event-img .tag{position:absolute;left:10px;top:10px;font:600 11px/1.3 var(--mono);letter-spacing:.04em;background:rgba(17,20,16,.82);color:var(--paper);padding:4px 8px;border-radius:2px}
+.event-img .rec{position:absolute;right:10px;top:10px;font:600 11px/1.3 var(--mono);background:var(--lime);color:var(--ink);padding:4px 8px;border-radius:2px}
+.log{margin:0;padding:clamp(12px,1.4cqw,20px) clamp(14px,1.6cqw,22px) 4px;list-style:none;display:grid;gap:6px}
+.log li{display:grid;grid-template-columns:clamp(96px,9.5cqw,140px) 1fr auto;gap:10px;align-items:baseline;font-size:clamp(14px,1.25cqw,18px);border-bottom:1px dashed rgba(225,234,212,.16);padding-bottom:6px}
+.log time{font-family:var(--mono);font-size:.85em;color:var(--stone)}
+.log b{font-family:var(--display);font-weight:500;font-size:1.35em;color:var(--lime);letter-spacing:-.02em}
+.log li.wait span{color:var(--lime)}
+.event figcaption{padding:8px clamp(14px,1.6cqw,22px) 12px;font-size:12px;color:var(--stone)}
 
 /* Cuenta */
-.calc{display:grid;gap:clamp(10px,1.2cqw,18px)}
-.calc-row{display:flex;flex-wrap:wrap;row-gap:12px;align-items:baseline;gap:clamp(8px,1.1cqw,18px);font-family:var(--display);font-variant-numeric:tabular-nums}
-.calc-row .q{font-size:clamp(30px,4.4cqw,66px);line-height:1;letter-spacing:-.05em;font-weight:500}
+.calc{display:grid;gap:clamp(10px,1.1cqw,16px)}
+.calc-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px clamp(8px,1cqw,16px);font-family:var(--display);font-variant-numeric:tabular-nums}
+.calc-row .q{font-size:clamp(26px,3.3cqw,50px);line-height:1;letter-spacing:-.05em;font-weight:500}
 .calc-row .u{display:block;font-family:var(--body);font-size:clamp(12px,1cqw,15px);letter-spacing:0;color:var(--fg-soft);font-weight:500;margin-top:6px}
-.calc-row .op{font-size:clamp(22px,2.6cqw,40px);color:var(--fg-soft);font-weight:400}
+.calc-row .op{font-size:clamp(20px,2.3cqw,34px);color:var(--fg-soft);font-weight:400}
 .calc-row .term{display:inline-grid}
+.calc-row .pair{display:inline-flex;align-items:baseline;gap:clamp(8px,1cqw,16px)}
 .calc-row .res .q{color:var(--accent-text)}
-.calc-total{background:var(--lime);color:var(--ink);border-radius:4px;padding:clamp(14px,1.8cqw,26px) clamp(16px,2.2cqw,32px);display:flex;flex-wrap:wrap;gap:8px 28px;align-items:baseline}
-.calc-total .big{font-family:var(--display);font-size:clamp(34px,5cqw,76px);line-height:1;letter-spacing:-.055em;font-weight:500;font-variant-numeric:tabular-nums}
+.calc-total{background:var(--lime);color:var(--ink);border-radius:4px;padding:clamp(14px,1.7cqw,24px) clamp(16px,2cqw,30px);display:grid;gap:4px}
+.calc-total .big{font-family:var(--display);font-size:clamp(34px,4.6cqw,70px);line-height:1;letter-spacing:-.055em;font-weight:500;font-variant-numeric:tabular-nums}
 .calc-total .t{font-size:clamp(14px,1.3cqw,20px);font-weight:600}
-.calc-total .sub{font-size:clamp(13px,1.1cqw,17px)}
+
 
 /* Gráfico */
 .chart{width:100%;height:auto;display:block;overflow:visible}
@@ -140,29 +175,62 @@ h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.035em;text-
 .chart .val{fill:var(--fg);font-family:var(--display);font-weight:500;font-size:17px}
 .chart .val.key{fill:var(--accent-text)}
 
-/* Tabla comparativa */
-.compare-wrap{overflow-x:auto}
-.compare{width:100%;border-collapse:collapse;font-size:clamp(13px,1.15cqw,17px);min-width:620px}
-.compare th,.compare td{padding:clamp(8px,.95cqw,14px) clamp(8px,1cqw,14px);text-align:left;border-bottom:1px solid var(--rule);vertical-align:middle}
-.compare thead th{font-weight:600;font-size:clamp(11px,.95cqw,14px);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-soft)}
+/* Tablas */
+.table-wrap{overflow-x:auto}
+.compare,.mkt{width:100%;border-collapse:collapse;font-size:clamp(13px,1.15cqw,17px)}
+.compare th,.compare td,.mkt th,.mkt td{padding:clamp(8px,.9cqw,13px) clamp(8px,1cqw,14px);text-align:left;border-bottom:1px solid var(--rule);vertical-align:middle}
+.compare thead th,.mkt thead th{font-weight:600;font-size:clamp(11px,.92cqw,14px);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-soft);vertical-align:bottom}
+.compare thead th small{display:block;text-transform:none;letter-spacing:0;font-weight:400;font-size:.95em;margin-top:2px}
 .compare thead th.us{color:var(--ink);background:var(--lime);border-radius:4px 4px 0 0}
 .compare td.us{background:color-mix(in srgb,var(--lime) 16%,transparent);font-weight:600}
 .compare tbody th{font-weight:500}
-.yes,.no,.mid{display:inline-flex;align-items:center;gap:6px}
+.yes,.no,.mid{display:inline-flex;align-items:center;gap:7px}
 .yes::before,.no::before,.mid::before{content:"";width:9px;height:9px;border-radius:50%;flex:none}
 .yes::before{background:var(--accent-text)}
 .no::before{border:1.5px solid var(--fg-soft)}
 .mid::before{background:linear-gradient(90deg,var(--fg-soft) 50%,transparent 50%);border:1.5px solid var(--fg-soft)}
+.mkt td.num,.mkt th.num{text-align:right;font-variant-numeric:tabular-nums}
+.mkt td.num{font-family:var(--display);font-size:1.15em}
+.mkt .m-only{display:none}
+@media (max-width:899px){
+  .mkt th:nth-child(2),.mkt th:nth-child(3),.mkt td:nth-child(2),.mkt td:nth-child(3){display:none}
+  .mkt .m-only{display:block;font-weight:400;color:var(--fg-soft);font-size:.9em;margin-top:2px}
+  .mkt thead th:first-child{text-transform:none;letter-spacing:0;font-size:13px}
+}
+.mkt tfoot td,.mkt tfoot th{border-bottom:0;border-top:2px solid var(--fg);font-weight:600}
+.mkt tfoot .key{background:var(--lime);color:var(--ink)}
+@media (max-width:899px){
+  .compare thead{display:none}
+  .compare,.compare tbody,.compare tr,.compare th,.compare td{display:block}
+  .compare tbody tr{display:grid;gap:4px;padding:12px 0;border-bottom:1px solid var(--rule)}
+  .compare tbody th{order:-2;border:0;padding:0 0 4px;font-family:var(--display);font-size:18px;letter-spacing:-.02em}
+  .compare td{border:0;padding:3px 0;display:flex;justify-content:space-between;gap:12px;font-size:14px}
+  .compare td::before{content:attr(data-label);color:var(--fg-soft);font-weight:400}
+  .compare td.us{order:-1;background:var(--lime);color:var(--ink);padding:6px 8px;border-radius:3px}
+  .compare td.us::before{color:var(--ink)}
+  .compare td.us .yes::before{background:var(--ink)}
+}
+
+/* Unidad económica */
+.unit{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+@media (min-width:900px){.unit{grid-template-columns:repeat(4,1fr)}}
+.unit>div{background:var(--surface);padding:clamp(10px,1.2cqw,16px) clamp(12px,1.4cqw,18px);display:grid;gap:2px;align-content:start}
+.unit .k{font-size:clamp(11px,.92cqw,14px);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-soft);font-weight:600}
+.unit .v{font-family:var(--display);font-size:clamp(22px,2.4cqw,36px);letter-spacing:-.04em;line-height:1.05;font-variant-numeric:tabular-nums}
+.unit .d{font-size:clamp(12px,1cqw,15px);color:var(--fg-soft);line-height:1.35}
+.unit .key{background:var(--lime);color:var(--ink)}
+.unit .key .k,.unit .key .d{color:var(--ink)}
 
 /* Línea de tiempo */
 .timeline{display:grid;gap:clamp(12px,1.4cqw,22px)}
 @media (min-width:900px){.timeline{grid-template-columns:repeat(3,1fr)}}
-.phase{border-top:2px solid var(--rule);padding-top:clamp(12px,1.4cqw,20px);display:grid;gap:8px;align-content:start}
+.phase{border-top:2px solid var(--rule);padding-top:clamp(12px,1.4cqw,20px);display:grid;gap:10px;align-content:start}
 .phase.now{border-top-color:var(--lime)}
 .phase .when{font-family:var(--mono);font-size:clamp(12px,1cqw,15px);color:var(--accent-text)}
-.phase h3{font-size:clamp(20px,2.3cqw,34px);line-height:1.05}
-.phase ul{margin:0;padding-left:1.1em;display:grid;gap:4px;font-size:clamp(14px,1.2cqw,18px);color:var(--fg-soft)}
-.phase .goal{font-weight:600;color:var(--fg);font-size:clamp(14px,1.2cqw,18px)}
+.phase h3{font-size:clamp(24px,2.8cqw,42px);line-height:1}
+.phase ul{margin:0;padding-left:1.1em;display:grid;gap:6px;font-size:clamp(14px,1.3cqw,19px);line-height:1.4;color:var(--fg-soft)}
+.phase .goal{font-family:var(--display);font-weight:500;color:var(--fg);font-size:clamp(17px,1.6cqw,24px);letter-spacing:-.02em;line-height:1.15}
+.phase .goal small{display:block;font-family:var(--body);font-size:.62em;color:var(--fg-soft);letter-spacing:0;font-weight:400;margin-top:2px}
 
 /* Campos a completar */
 .fill{border:1.5px dashed var(--accent-text);border-radius:3px;padding:0 .3em;color:var(--accent-text);font-style:normal;white-space:nowrap}
@@ -170,7 +238,8 @@ h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.035em;text-
 .person .avatar{width:clamp(48px,5cqw,76px);aspect-ratio:1;border-radius:50%;border:1.5px dashed var(--fg-soft);display:grid;place-items:center;font-family:var(--display);font-size:clamp(16px,1.6cqw,24px);color:var(--fg-soft)}
 .person h3{font-size:clamp(20px,2cqw,30px);line-height:1.1}
 .person .role{font-family:var(--mono);font-size:clamp(11px,.95cqw,14px);color:var(--accent-text);text-transform:uppercase;letter-spacing:.04em}
-.person p{font-size:clamp(14px,1.15cqw,17px);line-height:1.4;color:var(--fg-soft)}
+.person p{font-size:clamp(14px,1.25cqw,18px);line-height:1.4;color:var(--fg-soft)}
+.person.future{background:transparent;border:1.5px dashed var(--rule)}
 
 /* Uso de fondos */
 .funds{display:grid;gap:clamp(10px,1.2cqw,16px)}
@@ -178,348 +247,413 @@ h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.035em;text-
 .fund .bar-track{grid-column:1/-1;height:clamp(10px,1.1cqw,16px);background:var(--surface-2);border-radius:2px;overflow:hidden}
 .fund .bar-fill{height:100%;background:var(--fg)}
 .fund.key .bar-fill{background:var(--lime)}
-.fund .name{font-size:clamp(14px,1.3cqw,20px);font-weight:500}
+.fund .name{font-size:clamp(15px,1.35cqw,20px);font-weight:500}
 .fund .pct{font-family:var(--display);font-size:clamp(18px,1.8cqw,28px);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
-.fund .what{grid-column:1/-1;font-size:clamp(12px,1cqw,15px);color:var(--fg-soft)}
+.fund .what{grid-column:1/-1;font-size:clamp(13px,1.05cqw,15px);color:var(--fg-soft)}
 
-/* Preguntas */
+/* Preguntas y fuentes */
 .qa{display:grid;gap:clamp(10px,1.2cqw,18px)}
 @media (min-width:900px){.qa{grid-template-columns:1fr 1fr;column-gap:clamp(20px,3cqw,48px)}}
 .qa div{display:grid;gap:4px;align-content:start;border-top:1px solid var(--rule);padding-top:clamp(8px,1cqw,14px)}
-.qa b{font-family:var(--display);font-weight:500;font-size:clamp(16px,1.45cqw,22px);line-height:1.2;letter-spacing:-.02em}
-.qa span{font-size:clamp(13px,1.1cqw,16px);line-height:1.4;color:var(--fg-soft)}
-.sources{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:clamp(12px,1cqw,15px);line-height:1.35;color:var(--fg-soft)}
+.qa b{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.55cqw,23px);line-height:1.2;letter-spacing:-.02em}
+.qa span{font-size:clamp(14px,1.2cqw,17px);line-height:1.4;color:var(--fg-soft)}
+.sources{margin:0;padding-left:1.4em;display:grid;gap:clamp(5px,.6cqw,9px);font-size:clamp(12px,1.05cqw,15px);line-height:1.35;color:var(--fg-soft)}
 .sources a{color:var(--fg);text-underline-offset:2px}
+.sources .ref{font-family:var(--mono);font-size:.9em;color:var(--accent-text)}
 
 /* Guión del orador */
-.notes{display:none;background:var(--surface-2);border:1px solid var(--rule);border-left:3px solid var(--lime);border-radius:4px;padding:14px 18px;font-size:16px;line-height:1.5;color:var(--fg);max-width:1280px}
+.notes{display:none;background:var(--surface-2);border:1px solid var(--rule);border-left:3px solid var(--lime);border-radius:4px;padding:14px 18px;font-size:16px;line-height:1.5;color:var(--fg)}
 .notes h4{margin:0 0 6px;font:600 12px/1.3 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--fg-soft)}
 .notes p+p{margin-top:8px}
 body.show-notes .notes{display:block}
-.slot{display:grid;gap:10px}
 
 /* Modo presentación */
 body.presenting{overflow:hidden}
 body.presenting .bar{display:none}
-body.presenting .deck{position:fixed;inset:0;z-index:20;max-width:none;margin:0;padding:0;gap:0;background:#050605;
-  display:grid;place-items:center;grid-template-rows:1fr auto}
+body.presenting .deck{position:fixed;inset:0;z-index:20;max-width:none;margin:0;padding:0;gap:0;background:#050605;display:grid;place-items:center}
 body.presenting .slot{display:none}
 body.presenting .slot.current{display:grid;gap:0;width:100%;height:100%;grid-template-rows:minmax(0,1fr) auto;place-items:center}
 body.presenting .slide{width:min(100vw,calc(100vh * 16 / 9));aspect-ratio:16/9;border:0;border-radius:0}
 body.presenting.show-notes .slide{width:min(100vw,calc((100vh - 190px) * 16 / 9))}
 body.presenting .in{position:absolute;inset:0}
-body.presenting .notes{width:100%;max-width:none;height:190px;overflow:auto;border-radius:0;border-width:1px 0 0 0;border-left:0;border-top:3px solid var(--lime);font-size:19px;padding:16px max(24px,env(safe-area-inset-left,0px))}
+body.presenting .notes{width:100%;height:190px;overflow:auto;border-radius:0;border-width:3px 0 0 0;border-color:var(--lime);font-size:19px;padding:16px max(24px,env(safe-area-inset-left,0px))}
 .present-ui{display:none}
-body.presenting .present-ui{display:flex;position:fixed;z-index:30;right:max(14px,env(safe-area-inset-right,0px));bottom:max(14px,env(safe-area-inset-bottom,0px));gap:6px;opacity:.35;transition:opacity .2s}
+body.presenting .present-ui{display:flex;position:fixed;z-index:30;right:max(14px,env(safe-area-inset-right,0px));bottom:max(14px,env(safe-area-inset-bottom,0px));gap:6px;opacity:.3;transition:opacity .2s}
 body.presenting .present-ui:hover,body.presenting .present-ui:focus-within{opacity:1}
-.present-ui .btn{background:rgba(17,20,16,.85);color:#f1f2e9;border-color:rgba(225,234,212,.25);min-height:36px;padding:6px 12px}
-.present-ui .count{font:500 13px/36px var(--mono);color:#f1f2e9;background:rgba(17,20,16,.85);padding:0 10px;border-radius:4px}
+.present-ui .btn{background:rgba(17,20,16,.88);color:#f1f2e9;border-color:rgba(225,234,212,.25);min-height:36px;padding:6px 12px}
 body.presenting.show-notes .present-ui{bottom:calc(190px + 14px)}
 
+/* Vista del orador (segunda ventana) */
+.speaker-head{display:none}
+body.speaker{overflow:hidden;background:#050605;color:#f1f2e9}
+body.speaker .bar,body.speaker .present-ui{display:none}
+body.speaker .speaker-head{display:flex;gap:16px;align-items:center;padding:10px 20px;font:500 15px/1.3 var(--body);border-bottom:1px solid rgba(225,234,212,.16)}
+body.speaker .speaker-head .clock{font:500 28px/1 var(--mono);color:#d7f45b}
+body.speaker .speaker-head .spacer{flex:1}
+body.speaker .deck{max-width:none;height:calc(100vh - 56px);padding:16px 20px;gap:16px;grid-template-columns:1.6fr 1fr;grid-template-rows:auto 1fr;align-content:start}
+body.speaker .slot{display:none}
+body.speaker .slot.current{display:contents}
+body.speaker .slot.current .slide{grid-column:1;grid-row:1}
+body.speaker .slot.current .notes{display:block;grid-column:1/-1;grid-row:2;overflow:auto;font-size:21px;line-height:1.5;background:#1b2019;color:#f1f2e9;border-color:rgba(225,234,212,.16);border-left-color:#d7f45b}
+body.speaker .slot.next{display:grid;grid-column:2;grid-row:1;align-content:start;gap:6px;overflow:hidden;height:calc(720px * var(--k,.4) + 24px)}
+body.speaker .slot.next .slide{width:1280px;max-width:none;transform:scale(var(--k,.4));transform-origin:0 0}
+body.speaker .slot.next::before{content:"Lo que viene";font:600 12px/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:#a2aa98}
+body.speaker .slot.next .notes{display:none}
+
+@media print{
+  @page{size:13.333in 7.5in;margin:0}
+  body{background:#fff}
+  .bar,.present-ui,.notes,.speaker-head{display:none!important}
+  .deck{display:block;max-width:none;padding:0}
+  .slot{break-after:page;display:block}
+  .slide{width:13.333in;height:7.5in;aspect-ratio:auto;border:0;border-radius:0}
+  .in{position:absolute;inset:0;display:flex;flex-direction:column}
+}
 @media (prefers-reduced-motion:no-preference){
   body.presenting .slot.current .slide .in>*{animation:rise .5s cubic-bezier(.22,1,.36,1) both}
   body.presenting .slot.current .slide .in>*:nth-child(2){animation-delay:.05s}
   body.presenting .slot.current .slide .in>*:nth-child(3){animation-delay:.1s}
-  body.presenting .slot.current .slide .in>*:nth-child(4){animation-delay:.15s}
 }
 @keyframes rise{from{opacity:.001;transform:translateY(10px)}to{opacity:1;transform:none}}
 </style>
+</head>
+<body>
 
-<header class="bar">
+<header class="bar" id="bar">
   <div class="bar-inner">
     <span class="logo">voxxel<b>.ai</b></span>
-    <span class="hint">Presentación para inversores · 16 láminas</span>
+    <span class="hint" id="hint">Presentación para inversores</span>
     <span class="spacer"></span>
     <button class="btn" id="notes-toggle" type="button" aria-pressed="false">Mostrar guión</button>
+    <button class="btn" id="speaker-btn" type="button">Vista del orador</button>
     <button class="btn btn-primary" id="present-btn" type="button">Presentar ▶</button>
+    <p class="bar-msg" id="bar-msg" hidden></p>
   </div>
 </header>
 
+<div class="speaker-head" aria-live="polite">
+  <span class="clock" id="clock">00:00</span>
+  <span id="sp-pos">1 / 15</span>
+  <span class="spacer"></span>
+  <button class="btn" type="button" id="sp-prev" style="color:#f1f2e9">← Anterior</button>
+  <button class="btn" type="button" id="sp-next" style="color:#f1f2e9">Siguiente →</button>
+</div>
+
 <main class="deck" id="deck">
+
 <div class="slot">
 <section class="slide dark" id="portada" aria-label="Portada">
   <div class="photo full"><img src="assets/aerial.jpg" alt=""></div>
-  <div class="in" style="align-content:space-between">
+  <div class="in" style="justify-content:space-between">
     <div class="kicker"><span class="logo" style="color:var(--paper);font-size:clamp(18px,1.7cqw,26px);text-transform:none;letter-spacing:-.04em">voxxel<b>.ai</b></span><span>Presentación para inversores · Noviembre 2026</span></div>
     <div style="display:grid;gap:clamp(14px,2cqw,30px)">
       <h1 class="h-hero">Cada movimiento<br>cuenta.</h1>
-      <p class="lead" style="max-width:36ch;color:var(--paper)">Convertimos las cámaras de minas y canteras en <span class="hl">horas y dólares</span> que hoy se pierden sin que nadie los vea.</p>
+      <p class="lead" style="max-width:38ch;color:var(--paper)">Convertimos las cámaras de minas y canteras en registros que muestran dónde se pierden <span class="hl">horas y dólares</span>.</p>
     </div>
-    <div class="foot" style="position:static"><span class="small" style="color:var(--paper)">Visión artificial para la operación minera · Hecho en Argentina</span><span class="pager"></span></div>
+    <div class="foot"><span class="small" style="color:var(--paper)">Visión artificial para la operación minera · Hecho en Argentina</span><span class="pager"></span></div>
   </div>
 </section>
 <aside class="notes"><h4>Qué decir · 30 segundos</h4>
-<p>Arrancá con una imagen: un camión de 40 toneladas, con el motor en marcha, esperando que lo carguen. Pasa cientos de veces por día en cada mina y cantera, y casi nadie lo registra.</p>
-<p>Frase para cerrar: «Nosotros hacemos visible ese tiempo perdido y lo convertimos en ahorro medible. Con las cámaras que la mina ya tiene.»</p></aside>
-</div>
-
-<div class="slot">
-<section class="slide" id="oportunidad" aria-label="La oportunidad">
-  <div class="in">
-    <div class="kicker"><span class="n">01</span><span>La oportunidad</span></div>
-    <h2 class="h1" style="max-width:20ch">La minería argentina vive el mejor momento de su historia.</h2>
-    <div class="cols cols-2" style="align-items:end">
-      <figure style="margin:0;display:grid;gap:8px">
-        <svg class="chart" viewBox="0 0 560 300" role="img" aria-labelledby="exp-t exp-d">
-          <title id="exp-t">Exportaciones mineras de Argentina, en millones de dólares</title>
-          <desc id="exp-d">2024: 4.673. 2025: 6.073, récord. Proyección oficial 2030: 15.411. Proyección 2035: 36.250.</desc>
-          <line x1="16" x2="544" y1="250" y2="250" stroke="var(--rule)" stroke-width="1"/>
-          <rect x="30" y="222" width="95" height="28" fill="var(--fg-soft)" opacity=".55"/>
-          <rect x="165" y="213" width="95" height="37" fill="var(--lime)"/>
-          <rect x="300" y="156" width="95" height="94" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
-          <rect x="435" y="30" width="95" height="220" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
-          <text class="val" x="77.5" y="212" text-anchor="middle">4.673</text>
-          <text class="val key" x="212.5" y="203" text-anchor="middle">6.073</text>
-          <text class="val" x="347.5" y="146" text-anchor="middle">15.411</text>
-          <text class="val" x="482.5" y="20" text-anchor="middle">36.250</text>
-          <text x="77.5" y="272" text-anchor="middle">2024</text>
-          <text x="212.5" y="272" text-anchor="middle">2025 · récord</text>
-          <text x="347.5" y="272" text-anchor="middle">2030</text>
-          <text x="482.5" y="272" text-anchor="middle">2035</text>
-          <text x="390" y="294" text-anchor="middle" font-size="12">— proyección oficial —</text>
-        </svg>
-        <figcaption class="small">Exportaciones mineras, en millones de USD. La proyección es 6 veces lo de 2025.</figcaption>
-      </figure>
-      <div style="display:grid;gap:clamp(14px,1.8cqw,26px)">
-        <div class="stat key"><span class="v">+74%</span><span class="l">exportaciones del primer semestre de 2026 contra el de 2025</span><span class="s">USD 4.742 M en seis meses: más del doble del récord anterior, de 2011</span></div>
-        <div class="stat"><span class="v">USD 25.230<small>M</small></span><span class="l">en 13 proyectos mineros ya aprobados en el RIGI</span><span class="s">Vicuña, MARA, Rincón y Los Azules, entre otros</span></div>
-        <div class="stat"><span class="v">5.º</span><span class="l">productor mundial de litio</span><span class="s">120.000 t de carbonato equivalente en 2025, un 62% más que en 2024</span></div>
-      </div>
-    </div>
-    <div class="foot"><span class="src">Fuentes: Secretaría de Minería, CAEM y BCR, RIGI al 5/10/2026. Detalle en el anexo B.</span><span class="pager"></span></div>
-  </div>
-</section>
-<aside class="notes"><h4>Qué decir · 45 segundos</h4>
-<p>«La minería argentina exportó más de seis mil millones de dólares en 2025, un récord. Y en la primera mitad de 2026 creció otro setenta y cuatro por ciento.»</p>
-<p>«El gobierno proyecta treinta y seis mil millones para 2035: seis veces lo de hoy. Ya hay veinticinco mil millones de dólares aprobados en proyectos mineros del RIGI.»</p>
-<p>Idea para dejar instalada: «Más inversión significa más camiones, más turnos y más presión para producir con eficiencia y sin accidentes. Ahí entramos nosotros.»</p></aside>
+<p>Arrancá con una imagen: un camión de 40 toneladas, con el motor en marcha, esperando que lo carguen. Pasa cientos de veces por día en cada mina y cantera, y casi nunca queda registrado.</p>
+<p>Frase para cerrar: «Hacemos visible ese tiempo perdido y lo convertimos en ahorro medible, con las cámaras que la mina ya tiene.»</p></aside>
 </div>
 
 <div class="slot">
 <section class="slide dark" id="problema" aria-label="El problema">
   <div class="photo"><img src="assets/loading.jpg" alt=""></div>
   <div class="in">
-    <div class="kicker"><span class="n">02</span><span>El problema</span></div>
-    <h2 class="h1" style="max-width:15ch">Una mina es una fila de camiones. Y nadie mide la espera.</h2>
-    <ul class="points" style="max-width:min(100%,560px)">
-      <li><i class="dot"></i><div><b>Un camión parado sigue costando.</b><span>Chofer, combustible, equipo y capacidad que no produce.</span></div></li>
-      <li><i class="dot"></i><div><b>Hoy se anota a mano, o no se anota.</b><span>Planillas, remitos y radio. Sin datos, cada turno es una opinión.</span></div></li>
-      <li><i class="dot"></i><div><b>Lo que no se ve, no se corrige.</b><span>La pérdida es chica por viaje y enorme a fin de mes.</span></div></li>
-    </ul>
+    <div class="kicker"><span class="n">01</span><span>El problema</span></div>
+    <div class="stack" style="gap:clamp(18px,2.6cqw,40px)">
+      <h2 class="h1" style="max-width:15ch">Una mina es una fila de camiones. Y la espera casi no se mide.</h2>
+      <ul class="points" style="max-width:min(100%,600px)">
+        <li><i class="dot"></i><div><b>Un camión parado sigue costando.</b><span>Chofer, combustible, equipo y capacidad que no produce.</span></div></li>
+        <li><i class="dot"></i><div><b>Hoy se anota a mano, o no se anota.</b><span>Planillas, remitos y radio. Sin datos, cada turno es una opinión.</span></div></li>
+        <li><i class="dot"></i><div><b>Lo que no se ve, no se corrige.</b><span>La pérdida es chica por viaje y grande a fin de mes.</span></div></li>
+      </ul>
+    </div>
     <div class="foot"><span class="src">Foto ilustrativa: excavadora cargando un camión (Pexels).</span><span class="pager"></span></div>
   </div>
 </section>
 <aside class="notes"><h4>Qué decir · 40 segundos</h4>
 <p>«Cualquiera que haya estado en una mina vio la escena: camiones esperando en fila para cargar, en la balanza o en la entrada.»</p>
-<p>«Cada espera parece chica, cinco minutos. Pero se repite en cada viaje, todos los días. Y como nadie la mide, nadie la puede reducir.»</p>
-<p>Si alguien pregunta «¿y el GPS?»: el GPS dice dónde está el camión, no por qué está parado ni qué pasó en la zona de carga. Nosotros aportamos la imagen del evento.</p></aside>
+<p>«Cada espera parece chica, cinco minutos. Pero se repite en cada viaje, todos los días. Y como casi nunca se mide en el lugar, es difícil reducirla.»</p>
+<p>Si alguien pregunta «¿y el GPS?»: el GPS dice dónde está cada camión equipado. No muestra la escena ni cuenta los camiones de contratistas. Nosotros aportamos la imagen del evento.</p></aside>
 </div>
 
 <div class="slot">
 <section class="slide" id="solucion" aria-label="La solución">
   <div class="in">
-    <div class="kicker"><span class="n">03</span><span>La solución</span></div>
-    <h2 class="h1" style="max-width:18ch">Las cámaras ya están. Les enseñamos a <span class="hl">contar</span>.</h2>
-    <div class="steps">
-      <div class="step"><span class="num">PASO 1</span><h3>Ve</h3><p>La cámara registra cada llegada, carga y salida de un punto clave: acceso, balanza o zona de carga.</p><p class="out">Sale: un registro automático, con foto de cada evento</p></div>
-      <div class="step"><span class="num">PASO 2</span><h3>Mide</h3><p>El sistema calcula minutos de espera, viajes y uso de la flota. Sin planillas y sin cambiar la operación.</p><p class="out">Sale: un tablero que el gerente entiende en un minuto</p></div>
-      <div class="step"><span class="num">PASO 3</span><h3>Decide</h3><p>Con los datos, la mina ajusta turnos y despacho. El ahorro se compara contra el punto de partida.</p><p class="out">Sale: horas recuperadas, verificadas con evidencia</p></div>
+    <div class="kicker"><span class="n">02</span><span>La solución</span></div>
+    <h2 class="h1" style="max-width:22ch">Las cámaras ya están. Les enseñamos a <span class="hl">contar</span>.</h2>
+    <div class="cols cols-x" style="align-items:center">
+      <div class="stack">
+        <ol class="vsteps">
+          <li><h3>Ve</h3><p>La cámara registra cada llegada, carga y salida en un <strong>punto</strong>: un acceso, una balanza o una zona de carga.</p></li>
+          <li><h3>Mide</h3><p>Calcula los minutos de espera, los viajes y el uso de la flota, con la foto de cada evento.</p></li>
+          <li><h3>Decide</h3><p>La mina ajusta turnos y despacho, y compara el resultado contra su <strong>línea de base</strong>: cómo estaba antes.</p></li>
+        </ol>
+      </div>
+      <figure class="event" aria-label="Ejemplo ilustrativo de un registro">
+        <div class="event-img"><img src="assets/loading.jpg" alt="Excavadora cargando un camión en una zona de carga"><span class="tag">ZONA DE CARGA · CÁMARA 01</span><span class="rec">REGISTRO</span></div>
+        <ol class="log">
+          <li><time>09:41</time><span>Llega el camión T-014</span><span></span></li>
+          <li class="wait"><time>09:41 → 09:47</time><span>Espera en la fila</span><b>6 min</b></li>
+          <li><time>09:47</time><span>Empieza la carga</span><span></span></li>
+          <li><time>09:58</time><span>Sale cargado</span><span></span></li>
+        </ol>
+        <figcaption>Ejemplo ilustrativo. Cada línea guarda su foto para revisar.</figcaption>
+      </figure>
     </div>
     <div class="foot"><span class="small">Empieza con una cámara. Se suma un punto por vez.</span><span class="pager"></span></div>
   </div>
 </section>
 <aside class="notes"><h4>Qué decir · 40 segundos</h4>
-<p>«La mayoría de las minas ya tiene cámaras, pero solo graban. Nadie mira miles de horas de video. Nosotros hacemos que la cámara mire por ellos.»</p>
-<p>«No vendemos una plataforma gigante. Empezamos por un solo punto, por ejemplo la zona de carga, y en semanas el cliente ve cuántos minutos se pierden.»</p>
-<p>Evitá palabras técnicas. Si preguntan cómo funciona: «la cámara reconoce camiones y personas, y anota la hora de cada movimiento».</p></aside>
+<p>«La mayoría de las minas ya tiene cámaras, pero solo graban. Nadie mira miles de horas de video. Nosotros hacemos que la cámara anote lo que pasa.»</p>
+<p>Señalá el registro de la derecha: «Esto es lo que recibe el gerente. A las 9:41 llegó el camión, esperó seis minutos, a las 9:58 salió cargado. Cada línea tiene su foto».</p>
+<p>Si preguntan cómo funciona: «la cámara reconoce camiones y personas, y anota la hora de cada movimiento». Un «punto» es un lugar que mira una cámara.</p></aside>
 </div>
 
 <div class="slot">
 <section class="slide" id="ejemplo" aria-label="La cuenta de un punto de carga">
   <div class="in">
-    <div class="kicker"><span class="n">04</span><span>La cuenta de un solo punto</span></div>
-    <h2 class="h1" style="max-width:22ch">Cinco minutos menos por viaje ya pagan el proyecto.</h2>
-    <div class="calc">
-        <div class="calc-row"><span class="term"><span class="q">60</span><span class="u">viajes por día</span></span><span class="op">×</span><span class="term"><span class="q">5</span><span class="u">minutos menos</span></span><span class="op">×</span><span class="term"><span class="q">26</span><span class="u">días al mes</span></span><span class="op">=</span><span class="term res"><span class="q">130 h</span><span class="u">liberadas por mes</span></span></div>
-        <div class="calc-row"><span class="term"><span class="q">130 h</span><span class="u">liberadas</span></span><span class="op">×</span><span class="term"><span class="q">USD 50</span><span class="u">costo evitable por hora</span></span><span class="op">=</span><span class="term res"><span class="q">USD 6.500</span><span class="u">por mes</span></span></div>
+    <div class="kicker"><span class="n">03</span><span>La cuenta de un solo punto</span><span class="tag-assume">Escenario ilustrativo</span></div>
+    <h2 class="h1" style="max-width:24ch">Cinco minutos menos por viaje ya pagan el servicio.</h2>
+    <div class="cols cols-w" style="align-items:center">
+      <div class="calc">
+        <div class="calc-row"><span class="term"><span class="q">60</span><span class="u">viajes por día</span></span><span class="pair"><span class="op">×</span><span class="term"><span class="q">5 min</span><span class="u">menos de espera</span></span></span><span class="pair"><span class="op">=</span><span class="term res"><span class="q">5 h</span><span class="u">por día (300 min)</span></span></span></div>
+        <div class="calc-row"><span class="term"><span class="q">5 h</span><span class="u">por día</span></span><span class="pair"><span class="op">×</span><span class="term"><span class="q">26</span><span class="u">días al mes</span></span></span><span class="pair"><span class="op">=</span><span class="term res"><span class="q">130 h</span><span class="u">por mes</span></span></span></div>
+        <div class="calc-row"><span class="term"><span class="q">130 h</span><span class="u">por mes</span></span><span class="pair"><span class="op">×</span><span class="term"><span class="q">USD 50</span><span class="u">costo evitable por hora*</span></span></span><span class="pair"><span class="op">=</span><span class="term res"><span class="q">USD 6.500</span><span class="u">por mes</span></span></span></div>
+      </div>
+      <div class="stack">
+        <div class="calc-total"><span class="big">USD 78.000</span><span class="t">por año, en un solo punto de carga</span></div>
+        <p class="small">Después de pagar el abono de USD 1.200 por mes, al cliente le quedan <strong>USD 5.300 por mes</strong>.</p>
+      </div>
     </div>
-    <div class="cols cols-x" style="align-items:center">
-      <div class="calc-total"><span class="big">USD 78.000</span><span><span class="t">por año, en un solo punto de carga</span><br><span class="sub">Una mina mediana tiene varios puntos así.</span></span></div>
-      <p class="small" style="max-width:44ch">Y cada hora parada cuesta más: el costo del transporte de cargas subió un <strong style="color:var(--fg)">33,7% en los primeros diez meses de 2026</strong> (FADEEAC).</p>
-    </div>
-    <div class="foot"><span class="src">Escenario ilustrativo con supuestos prudentes. Ahorro bruto antes del costo del servicio. El número real se mide en cada piloto.</span><span class="pager"></span></div>
+    <div class="foot"><span class="small">* Solo es ahorro si esa hora deja de pagarse (horas extra, camiones alquilados, combustible) o se usa para mover más carga. El número real se mide en cada piloto.</span><span class="pager"></span></div>
   </div>
 </section>
 <aside class="notes"><h4>Qué decir · 45 segundos</h4>
-<p>Esta es la lámina más importante. Hacé la cuenta en voz alta, despacio: «sesenta viajes por día, cinco minutos menos de espera, veintiséis días. Son ciento treinta horas por mes».</p>
-<p>«Si cada hora de camión parado le cuesta a la mina cincuenta dólares, que es un número bajo, son seis mil quinientos dólares por mes. Setenta y ocho mil por año, en un solo punto.»</p>
-<p>Aclarar siempre: «Es un ejemplo. En cada piloto medimos el número real de ese cliente». Esto genera confianza en un inversor serio.</p></aside>
+<p>Esta es la lámina más importante. Hacé la cuenta en voz alta, despacio: «sesenta viajes por día, cinco minutos menos de espera: cinco horas por día. Por veintiséis días, ciento treinta horas por mes».</p>
+<p>«Si cada una de esas horas le cuesta a la mina cincuenta dólares que puede dejar de gastar, son seis mil quinientos dólares por mes. Setenta y ocho mil por año, en un solo punto. Y después de pagarnos, le quedan cinco mil trescientos por mes.»</p>
+<p>Aclarar siempre: «Es un ejemplo. En cada piloto medimos el número real de ese cliente, y solo cuenta como ahorro lo que deja de pagarse».</p></aside>
+</div>
+
+<div class="slot">
+<section class="slide" id="ahora" aria-label="Por qué ahora">
+  <div class="in">
+    <div class="kicker"><span class="n">04</span><span>Por qué ahora</span></div>
+    <h2 class="h1" style="max-width:24ch">La minería argentina vive su mejor momento. Y necesita producir mejor.</h2>
+    <div class="cols cols-2" style="align-items:center">
+      <figure style="margin:0;display:grid;gap:8px">
+        <svg class="chart" viewBox="0 0 560 300" role="img" aria-labelledby="exp-t exp-d">
+          <title id="exp-t">Exportaciones mineras de Argentina, en millones de dólares</title>
+          <desc id="exp-d">2024: 4.673. 2025: 6.073, récord. Escenario oficial 2030: 15.411. Escenario 2035: entre 22.000 según CAEM y 36.250 según la Secretaría de Minería.</desc>
+          <line x1="16" x2="544" y1="250" y2="250" stroke="var(--rule)" stroke-width="1"/>
+          <rect x="30" y="222" width="95" height="28" fill="var(--fg-soft)" opacity=".55"/>
+          <rect x="165" y="213" width="95" height="37" fill="var(--lime)"/>
+          <rect x="300" y="156" width="95" height="94" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <rect x="435" y="30" width="95" height="220" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <rect x="435" y="117" width="95" height="133" fill="var(--fg-soft)" opacity=".18"/>
+          <line x1="435" x2="530" y1="117" y2="117" stroke="var(--fg)" stroke-width="1.5"/>
+          <text class="val" x="77.5" y="212" text-anchor="middle">4.673</text>
+          <text class="val key" x="212.5" y="203" text-anchor="middle">6.073</text>
+          <text class="val" x="347.5" y="146" text-anchor="middle">15.411</text>
+          <text class="val" x="482.5" y="20" text-anchor="middle">36.250</text>
+          <text x="482.5" y="60" text-anchor="middle" font-size="12">Secretaría</text>
+          <text class="val" x="482.5" y="140" text-anchor="middle" style="font-size:15px">22.000</text>
+          <text x="482.5" y="156" text-anchor="middle" font-size="12">CAEM</text>
+          <text x="77.5" y="272" text-anchor="middle">2024</text>
+          <text x="212.5" y="272" text-anchor="middle">2025 · récord</text>
+          <text x="347.5" y="272" text-anchor="middle">2030</text>
+          <text x="482.5" y="272" text-anchor="middle">2035</text>
+          <text x="415" y="294" text-anchor="middle" font-size="12">escenarios proyectados</text>
+        </svg>
+        <figcaption class="src">Exportaciones mineras, millones de USD. 1.er semestre de 2026: USD 4.742 M, +74% en valor, en parte por el precio del oro.</figcaption>
+      </figure>
+      <div class="stack">
+        <div class="stat key"><span class="t">Hay proyectos aprobados.</span><span class="s"><strong>USD 25.230 M</strong> en 13 proyectos mineros aprobados en el RIGI, el régimen de incentivo a grandes inversiones. Se invierten en varios años.</span></div>
+        <div class="stat"><span class="t">La tecnología se abarató.</span><span class="s">Analizar video con inteligencia artificial ya funciona en un equipo chico dentro de la mina, sin depender de internet.</span></div>
+        <div class="stat"><span class="t">Los grandes ya lo usan.</span><span class="s">Codelco usa cámaras con IA para anticipar riesgos en Chuquicamata y El Teniente. Las minas medianas todavía no tienen una opción a su medida.</span></div>
+      </div>
+    </div>
+    <div class="foot"><span class="src">Fuentes: Secretaría de Minería, CAEM, BCR, Minería &amp; Desarrollo, El Desconcierto. Detalle en el anexo B.</span><span class="pager"></span></div>
+  </div>
+</section>
+<aside class="notes"><h4>Qué decir · 45 segundos</h4>
+<p>«La minería argentina exportó más de seis mil millones de dólares en 2025, un récord. Para 2035, los escenarios van de veintidós mil millones, según la cámara minera, a treinta y seis mil, según el gobierno.»</p>
+<p>«Además, hay veinticinco mil millones de dólares en proyectos mineros aprobados en el RIGI. Más obras y más camiones necesitan más control.»</p>
+<p>«Y la tecnología ya está: Codelco, en Chile, usa cámaras con IA en sus minas más grandes. Las medianas todavía no tienen una opción a su medida. Esa es la ventana.»</p></aside>
+</div>
+
+<div class="slot">
+<section class="slide" id="mercado" aria-label="El mercado">
+  <div class="in">
+    <div class="kicker"><span class="n">05</span><span>El mercado</span></div>
+    <h2 class="h1" style="max-width:24ch">El mercado, contado de abajo hacia arriba.</h2>
+    <div class="cols cols-w" style="align-items:start">
+      <div class="stack">
+        <div class="table-wrap">
+          <table class="mkt">
+            <thead><tr><th scope="col">Primer mercado: minería grande en Argentina</th><th scope="col" class="num">Operaciones</th><th scope="col" class="num">Puntos c/u<br><span class="tag-assume">supuesto</span></th><th scope="col" class="num">Puntos</th><th scope="col" class="num">Ingreso anual</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Minas en producción<small class="m-only">26 operaciones × 10 puntos</small></th><td class="num">26</td><td class="num">10</td><td class="num">260</td><td class="num">USD 3,7 M</td></tr>
+              <tr><th scope="row">Proyectos con RIGI aprobado<small class="m-only">13 proyectos × 5 puntos</small></th><td class="num">13</td><td class="num">5</td><td class="num">65</td><td class="num">USD 0,9 M</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Total</th><td></td><td></td><td class="num">325</td><td class="num key">USD 4,7 M</td></tr></tfoot>
+          </table>
+        </div>
+        <p class="small">Con un abono de USD 1.200 por punto por mes. La meta a 18 meses, 50 puntos, es el 15% de este primer mercado.</p>
+      </div>
+      <div class="stack">
+        <h3 class="h2">Después, con el mismo producto</h3>
+        <ul class="points">
+          <li><i class="dot"></i><div><b>Canteras y plantas</b><span>Solo Mendoza registraba 220 entre canteras, minas chicas y plantas en el censo minero de 2017.</span></div></li>
+          <li><i class="dot"></i><div><b>Logística de cargas</b><span>Unos 2 millones de camiones pasan por el Gran Rosario en cada cosecha.</span></div></li>
+          <li><i class="dot"></i><div><b>Chile y Perú</b><span>Carteras mineras de USD 104.549 M y USD 64.075 M.</span></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot"><span class="src">En el mundo, la IA para minería crece 21% por año: de USD 2.600 M en 2025 a USD 9.930 M en 2032 (MarketsandMarkets). Operaciones: Invecq, enero 2026, y RIGI al 5/10/2026. Anexo B.</span><span class="pager"></span></div>
+  </div>
+</section>
+<aside class="notes"><h4>Qué decir · 45 segundos</h4>
+<p>«Contamos el mercado desde abajo. En Argentina hay veintiséis minas grandes en producción y trece proyectos con RIGI aprobado. Si cada mina usa diez puntos y cada proyecto cinco, son trescientos veinticinco puntos: casi cinco millones de dólares por año.»</p>
+<p>«Ese es el primer mercado, para probar el modelo. La escala viene después, con el mismo producto: canteras, logística y Chile y Perú, que tienen carteras mineras mucho más grandes.»</p>
+<p>Si preguntan por los diez puntos por mina: «es un supuesto. Una mina grande tiene varios accesos, balanzas, zonas de carga y talleres. Lo vamos a medir en los pilotos».</p></aside>
+</div>
+
+<div class="slot">
+<section class="slide" id="modelo" aria-label="Cómo ganamos plata">
+  <div class="in">
+    <div class="kicker"><span class="n">06</span><span>Modelo de negocio</span></div>
+    <h2 class="h1" style="max-width:22ch">Cobramos por punto, todos los meses.</h2>
+    <div class="stack">
+      <div class="steps">
+        <div class="step"><span class="num">ENTRADA</span><h3>Piloto pago</h3><p>60 a 90 días en un punto. Medimos la línea de base y el ahorro real.</p><p class="out">Filtra a quien no va a comprar</p></div>
+        <div class="step"><span class="num">INGRESO RECURRENTE</span><h3>Abono mensual</h3><p>Precio fijo por punto, con el equipo de proceso y el soporte incluidos.</p><p class="out">Referencia: USD 1.200 por punto por mes</p></div>
+        <div class="step"><span class="num">CRECIMIENTO</span><h3>Más puntos</h3><p>Accesos, balanzas y la línea de seguridad en la misma operación.</p><p class="out">Crecer dentro del cliente cuesta menos que conseguir otro</p></div>
+      </div>
+      <div class="unit" aria-label="Economía por punto, supuestos de trabajo">
+        <div><span class="k">Abono</span><span class="v">USD 1.200</span><span class="d">por punto por mes</span></div>
+        <div><span class="k">Costo de servir</span><span class="v">≈ USD 300</span><span class="d">equipo amortizado en 24 meses, conectividad y soporte</span></div>
+        <div class="key"><span class="k">Margen bruto</span><span class="v">≈ 75%</span><span class="d">a validar en los pilotos</span></div>
+        <div><span class="k">Pone el cliente</span><span class="v" style="font-size:clamp(17px,1.6cqw,24px);line-height:1.2">Cámara y red</span><span class="d">solo donde falten</span></div>
+      </div>
+    </div>
+    <div class="foot"><span class="small"><span class="tag-assume">Supuestos de trabajo</span> El abono es menos de una quinta parte de los USD 6.500 de ahorro del ejemplo. Los precios se fijan con los primeros pilotos.</span><span class="pager"></span></div>
+  </div>
+</section>
+<aside class="notes"><h4>Qué decir · 45 segundos</h4>
+<p>«El negocio es simple: el cliente paga un abono mensual por cada punto. Como el ahorro es varias veces el precio, la compra es fácil de justificar.»</p>
+<p>«Por punto cobramos unos mil doscientos dólares y nos cuesta servirlo unos trescientos: el equipo, la conexión y el soporte. Eso deja un margen cercano al setenta y cinco por ciento, que vamos a confirmar en los pilotos.»</p>
+<p>No prometas los precios como cerrados: «los fijamos con los tres primeros clientes».</p></aside>
+</div>
+
+<div class="slot">
+<section class="slide" id="diferencial" aria-label="Por qué nosotros">
+  <div class="in">
+    <div class="kicker"><span class="n">07</span><span>Por qué nosotros</span></div>
+    <h2 class="h1" style="max-width:24ch">Los sistemas de flota miden camiones. Nosotros medimos el lugar.</h2>
+    <div class="table-wrap">
+      <table class="compare">
+        <thead><tr><th scope="col"></th><th scope="col">Planillas y radio</th><th scope="col">Cámaras de seguridad</th><th scope="col">Sistemas de flota con GPS<small>Modular Mining, Cat MineStar, Hexagon, Wenco</small></th><th scope="col" class="us">Voxxel</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Mide colas y esperas</th><td data-label="Planillas"><span class="mid">A mano</span></td><td data-label="Cámaras"><span class="no">Solo graban</span></td><td data-label="Flota GPS"><span class="yes">Sí, con GPS</span></td><td class="us" data-label="Voxxel"><span class="yes">Sí, desde la cámara</span></td></tr>
+          <tr><th scope="row">Guarda la imagen de cada evento</th><td data-label="Planillas"><span class="no">No</span></td><td data-label="Cámaras"><span class="mid">Si alguien busca</span></td><td data-label="Flota GPS"><span class="no">No</span></td><td class="us" data-label="Voxxel"><span class="yes">Sí</span></td></tr>
+          <tr><th scope="row">Cuenta camiones de contratistas</th><td data-label="Planillas"><span class="mid">A mano</span></td><td data-label="Cámaras"><span class="no">No</span></td><td data-label="Flota GPS"><span class="mid">Solo los equipados</span></td><td class="us" data-label="Voxxel"><span class="yes">Todo lo que pasa</span></td></tr>
+          <tr><th scope="row">Costo y tiempo para empezar</th><td data-label="Planillas"><span class="yes">Bajo</span></td><td data-label="Cámaras"><span class="yes">Bajo</span></td><td data-label="Flota GPS"><span class="no">Alto, meses</span></td><td class="us" data-label="Voxxel"><span class="yes">Bajo, semanas</span></td></tr>
+          <tr><th scope="row">Equipo local, en castellano</th><td data-label="Planillas"><span class="yes">Sí</span></td><td data-label="Cámaras"><span class="mid">Depende</span></td><td data-label="Flota GPS"><span class="mid">Depende</span></td><td class="us" data-label="Voxxel"><span class="yes">Sí</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot"><span class="small">No reemplazamos al GPS: lo completamos. Los sistemas de flota pueden ser socios o canal de venta.</span><span class="pager"></span></div>
+  </div>
+</section>
+<aside class="notes"><h4>Qué decir · 40 segundos</h4>
+<p>«Los grandes sistemas de flota, como Modular Mining o Caterpillar, miden los tiempos con GPS en cada camión. Funcionan bien en minas gigantes, pero son caros, llevan meses y no ven a los camiones de contratistas.»</p>
+<p>«Nosotros miramos el lugar: todo lo que pasa por ese punto, con foto, propio o tercerizado. Se prueba en semanas y lo atiende un equipo argentino.»</p>
+<p>Ventaja que crece con el tiempo: cada punto instalado nos deja datos de operaciones reales que mejoran el producto para el cliente siguiente.</p></aside>
 </div>
 
 <div class="slot">
 <section class="slide dark" id="seguridad" aria-label="Seguridad y patrimonio">
   <div class="in">
-    <div class="kicker"><span class="n">05</span><span>Segunda línea de negocio</span></div>
+    <div class="kicker"><span class="n">08</span><span>Expansión · desde el mes 6</span></div>
     <div class="cols cols-2" style="align-items:stretch">
-      <div style="display:grid;gap:clamp(14px,1.8cqw,26px);align-content:start">
+      <div class="stack" style="gap:clamp(14px,1.8cqw,26px)">
         <h2 class="h1" style="max-width:16ch;font-size:clamp(30px,4cqw,60px)">La misma cámara también cuida a las personas.</h2>
         <ul class="points">
           <li><i class="dot"></i><div><b>Casco y chaleco, a la vista.</b><span>Aviso con foto cuando alguien pasa sin protección.</span></div></li>
           <li><i class="dot"></i><div><b>Zonas prohibidas, con reglas.</b><span>Personas o vehículos donde no deben estar, a la hora que no deben.</span></div></li>
           <li><i class="dot"></i><div><b>Combustible y materiales, con control.</b><span>Movimientos fuera de horario en depósitos y accesos.</span></div></li>
         </ul>
-        <div class="stat key" style="max-width:44ch"><span class="v">2.465</span><span class="l">accidentes y enfermedades laborales notificados en minas y canteras, solo en el primer semestre de 2026</span><span class="s">SRT, datos provisorios. La categoría incluye petróleo y gas.</span></div>
+        <div class="stat key" style="max-width:46ch"><span class="v">2.465</span><span class="s">accidentes y enfermedades laborales notificados en el 1.er semestre de 2026 en «explotación de minas y canteras», una categoría de la SRT que también incluye petróleo y gas.</span></div>
       </div>
-      <figure class="figure-img" style="margin:0"><img src="assets/safety.jpg" alt="Trabajadores con casco y chaleco en una cantera"><figcaption>Foto ilustrativa (Pexels)</figcaption></figure>
+      <figure class="figure-img"><img src="assets/safety.jpg" alt="Trabajadores con casco y chaleco en una cantera"><figcaption>Foto ilustrativa (Pexels)</figcaption></figure>
     </div>
-    <div class="foot"><span class="small">Se vende sobre la misma instalación: más valor por cliente, sin costo de instalación nuevo.</span><span class="pager"></span></div>
+    <div class="foot"><span class="small">Si la cámara cubre la zona, se activa sobre la misma instalación: más valor por cliente.</span><span class="pager"></span></div>
   </div>
 </section>
 <aside class="notes"><h4>Qué decir · 30 segundos</h4>
-<p>«Una vez que la cámara está conectada, sumar seguridad cuesta muy poco. Eso nos permite vender más al mismo cliente.»</p>
+<p>«Una vez que la cámara está conectada, sumar seguridad cuesta poco. Es la forma de vender más al mismo cliente, a partir del sexto mes.»</p>
 <p>«Para una minera, un accidente o un robo de combustible es caro y es un problema de reputación. Esto le da evidencia para prevenir.»</p>
-<p>Si preguntan por privacidad: se configuran reglas por zona, se revisan eventos puntuales y no se usa reconocimiento facial.</p></aside>
-</div>
-
-<div class="slot">
-<section class="slide" id="mercado" aria-label="El mercado">
-  <div class="in">
-    <div class="kicker"><span class="n">06</span><span>El mercado</span></div>
-    <h2 class="h1" style="max-width:22ch">Empezamos en la minería argentina. El mercado es más grande.</h2>
-    <div class="cols cols-3" style="margin-block:auto">
-      <div class="step"><span class="num">PRIMERO</span><h3 style="font-size:clamp(22px,2.5cqw,38px)">Minería argentina</h3><p>Las minas en producción y las que entran en construcción con el RIGI: <strong style="color:var(--fg)">18 proyectos mineros por USD 47.802 M</strong> presentados.</p><p class="out">Más canteras y operaciones medianas, que deciden rápido</p></div>
-      <div class="step"><span class="num">DESPUÉS</span><h3 style="font-size:clamp(22px,2.5cqw,38px)">Logística de cargas</h3><p>El mismo problema de espera en puertos y plantas. Por el Gran Rosario pasan <strong style="color:var(--fg)">unos 2 millones de camiones</strong> en cada cosecha, hasta 15.000 en un día pico.</p><p class="out">Mismo producto, otro cliente</p></div>
-      <div class="step"><span class="num">LUEGO</span><h3 style="font-size:clamp(22px,2.5cqw,38px)">Chile y Perú</h3><p>Carteras de inversión minera de <strong style="color:var(--fg)">USD 104.549 M</strong> en Chile (2025–2034) y <strong style="color:var(--fg)">USD 64.075 M</strong> en Perú (2026).</p><p class="out">Mismo idioma, mismo tipo de operación</p></div>
-    </div>
-    <p class="small" style="max-width:none">En el mundo, la inteligencia artificial para minería crece <strong style="color:var(--fg)">21% por año</strong>: de USD 2.600 M en 2025 a USD 9.930 M en 2032 (MarketsandMarkets). Cada 100 puntos activos son <strong style="color:var(--fg)">USD 1,4 M de ingreso anual</strong>.</p>
-    <div class="foot"><span class="src">Fuentes: Ministerio de Economía (RIGI, 29/10/2026), La Nación, Cochilco, MINEM, MarketsandMarkets. Anexo B.</span><span class="pager"></span></div>
-  </div>
-</section>
-<aside class="notes"><h4>Qué decir · 45 segundos</h4>
-<p>«Empezamos donde está la inversión: la minería argentina. Hay dieciocho proyectos mineros presentados al RIGI por casi cuarenta y ocho mil millones de dólares.»</p>
-<p>«El mismo problema existe en la logística: en cada cosecha pasan dos millones de camiones por los puertos de Rosario. Y después, Chile y Perú.»</p>
-<p>Cómo pensar el tamaño: «cada cien puntos activos son un millón cuatrocientos mil dólares por año». Es un número que un inversor puede seguir mes a mes.</p></aside>
-</div>
-
-<div class="slot">
-<section class="slide" id="modelo" aria-label="Cómo ganamos plata">
-  <div class="in">
-    <div class="kicker"><span class="n">07</span><span>Modelo de negocio</span></div>
-    <h2 class="h1" style="max-width:20ch">Cobramos por punto, todos los meses.</h2>
-    <div class="steps">
-      <div class="step"><span class="num">ENTRADA</span><h3>Piloto pago</h3><p>60 a 90 días en un punto. Medimos la línea de base y el ahorro real del cliente.</p><p class="out">El cliente paga para probar. Filtra a los que no compran.</p></div>
-      <div class="step"><span class="num">INGRESO RECURRENTE</span><h3>Abono mensual</h3><p>Un precio fijo por punto, con soporte incluido. El cliente paga una fracción de lo que ahorra.</p><p class="out">Referencia a validar: USD 1.000 a 1.500 por punto por mes</p></div>
-      <div class="step"><span class="num">CRECIMIENTO</span><h3>Más puntos</h3><p>Cada mina suma accesos, balanzas y la línea de seguridad. El costo de venta ya está pagado.</p><p class="out">El mismo cliente vale más cada año</p></div>
-    </div>
-    <div class="foot"><span class="small">Con USD 6.500 de ahorro por punto, un abono de USD 1.500 es <strong style="color:var(--fg)">menos de una cuarta parte del valor</strong> que genera. Los precios se fijan con los primeros pilotos.</span><span class="pager"></span></div>
-  </div>
-</section>
-<aside class="notes"><h4>Qué decir · 40 segundos</h4>
-<p>«El negocio es simple: el cliente paga un abono mensual por cada punto que medimos. Como el ahorro es varias veces el precio, la decisión de compra es fácil de justificar.»</p>
-<p>«Arrancamos con un piloto pago porque queremos clientes que de verdad van a usar el producto.»</p>
-<p>Los precios son referencias. No los prometas como cerrados: «los vamos a fijar con los tres primeros clientes».</p></aside>
-</div>
-
-<div class="slot">
-<section class="slide" id="diferencial" aria-label="Por qué nosotros">
-  <div class="in">
-    <div class="kicker"><span class="n">08</span><span>Por qué nosotros</span></div>
-    <h2 class="h1" style="max-width:24ch">Lo que hoy usa una mina no fue hecho para esto.</h2>
-    <div class="compare-wrap">
-      <table class="compare">
-        <thead><tr><th scope="col"></th><th scope="col">Planillas y radio</th><th scope="col">Cámaras de seguridad</th><th scope="col">Sistemas de flota con GPS</th><th scope="col" class="us">Voxxel</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Mide la espera en cada punto</th><td><span class="no">No</span></td><td><span class="no">Solo graba</span></td><td><span class="mid">En parte</span></td><td class="us"><span class="yes">Sí, evento por evento</span></td></tr>
-          <tr><th scope="row">Muestra la foto de lo que pasó</th><td><span class="no">No</span></td><td><span class="mid">Si alguien busca</span></td><td><span class="no">No</span></td><td class="us"><span class="yes">Sí, en cada registro</span></td></tr>
-          <tr><th scope="row">Usa lo que la mina ya tiene</th><td><span class="yes">Sí</span></td><td><span class="yes">Sí</span></td><td><span class="no">Equipo en cada camión</span></td><td class="us"><span class="yes">Sus cámaras</span></td></tr>
-          <tr><th scope="row">Se prueba en semanas, con un punto</th><td><span class="yes">Sí</span></td><td><span class="yes">Sí</span></td><td><span class="no">Proyecto largo</span></td><td class="us"><span class="yes">Sí</span></td></tr>
-          <tr><th scope="row">Equipo local, en castellano</th><td><span class="yes">Sí</span></td><td><span class="mid">Depende</span></td><td><span class="mid">Depende</span></td><td class="us"><span class="yes">Sí</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="foot"><span class="small">No reemplazamos al GPS: lo completamos con la imagen de lo que pasó en el punto.</span><span class="pager"></span></div>
-  </div>
-</section>
-<aside class="notes"><h4>Qué decir · 40 segundos</h4>
-<p>«Hay grandes sistemas de flota pensados para las minas más grandes del mundo. Son caros, llevan meses de instalación y miden con GPS. No ven qué pasa en la zona de carga.»</p>
-<p>«Nosotros somos el paso que falta: usamos las cámaras que ya existen, se prueba en semanas y lo atiende un equipo argentino.»</p>
-<p>Ventaja que crece con el tiempo: cada punto instalado nos deja datos de operaciones reales que mejoran el producto para el siguiente cliente.</p></aside>
-</div>
-
-<div class="slot">
-<section class="slide dark" id="ahora" aria-label="Por qué ahora">
-  <div class="in">
-    <div class="kicker"><span class="n">09</span><span>Por qué ahora</span></div>
-    <h2 class="h1" style="max-width:20ch">Tres cosas cambiaron al mismo tiempo.</h2>
-    <div class="cols cols-3">
-      <div class="stat"><span class="l" style="font-family:var(--display);font-size:clamp(22px,2.3cqw,34px);line-height:1.05;letter-spacing:-.03em">Llegó la inversión.</span><span class="small">13 proyectos mineros aprobados en el RIGI suman <strong style="color:var(--paper)">USD 25.230 M</strong>. Más obras y más camiones necesitan más control.</span></div>
-      <div class="stat"><span class="l" style="font-family:var(--display);font-size:clamp(22px,2.3cqw,34px);line-height:1.05;letter-spacing:-.03em">La tecnología se abarató.</span><span class="small">Hoy la IA que analiza video corre en un equipo chico dentro de la mina, sin depender de internet. Hace cinco años no era viable para una mina mediana.</span></div>
-      <div class="stat"><span class="l" style="font-family:var(--display);font-size:clamp(22px,2.3cqw,34px);line-height:1.05;letter-spacing:-.03em">Los grandes ya lo usan.</span><span class="small">Codelco usa cámaras con IA para anticipar accidentes en Chuquicamata y El Teniente. Las minas medianas argentinas todavía no tienen a quién comprárselo.</span></div>
-    </div>
-    <div class="foot"><span class="small">Quien llegue primero con casos medidos se queda con la referencia del sector.</span><span class="pager"></span></div>
-  </div>
-</section>
-<aside class="notes"><h4>Qué decir · 40 segundos</h4>
-<p>«¿Por qué ahora? Primero, la plata está llegando: veinticinco mil millones de dólares ya aprobados en minería.»</p>
-<p>«Segundo, analizar video con inteligencia artificial se volvió barato. Corre en un equipo del tamaño de un router, en la misma mina.»</p>
-<p>«Tercero, las mineras más grandes del continente, como Codelco en Chile, ya lo usan. Las medianas en Argentina no tienen un proveedor local. Esa es la ventana.»</p></aside>
+<p>Si preguntan por privacidad: reglas por zona, revisión de eventos puntuales y sin reconocimiento facial.</p></aside>
 </div>
 
 <div class="slot">
 <section class="slide" id="plan" aria-label="Plan a 18 meses">
   <div class="in">
-    <div class="kicker"><span class="n">10</span><span>Plan a 18 meses</span></div>
+    <div class="kicker"><span class="n">09</span><span>Plan a 18 meses</span><span class="tag-assume">Metas propuestas</span></div>
     <h2 class="h1" style="max-width:22ch">De un piloto a un negocio que se repite.</h2>
     <div class="timeline">
-      <div class="phase now"><span class="when">MESES 0 A 6</span><h3>Probar</h3><ul><li>3 pilotos pagos: una cantera, una mina mediana y una operación logística</li><li>Medir el ahorro real de cada uno</li></ul><p class="goal">Meta: 3 casos con números propios</p></div>
-      <div class="phase"><span class="when">MESES 6 A 12</span><h3>Vender</h3><ul><li>Pasar los pilotos a abono mensual</li><li>Sumar la línea de seguridad</li><li>Presencia en San Juan, Salta y Catamarca</li></ul><p class="goal">Meta: 15 puntos activos</p></div>
-      <div class="phase"><span class="when">MESES 12 A 18</span><h3>Escalar</h3><ul><li>Repetir el modelo en más minas</li><li>Primeros pasos en Chile y Perú</li></ul><p class="goal">Meta: 50 puntos activos</p></div>
+      <div class="phase now"><span class="when">MESES 0 A 6</span><h3>Probar</h3><ul><li>3 pilotos pagos en canteras y minas medianas, que deciden rápido</li><li>Medir ahorro, horas de instalación y soporte por punto</li></ul><p class="goal">3 casos con números propios</p></div>
+      <div class="phase"><span class="when">MESES 6 A 12</span><h3>Vender</h3><ul><li>Pasar los pilotos a abono</li><li>Ampliar cada cliente a unos 5 puntos</li><li>Sumar la línea de seguridad</li></ul><p class="goal">15 puntos activos<small>3 clientes × 5 puntos</small></p></div>
+      <div class="phase"><span class="when">MESES 12 A 18</span><h3>Repetir</h3><ul><li>Segunda persona comercial</li><li>7 clientes más con el mismo modelo</li></ul><p class="goal">50 puntos activos<small>10 clientes × 5 puntos · USD 720.000 de ingreso anual</small></p></div>
     </div>
-    <div class="foot"><span class="src">Metas propuestas para discutir con el directorio. 50 puntos a USD 1.200 por mes son USD 720.000 de ingreso anual recurrente.</span><span class="pager"></span></div>
+    <div class="foot"><span class="small">Logística, Chile y Perú se exploran solo si los tres casos confirman el ahorro.</span><span class="pager"></span></div>
   </div>
 </section>
 <aside class="notes"><h4>Qué decir · 40 segundos</h4>
-<p>«El plan tiene tres etapas: probar, vender y escalar. Cada una deja algo que un inversor puede verificar.»</p>
-<p>«Con cincuenta puntos activos, cerca de setecientos mil dólares por año de ingreso recurrente, y esa es la base para la siguiente ronda.»</p>
+<p>«El plan tiene tres etapas: probar, vender y repetir. Cada una deja algo que un inversor puede verificar.»</p>
+<p>«Cada piloto que funciona se amplía a unos cinco puntos en la misma operación. Con diez clientes llegamos a cincuenta puntos: setecientos veinte mil dólares por año de ingreso recurrente.»</p>
 <p>Antes de presentar, confirmá estas metas con el equipo. Es mejor prometer menos y cumplir.</p></aside>
 </div>
 
 <div class="slot">
 <section class="slide" id="equipo" aria-label="El equipo">
   <div class="in">
-    <div class="kicker"><span class="n">11</span><span>El equipo</span></div>
-    <h2 class="h1" style="max-width:24ch">Gente que conoce la mina y gente que ya puso IA en el campo.</h2>
+    <div class="kicker"><span class="n">10</span><span>El equipo</span></div>
+    <h2 class="h1" style="max-width:26ch">Ya pusimos IA a funcionar en el campo. Con la ronda sumamos al socio minero.</h2>
     <div class="cols cols-3">
       <div class="person"><span class="avatar">CEO</span><span class="role">Conducción y ventas</span><h3><em class="fill">Nombre y apellido</em></h3><p><em class="fill">Trayectoria en una línea</em>. Responsable de clientes, alianzas y la relación con inversores.</p></div>
       <div class="person"><span class="avatar">CTO</span><span class="role">Tecnología</span><h3><em class="fill">Nombre y apellido</em></h3><p>Diseñó y puso en funcionamiento sensores de IA que analizan video en el lugar, con energía y conexión inestables.</p></div>
-      <div class="person"><span class="avatar">+</span><span class="role">Operación minera</span><h3><em class="fill">Socio o asesor</em></h3><p>Perfil a sumar con la ronda: alguien que haya dirigido operaciones en una mina argentina y abra las primeras puertas.</p></div>
+      <div class="person future"><span class="avatar">+</span><span class="role">A sumar con la ronda</span><h3>Socio de operación minera</h3><p>Alguien que haya dirigido operaciones en una mina argentina y abra las primeras puertas.</p></div>
     </div>
     <div class="foot"><span class="src">Los recuadros punteados se completan antes de presentar.</span><span class="pager"></span></div>
   </div>
 </section>
 <aside class="notes"><h4>Qué decir · 30 segundos</h4>
 <p>Presentate en una frase y conectá tu historia con la minería. Los inversores invierten en personas: contá por qué este equipo va a ganar.</p>
-<p>Si todavía falta el perfil minero, decilo como plan: «Con esta ronda sumamos a alguien con experiencia en operación». Es mejor que ocultarlo.</p></aside>
+<p>Decí el faltante como plan: «Con esta ronda sumamos a alguien con experiencia en operación minera». Es mejor que ocultarlo.</p></aside>
 </div>
 
 <div class="slot">
 <section class="slide dark" id="inversion" aria-label="La inversión">
   <div class="in">
-    <div class="kicker"><span class="n">12</span><span>La inversión</span></div>
+    <div class="kicker"><span class="n">11</span><span>La inversión</span></div>
     <div class="cols cols-2" style="align-items:start">
-      <div style="display:grid;gap:clamp(14px,2cqw,28px)">
-        <h2 class="h1" style="max-width:13ch">Buscamos <em class="fill" style="font-size:.8em">USD monto</em> para llegar a 50 puntos.</h2>
-        <p class="lead" style="color:var(--stone)">18 meses para pasar de pilotos a <strong style="color:var(--paper)">ingresos recurrentes medidos</strong>, con un riesgo que baja en cada etapa.</p>
+      <div class="stack" style="gap:clamp(14px,2cqw,28px)">
+        <h2 class="h1" style="max-width:14ch">Buscamos <em class="fill" style="font-size:.8em">USD monto</em> para llegar a 50 puntos en 18 meses.</h2>
         <ul class="points">
           <li><i class="dot"></i><div><b>Instrumento</b><span><em class="fill">SAFE / acciones / préstamo convertible</em></span></div></li>
-          <li><i class="dot"></i><div><b>Hito que habilita la próxima ronda</b><span>50 puntos activos y 3 casos de ahorro medidos.</span></div></li>
+          <li><i class="dot"></i><div><b>Lo que habilita la próxima ronda</b><span>50 puntos activos, 3 casos de ahorro medidos y el margen por punto confirmado.</span></div></li>
         </ul>
       </div>
       <div class="funds" aria-label="Uso de los fondos">
         <h3 class="h2">En qué se usa</h3>
-        <div class="fund key"><span class="name">Producto y pilotos</span><span class="pct">40%</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="what">Instalar, medir y dejar el sistema funcionando en cada cliente</span></div>
-        <div class="fund"><span class="name">Ventas en minería</span><span class="pct">35%</span><div class="bar-track"><div class="bar-fill" style="width:35%"></div></div><span class="what">Una persona comercial con experiencia y presencia en las provincias mineras</span></div>
-        <div class="fund"><span class="name">Equipos para pilotos</span><span class="pct">15%</span><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div><span class="what">Cámaras y equipos de proceso donde la mina no los tenga</span></div>
+        <div class="fund key"><span class="name">Equipo técnico y pilotos</span><span class="pct">40%</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="what">Sueldos técnicos, instalación y seguimiento de cada punto</span></div>
+        <div class="fund"><span class="name">Ventas en minería</span><span class="pct">35%</span><div class="bar-track"><div class="bar-fill" style="width:35%"></div></div><span class="what">Dos personas comerciales, con presencia en las provincias mineras</span></div>
+        <div class="fund"><span class="name">Equipos para pilotos</span><span class="pct">15%</span><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div><span class="what">Equipos de proceso y cámaras donde falten</span></div>
         <div class="fund"><span class="name">Operación</span><span class="pct">10%</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="what">Administración, legales y viajes</span></div>
       </div>
     </div>
@@ -527,25 +661,25 @@ body.presenting.show-notes .present-ui{bottom:calc(190px + 14px)}
   </div>
 </section>
 <aside class="notes"><h4>Qué decir · 40 segundos</h4>
-<p>Decí el monto con seguridad y sin justificarte. Después explicá en qué se usa: «casi la mitad va a que los pilotos funcionen, y un tercio a vender».</p>
-<p>Terminá con el hito: «con esto llegamos a cincuenta puntos y tres casos medidos. Ahí la empresa vale otra cosa».</p></aside>
+<p>Decí el monto con seguridad y sin justificarte. Después explicá en qué se usa: «el cuarenta por ciento va al equipo técnico y a que los pilotos funcionen, y un tercio a vender».</p>
+<p>Terminá con el hito: «con esto llegamos a cincuenta puntos, tres casos medidos y el margen confirmado. Ahí la empresa vale otra cosa».</p></aside>
 </div>
 
 <div class="slot">
 <section class="slide dark" id="cierre" aria-label="Cierre">
   <div class="photo full"><img src="assets/aerial.jpg" alt=""></div>
-  <div class="in" style="align-content:space-between">
+  <div class="in" style="justify-content:space-between">
     <div class="kicker"><span class="logo" style="color:var(--paper);font-size:clamp(18px,1.7cqw,26px);text-transform:none;letter-spacing:-.04em">voxxel<b>.ai</b></span></div>
-    <div style="display:grid;gap:clamp(14px,2cqw,30px)">
+    <div style="display:grid;gap:clamp(14px,2cqw,28px)">
       <h2 class="h-hero" style="font-size:clamp(40px,7.4cqw,112px)">Empecemos por<br>un punto.</h2>
-      <p class="lead" style="color:var(--paper);max-width:40ch">Una cámara. Una pregunta. <span class="hl">Una diferencia que se mide.</span></p>
+      <p class="lead" style="color:var(--paper);max-width:46ch">Buscamos <em class="fill">USD monto</em> para llegar a 50 puntos en 18 meses. <span class="hl">Un punto. Una cámara. Un número que se mide.</span></p>
     </div>
-    <div class="foot" style="position:static"><span class="small" style="color:var(--paper)"><em class="fill">nombre@voxxel.ai</em> · <em class="fill">+54 9 …</em> · voxxel.ai</span><span class="pager"></span></div>
+    <div class="foot"><span class="small" style="color:var(--paper)"><em class="fill">nombre@voxxel.ai</em> · <em class="fill">+54 9 …</em> · voxxel.ai</span><span class="pager"></span></div>
   </div>
 </section>
 <aside class="notes"><h4>Qué decir · 20 segundos</h4>
 <p>«La minería argentina va a crecer con o sin nosotros. La pregunta es quién le va a dar a esas minas los datos para operar mejor. Queremos ser nosotros, y queremos que ustedes estén.»</p>
-<p>Después, silencio. Dejá que pregunten.</p></aside>
+<p>Repetí el monto y el hito. Después, silencio: dejá que pregunten. Los anexos se abren con las teclas A y B.</p></aside>
 </div>
 
 <div class="slot">
@@ -553,18 +687,20 @@ body.presenting.show-notes .present-ui{bottom:calc(190px + 14px)}
   <div class="in">
     <div class="kicker"><span class="n">A</span><span>Anexo · Preguntas que van a hacer</span></div>
     <div class="qa">
-      <div><b>«Las mineras ya tienen GPS en los camiones.»</b><span>El GPS dice dónde está el camión. No muestra por qué espera ni qué pasó en la carga. Nos complementamos y podemos cruzar los datos.</span></div>
-      <div><b>«¿Y si lo hace una empresa grande?»</b><span>Las grandes apuntan a minas gigantes con proyectos largos. Nosotros entramos por un punto, rápido y barato, en el segmento mediano, que es el más numeroso.</span></div>
-      <div><b>«¿Cuánto cuesta instalarlo?»</b><span>Si las cámaras sirven, casi nada. Si falta cobertura, se suma una cámara y un equipo chico en ese punto. Se define en el piloto.</span></div>
+      <div><b>«Las mineras ya tienen GPS en los camiones.»</b><span>El GPS mide los camiones equipados. No muestra la escena ni cuenta a los contratistas. Nos complementamos y podemos cruzar los datos.</span></div>
+      <div><b>«¿Y si lo hace una empresa grande?»</b><span>Las grandes apuntan a minas gigantes con proyectos de meses. Entramos por un punto, rápido, en minas medianas y canteras.</span></div>
+      <div><b>«¿Cuánto cuesta instalarlo?»</b><span>Si la cámara cubre la zona, solo se suma un equipo de proceso, incluido en el abono. Si falta cobertura, el cliente pone la cámara. Se define en el piloto.</span></div>
+      <div><b>«¿Cómo saben que el margen es real?»</b><span>Lo medimos en los pilotos: horas de instalación, visitas y soporte por punto. Es uno de los resultados obligatorios de cada piloto.</span></div>
       <div><b>«¿Qué pasa con la privacidad?»</b><span>Reglas por zona, eventos puntuales y sin reconocimiento facial. Los datos son del cliente.</span></div>
       <div><b>«¿Por qué no lo copian?»</b><span>La tecnología se puede copiar. Los casos medidos, los datos de operaciones reales y la confianza del cliente minero, no tan rápido.</span></div>
-      <div><b>«¿Cuál es el mayor riesgo?»</b><span>Que el ciclo de venta minero sea lento. Por eso empezamos con canteras y operaciones medianas, que deciden más rápido.</span></div>
+      <div><b>«¿Cuál es el mayor riesgo?»</b><span>Que la venta minera sea lenta. Por eso empezamos con canteras y minas medianas, que deciden más rápido, y el piloto mide plata, no solo minutos.</span></div>
+      <div><b>«¿Por qué Argentina primero?»</b><span>Acá están el equipo, el idioma y la ola de inversión. Lo que funcione se lleva a Chile y Perú.</span></div>
     </div>
     <div class="foot"><span class="src">Para tener a mano en la ronda de preguntas.</span><span class="pager"></span></div>
   </div>
 </section>
 <aside class="notes"><h4>Cómo usar esta lámina</h4>
-<p>No la muestres en la presentación. Tenela para la ronda de preguntas. Si no sabés una respuesta, decí «lo confirmo y te escribo». Un inversor serio valora más eso que una respuesta inventada.</p></aside>
+<p>No la muestres en la presentación. Tenela para la ronda de preguntas (tecla A). Si no sabés una respuesta, decí «lo confirmo y te escribo». Un inversor serio valora más eso que una respuesta inventada.</p></aside>
 </div>
 
 <div class="slot">
@@ -572,30 +708,28 @@ body.presenting.show-notes .present-ui{bottom:calc(190px + 14px)}
   <div class="in">
     <div class="kicker"><span class="n">B</span><span>Anexo · Fuentes de los datos</span></div>
     <ol class="sources">
-      <li>Exportaciones 2024 (USD 4.673 M) y 2025 (USD 6.073 M): Secretaría de Minería, EITI. <a href="https://www.argentina.gob.ar/economia/mineria/eiti/exportaciones-mineras" target="_blank" rel="noopener">argentina.gob.ar</a>. Otras fuentes informan entre USD 6.037 M y 6.075 M para 2025.</li>
-      <li>Primer semestre 2026 (USD 4.742 M, +74,4%): CAEM y BCR con datos de la Secretaría, vía Infobae, 25/09/2026. <a href="https://www.infobae.com/economia/2026/09/25/el-sector-que-no-frena-acumula-64-meses-consecutivos-de-crecimiento-y-logro-un-record-exportador/" target="_blank" rel="noopener">infobae.com</a></li>
-      <li>Proyección 2030 (USD 15.411 M) y 2035 (USD 36.250 M): Secretaría de Minería, abril 2026, vía Bloomberg Línea. <a href="https://www.bloomberglinea.com/latinoamerica/argentina/tras-el-record-a-cuanto-podrian-subir-las-exportaciones-mineras-argentinas-en-10-anos/" target="_blank" rel="noopener">bloomberglinea.com</a>. CAEM proyecta USD 22.000 M para 2035.</li>
-      <li>RIGI minero aprobado (13 proyectos, USD 25.230 M): Minería &amp; Desarrollo, 05/10/2026. <a href="https://www.mineriaydesarrollo.com/noticias/2026/10/05/26985-los-13-proyectos-mineros-que-ya-ingresaron-al-rigi-en-argentina-y-suman-mas-de-us25000-millones-en-inversiones" target="_blank" rel="noopener">mineriaydesarrollo.com</a>. Presentados (18 mineros, USD 47.802 M): <a href="https://hoydia.com.ar/economia/caputo-rigi-inversiones-rosario/" target="_blank" rel="noopener">hoydia.com.ar</a>, 29/10/2026.</li>
-      <li>Litio (5.º productor, 120.000 t LCE en 2025): informe oficial vía La Nación, 12/10/2026. <a href="https://www.lanacion.com.ar/economia/el-oro-blanco-el-informe-del-gobierno-que-revela-la-actualidad-del-mineral-estrella-nid12102026/" target="_blank" rel="noopener">lanacion.com.ar</a></li>
-      <li>Costo del transporte de cargas (+33,7% en diez meses de 2026): FADEEAC, 03/11/2026. <a href="https://www.fadeeac.org.ar/2026/11/03/el-costo-del-transporte-de-cargas-subio-26-en-octubre-y-acumula-337-en-diez-meses/" target="_blank" rel="noopener">fadeeac.org.ar</a></li>
-      <li>Gran Rosario (unos 2 millones de camiones por campaña): La Nación, 28/04/2026. <a href="https://www.lanacion.com.ar/economia/campo/cosecha-record-y-rutas-colapsadas-los-puertos-del-gran-rosario-quedaron-atrapados-en-la-congestion-nid28042026/" target="_blank" rel="noopener">lanacion.com.ar</a></li>
-      <li>Accidentabilidad en minas y canteras (2.465 casos, 1.er semestre 2026): SRT, informe provisorio. <a href="https://www.srt.gob.ar/estadisticas/datos-provisorios/Informe%20provisorio%20de%20accidentabilidad%20laboral.pdf" target="_blank" rel="noopener">srt.gob.ar</a></li>
-      <li>IA en minería (USD 2.600 M en 2025, USD 9.930 M en 2032): MarketsandMarkets, diciembre 2025. <a href="https://www.prnewswire.com/news-releases/ai-in-mining-market-worth-9-93-billion-by-2032---exclusive-report-by-marketsandmarkets-302631473.html" target="_blank" rel="noopener">prnewswire.com</a></li>
-      <li>Codelco y videoanalítica: El Desconcierto, 21/11/2025. <a href="https://eldesconcierto.cl/2025/11/21/innovacion-en-codelco-la-tecnologia-y-la-ia-vienen-a-aportar-al-dia-a-dia-de-las-personas-a-empoderarlas" target="_blank" rel="noopener">eldesconcierto.cl</a>. Cartera Chile: <a href="https://www.cochilco.cl/web/informe-cartera-de-proyectos-de-inversion-minera-2025-2034/" target="_blank" rel="noopener">Cochilco</a>. Cartera Perú: <a href="https://andina.pe/agencia/noticia-cartera-proyectos-inversion-minera-2026-del-peru-suma-mas-64075-millones-1078737.aspx" target="_blank" rel="noopener">MINEM vía Andina</a>.</li>
-      <li>El ejemplo de ahorro, los precios y las metas del plan son supuestos de Voxxel, no datos de clientes.</li>
+      <li><span class="ref">[04]</span> Exportaciones 2024 (USD 4.673 M) y 2025 (USD 6.073 M): Secretaría de Minería, EITI. <a href="https://www.argentina.gob.ar/economia/mineria/eiti/exportaciones-mineras" target="_blank" rel="noopener">argentina.gob.ar</a>. Otras fuentes informan entre USD 6.037 M y 6.075 M para 2025.</li>
+      <li><span class="ref">[04]</span> 1.er semestre 2026 (USD 4.742 M, +74,4%): CAEM y BCR con datos de la Secretaría, vía Infobae, 25/09/2026. <a href="https://www.infobae.com/economia/2026/09/25/el-sector-que-no-frena-acumula-64-meses-consecutivos-de-crecimiento-y-logro-un-record-exportador/" target="_blank" rel="noopener">infobae.com</a></li>
+      <li><span class="ref">[04]</span> Escenarios 2030 (USD 15.411 M) y 2035 (USD 36.250 M): Secretaría de Minería, abril 2026, vía <a href="https://www.bloomberglinea.com/latinoamerica/argentina/tras-el-record-a-cuanto-podrian-subir-las-exportaciones-mineras-argentinas-en-10-anos/" target="_blank" rel="noopener">Bloomberg Línea</a>. CAEM, 2035 (USD 22.000 M): <a href="https://www.mineriaydesarrollo.com/noticias/2026/05/04/24183-estiman-que-las-exportaciones-mineras-en-argentina-superaran-los-usd-9000-millones-en-2026" target="_blank" rel="noopener">Minería &amp; Desarrollo</a>, 04/05/2026.</li>
+      <li><span class="ref">[04, 05]</span> RIGI minero aprobado (13 proyectos, USD 25.230 M): <a href="https://www.mineriaydesarrollo.com/noticias/2026/10/05/26985-los-13-proyectos-mineros-que-ya-ingresaron-al-rigi-en-argentina-y-suman-mas-de-us25000-millones-en-inversiones" target="_blank" rel="noopener">Minería &amp; Desarrollo</a>, 05/10/2026.</li>
+      <li><span class="ref">[04]</span> Codelco y videoanalítica de riesgos: <a href="https://eldesconcierto.cl/2025/11/21/innovacion-en-codelco-la-tecnologia-y-la-ia-vienen-a-aportar-al-dia-a-dia-de-las-personas-a-empoderarlas" target="_blank" rel="noopener">El Desconcierto</a>, 21/11/2025.</li>
+      <li><span class="ref">[05]</span> 26 minas en producción y 310 proyectos en cartera: Invecq, enero 2026, vía <a href="https://eleconomista.com.ar/energia/mineria-2026-record-us-6000-millones-llave-maestra-triplicar-riqueza-argentina-n92288" target="_blank" rel="noopener">El Economista</a>, 31/01/2026.</li>
+      <li><span class="ref">[05]</span> Mendoza, 220 explotaciones en el censo minero: <a href="https://www.mendoza.gov.ar/prensa/mineria-ya-censo-el-13-de-los-yacimientos/" target="_blank" rel="noopener">Gobierno de Mendoza</a>, 03/09/2017. Gran Rosario, unos 2 millones de camiones por campaña: <a href="https://www.lanacion.com.ar/economia/campo/cosecha-record-y-rutas-colapsadas-los-puertos-del-gran-rosario-quedaron-atrapados-en-la-congestion-nid28042026/" target="_blank" rel="noopener">La Nación</a>, 28/04/2026.</li>
+      <li><span class="ref">[05]</span> Carteras de inversión minera: Chile 2025–2034, <a href="https://www.cochilco.cl/web/informe-cartera-de-proyectos-de-inversion-minera-2025-2034/" target="_blank" rel="noopener">Cochilco</a>. Perú 2026, MINEM vía <a href="https://andina.pe/agencia/noticia-cartera-proyectos-inversion-minera-2026-del-peru-suma-mas-64075-millones-1078737.aspx" target="_blank" rel="noopener">Andina</a>. IA en minería: MarketsandMarkets, diciembre 2025, <a href="https://www.prnewswire.com/news-releases/ai-in-mining-market-worth-9-93-billion-by-2032---exclusive-report-by-marketsandmarkets-302631473.html" target="_blank" rel="noopener">PR Newswire</a>.</li>
+      <li><span class="ref">[08]</span> Accidentabilidad en minas y canteras (2.465 casos, 1.er semestre 2026, datos provisorios): <a href="https://www.srt.gob.ar/estadisticas/datos-provisorios/Informe%20provisorio%20de%20accidentabilidad%20laboral.pdf" target="_blank" rel="noopener">SRT</a>, consultado en noviembre de 2026.</li>
+      <li><span class="ref">[03, 05, 06, 09]</span> El ejemplo de ahorro, los puntos por operación, los precios, los costos y las metas son supuestos de Voxxel, no datos de clientes.</li>
     </ol>
-    <div class="foot"><span class="src">Datos consultados en noviembre de 2026.</span><span class="pager"></span></div>
+    <div class="foot"><span class="src">Entre corchetes, la lámina donde se usa cada dato. Consultado en noviembre de 2026.</span><span class="pager"></span></div>
   </div>
 </section>
 <aside class="notes"><h4>Cómo usar esta lámina</h4>
-<p>Si un inversor pide la fuente de un número, está acá. Mandá este archivo después de la reunión.</p></aside>
+<p>Si un inversor pide la fuente de un número, está acá (tecla B). Mandá este archivo después de la reunión.</p></aside>
 </div>
 
 </main>
 
 <div class="present-ui" aria-label="Controles de presentación">
   <button class="btn" type="button" id="p-prev" aria-label="Lámina anterior">←</button>
-  <span class="count" id="p-count">1 / 16</span>
   <button class="btn" type="button" id="p-next" aria-label="Lámina siguiente">→</button>
   <button class="btn" type="button" id="p-notes">Guión</button>
   <button class="btn" type="button" id="p-exit">Salir</button>
@@ -605,26 +739,48 @@ body.presenting.show-notes .present-ui{bottom:calc(190px + 14px)}
 (() => {
   const body = document.body;
   const slots = [...document.querySelectorAll('.slot')];
+  const ids = slots.map(s => s.querySelector('.slide').id);
   const total = slots.length;
+  const endMain = ids.indexOf('cierre');
   let cur = 0;
-  const count = document.getElementById('p-count');
   const notesBtn = document.getElementById('notes-toggle');
+  const msg = document.getElementById('bar-msg');
+  const speaker = location.hash === '#orador';
+  let channel = null;
+  try { channel = new BroadcastChannel('voxxel-pitch'); } catch (e) {}
+
   slots.forEach((s, i) => { const p = s.querySelector('.pager'); if (p) p.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0'); });
-  document.querySelector('.hint').textContent = 'Presentación para inversores · ' + total + ' láminas';
-  function go(i) {
-    cur = Math.max(0, Math.min(total - 1, i));
-    slots.forEach((s, k) => s.classList.toggle('current', k === cur));
-    count.textContent = (cur + 1) + ' / ' + total;
-    try { history.replaceState(null, '', '#' + slots[cur].querySelector('.slide').id); } catch (e) {}
+  document.getElementById('hint').textContent = 'Presentación para inversores · ' + (endMain + 1) + ' láminas + 2 anexos';
+
+  function render() {
+    slots.forEach((s, k) => { s.classList.toggle('current', k === cur); s.classList.toggle('next', speaker && k === cur + 1 && cur + 1 <= Math.max(endMain, cur + 1)); });
+    const pos = document.getElementById('sp-pos');
+    if (pos) pos.textContent = (cur + 1) + ' / ' + total + ' · ' + slots[cur].querySelector('.slide').getAttribute('aria-label');
   }
+  function go(i, fromRemote) {
+    cur = Math.max(0, Math.min(total - 1, i));
+    render();
+    if (!speaker && body.classList.contains('presenting')) { try { history.replaceState(null, '', '#' + ids[cur]); } catch (e) {} }
+    if (!fromRemote) {
+      if (channel) channel.postMessage({ i: cur });
+      try { localStorage.setItem('voxxel-slide', String(cur) + ':' + Date.now()); } catch (e) {}
+    }
+  }
+  function next() { if (cur === endMain) return; go(cur + 1); }
+  function prev() { go(cur - 1); }
+  if (channel) channel.onmessage = e => { if (e.data && typeof e.data.i === 'number') go(e.data.i, true); };
+  window.addEventListener('storage', e => { if (e.key === 'voxxel-slide' && e.newValue) go(parseInt(e.newValue, 10), true); });
+
   function toggleNotes(on) {
     const v = typeof on === 'boolean' ? on : !body.classList.contains('show-notes');
     body.classList.toggle('show-notes', v);
     notesBtn.setAttribute('aria-pressed', String(v));
     notesBtn.textContent = v ? 'Ocultar guión' : 'Mostrar guión';
-    try { localStorage.setItem('voxxel-notes', v ? '1' : '0'); } catch (e) {}
   }
+  let notesBefore = false;
   function present(i, opts = {}) {
+    notesBefore = body.classList.contains('show-notes');
+    toggleNotes(false);
     body.classList.add('presenting');
     go(typeof i === 'number' ? i : cur);
     if (opts.fullscreen !== false && document.documentElement.requestFullscreen) {
@@ -633,32 +789,63 @@ body.presenting.show-notes .present-ui{bottom:calc(190px + 14px)}
   }
   function exit() {
     body.classList.remove('presenting');
+    toggleNotes(notesBefore);
     if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
     slots[cur].scrollIntoView({ block: 'start' });
   }
+  function openSpeaker() {
+    let w = null;
+    try { w = window.open(location.href.split('#')[0] + '#orador', 'voxxel-orador', 'width=1280,height=800'); } catch (e) {}
+    msg.hidden = false;
+    msg.textContent = w ? 'Vista del orador abierta en otra ventana. Llevá esta ventana al proyector y tocá Presentar: las dos avanzan juntas.'
+      : 'Este visor no permite abrir otra ventana. Abrí este mismo archivo en otra ventana del navegador, agregá #orador al final de la dirección y presentá desde esta.';
+  }
+
   document.getElementById('present-btn').addEventListener('click', () => {
     const top = slots.findIndex(s => s.getBoundingClientRect().bottom > 120);
     present(top < 0 ? 0 : top);
   });
   notesBtn.addEventListener('click', () => toggleNotes());
+  document.getElementById('speaker-btn').addEventListener('click', openSpeaker);
   document.getElementById('p-notes').addEventListener('click', () => toggleNotes());
-  document.getElementById('p-prev').addEventListener('click', () => go(cur - 1));
-  document.getElementById('p-next').addEventListener('click', () => go(cur + 1));
+  document.getElementById('p-prev').addEventListener('click', prev);
+  document.getElementById('p-next').addEventListener('click', next);
   document.getElementById('p-exit').addEventListener('click', exit);
+  document.getElementById('sp-prev').addEventListener('click', prev);
+  document.getElementById('sp-next').addEventListener('click', () => go(cur + 1));
   document.addEventListener('keydown', e => {
-    if (!body.classList.contains('presenting')) return;
-    if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); go(cur + 1); }
-    else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); go(cur - 1); }
-    else if (e.key === 'Home') go(0);
-    else if (e.key === 'End') go(total - 1);
-    else if (e.key === 'Escape') exit();
-    else if (e.key.toLowerCase() === 'g') toggleNotes();
+    if (!body.classList.contains('presenting') && !speaker) return;
+    const k = e.key;
+    if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(k)) { e.preventDefault(); speaker ? go(cur + 1) : next(); }
+    else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(k)) { e.preventDefault(); prev(); }
+    else if (k === 'Home') go(0);
+    else if (k === 'End') go(endMain);
+    else if (k === 'Escape' && !speaker) exit();
+    else if (k.toLowerCase() === 'g' && !speaker) toggleNotes();
+    else if (k.toLowerCase() === 'a') go(ids.indexOf('preguntas'));
+    else if (k.toLowerCase() === 'b') go(ids.indexOf('fuentes'));
   });
-  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && body.classList.contains('presenting')) { /* sigue en modo presentación sin pantalla completa */ } });
   let x0 = null;
   document.addEventListener('touchstart', e => { if (body.classList.contains('presenting')) x0 = e.touches[0].clientX; }, { passive: true });
-  document.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) go(cur + (dx < 0 ? 1 : -1)); x0 = null; });
-  try { if (localStorage.getItem('voxxel-notes') === '1') toggleNotes(true); } catch (e) {}
-  window.pitch = { go, present, exit, toggleNotes };
+  document.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) (dx < 0 ? next() : prev()); x0 = null; });
+
+  if (speaker) {
+    body.classList.add('speaker');
+    const t0 = Date.now();
+    const clock = document.getElementById('clock');
+    setInterval(() => { const s = Math.floor((Date.now() - t0) / 1000); clock.textContent = String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); }, 1000);
+    try { const v = localStorage.getItem('voxxel-slide'); if (v) cur = parseInt(v, 10) || 0; } catch (e) {}
+  } else {
+    const h = location.hash.slice(1);
+    if (ids.includes(h)) cur = ids.indexOf(h);
+  }
+  if (speaker) {
+    const fit = () => { const n = document.querySelector('.slot.next') || slots[0]; const w = (document.getElementById('deck').clientWidth - 56) / 2.6; document.documentElement.style.setProperty('--k', String(Math.max(.2, w / 1280))); };
+    window.addEventListener('resize', fit); fit();
+  }
+  render();
+  window.pitch = { go, present, exit, toggleNotes, speaker };
 })();
 </script>
+</body>
+</html>
