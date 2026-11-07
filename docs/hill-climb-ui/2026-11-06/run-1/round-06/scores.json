@@ -1,0 +1,28 @@
+{
+  "round": 6,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 8.7, "clarity": 8.8, "data": 8.8, "credibility": 8.8, "design": 8.6, "delivery": 8.9, "overall": 8.8},
+      "fixes": [
+        "14 anexo A: agregar «¿Quién más hace esto?» con recuadro punteado para 2 o 3 nombres relevados por el CEO y una línea de posicionamiento",
+        "11 equipo: las tarjetas del CEO y del CTO quedan con un tercio vacío; no estirar la grilla o compactar la tarjeta punteada",
+        "01 portada: el resaltado «horas y dólares» se parte; mantenerlo en un renglón",
+        "07 modelo, guión: respuesta al costo de venta con los números del deck (piloto pago; cliente de 5 puntos ≈ USD 4.500 de margen por mes)",
+        "09 seguridad y 10 plan: el plan no menciona la línea de seguridad; una línea en el guión de la 10 o cambiar el kicker de la 09"
+      ],
+      "rechecked": [
+        {"fix": "Socio minero: estado y forma de ingreso", "status": "resuelto"},
+        {"fix": "Supuesto de conversión", "status": "resuelto"},
+        {"fix": "«Un» huérfano en el cierre", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 8.9, "clarity": 8.9, "data": 8.7, "credibility": 8.8, "design": 8.9, "delivery": 8.9, "overall": 8.9},
+      "fixes": [],
+      "rechecked": []
+    }
+  }
+}
