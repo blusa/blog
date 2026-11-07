@@ -1,0 +1,26 @@
+{
+  "round": 15,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 10.0, "clarity": 9.9, "data": 10.0, "credibility": 10.0, "design": 10.0, "delivery": 10.0, "overall": 9.9},
+      "fixes": ["06 mercado, nota bajo la tabla: «cuántas encajan» → «cuántos de esos encajan», para que concuerde con «establecimientos»"],
+      "rechecked": [
+        {"fix": "06 nota con cifra oficial del CENAM-17", "status": "resuelto"},
+        {"fix": "06 guión con 1.144 establecimientos", "status": "resuelto"},
+        {"fix": "15 censo con PDF oficial", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 10.0, "clarity": 10.0, "data": 10.0, "credibility": 10.0, "design": 10.0, "delivery": 10.0, "overall": 10.0},
+      "fixes": [],
+      "rechecked": [
+        {"fix": "06 nota censal", "status": "resuelto"},
+        {"fix": "06 guión censal", "status": "resuelto"},
+        {"fix": "15 fuente oficial", "status": "resuelto"}
+      ]
+    }
+  }
+}
