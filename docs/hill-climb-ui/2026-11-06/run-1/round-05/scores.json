@@ -1,0 +1,28 @@
+{
+  "round": 5,
+  "via": "web",
+  "delegates": {
+    "Claude Fable": {
+      "model": "claude-fable-5-1",
+      "scores": {"narrative": 8.6, "clarity": 8.8, "data": 8.7, "credibility": 8.6, "design": 8.5, "delivery": 8.8, "overall": 8.7},
+      "fixes": [
+        "11 equipo, 12 inversión y 14 anexo A: el «socio» minero; recuadro punteado con el estado del candidato y si entra con participación, sueldo o ambos; pregunta en el anexo A «¿Ya tienen al socio minero? ¿Qué pasa si no está en el mes 0?»",
+        "10 plan: explicitar el supuesto de conversión (3 de 3 en «Vender» vs. 6 de cada 10 en «Repetir»); respuesta en el guión si uno se cae (45 puntos)",
+        "13 cierre: la frase resaltada deja un «Un» huérfano; ponerla en renglón propio"
+      ],
+      "rechecked": [
+        {"fix": "03 medir, no contar", "status": "resuelto"},
+        {"fix": "11 socio minero = primera persona comercial", "status": "resuelto"},
+        {"fix": "Franja del guión según contenido", "status": "resuelto"}
+      ]
+    },
+    "GPT-6 Astra": {
+      "model": "gpt-6-astra",
+      "scores": {"narrative": 8.9, "clarity": 8.9, "data": 8.7, "credibility": 8.7, "design": 8.8, "delivery": 8.9, "overall": 8.8},
+      "fixes": [],
+      "rechecked": [
+        {"fix": "03 solución: medir, no contar", "status": "resuelto"}
+      ]
+    }
+  }
+}
