@@ -85,6 +85,8 @@ img{max-width:100%}
 .small{font-size:clamp(14px,1.15cqw,17px);line-height:1.45;color:var(--fg-soft)}
 .small strong{color:var(--fg);font-weight:600}
 .src{font-size:clamp(11px,.9cqw,13px);line-height:1.35;color:var(--fg-soft)}
+.d-only{display:none}
+@media (min-width:900px){.d-only{display:inline}.keep{white-space:nowrap}}
 .hl{background:var(--lime);color:var(--ink);padding:0 .12em;border-radius:2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .foot{display:flex;justify-content:space-between;gap:6px 16px;flex-wrap:wrap;align-items:end}
 .foot>:first-child{max-width:80ch}
@@ -424,10 +426,10 @@ body.speaker .slot.next .notes{display:none}
 </div>
 
 <div class="slot">
-<section class="slide" id="ejemplo" aria-label="La cuenta de un punto de carga">
+<section class="slide" id="ejemplo" aria-label="La cuenta de un solo punto">
   <div class="in">
     <div class="kicker"><span class="n">04</span><span>La cuenta de un solo punto</span><span class="tag-assume">Escenario ilustrativo</span></div>
-    <h2 class="h1" style="max-width:26ch">Un minuto menos por viaje paga el servicio. Cinco ahorran USD 78.000 al año.</h2>
+    <h2 class="h1" style="max-width:none">Un minuto menos por viaje paga el servicio.<br class="d-only"> <span class="keep">Cinco ahorran USD 78.000</span> al año.</h2>
     <div class="cols cols-w" style="align-items:center">
       <div class="calc">
         <div class="calc-row"><span class="term"><span class="q">60</span><span class="u">viajes por día</span></span><span class="pair"><span class="op">×</span><span class="term"><span class="q">5 min</span><span class="u">menos de espera</span></span></span><span class="pair"><span class="op">=</span><span class="term res"><span class="q">5 h</span><span class="u">por día (300 min)</span></span></span></div>
@@ -456,53 +458,62 @@ body.speaker .slot.next .notes{display:none}
     <h2 class="h1" style="max-width:24ch">La minería argentina vive su mejor momento. Y necesita producir mejor.</h2>
     <div class="cols cols-2" style="align-items:center">
       <figure style="margin:0;display:grid;gap:8px">
-        <svg class="chart chart-d" viewBox="0 0 560 300" role="img" aria-labelledby="exp-t exp-d">
+        <svg class="chart chart-d" viewBox="0 0 480 300" role="img" aria-labelledby="exp-t exp-d">
           <title id="exp-t">Exportaciones mineras de Argentina, en millones de dólares</title>
-          <desc id="exp-d">2024: 4.673. 2025: 6.073, récord. Escenario oficial 2030: 15.411. Escenario 2035: entre 22.000 según CAEM y 36.250 según la Secretaría de Minería.</desc>
-          <line x1="16" x2="544" y1="250" y2="250" stroke="var(--rule)" stroke-width="1"/>
-          <rect x="30" y="222" width="95" height="28" fill="var(--fg-soft)" opacity=".55"/>
-          <rect x="165" y="213" width="95" height="37" fill="var(--lime)"/>
-          <rect x="300" y="156" width="95" height="94" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
-          <rect x="435" y="30" width="95" height="220" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
-          <rect x="435" y="117" width="95" height="133" fill="var(--fg-soft)" opacity=".18"/>
-          <line x1="435" x2="530" y1="117" y2="117" stroke="var(--fg)" stroke-width="1.5"/>
-          <text class="val" x="77.5" y="212" text-anchor="middle">4.673</text>
-          <text class="val key" x="212.5" y="203" text-anchor="middle">6.073</text>
-          <text class="val" x="347.5" y="146" text-anchor="middle">15.411</text>
-          <text class="val" x="482.5" y="20" text-anchor="middle">36.250</text>
-          <text x="482.5" y="62" text-anchor="middle" font-size="14">Secretaría</text>
-          <text class="val" x="482.5" y="142" text-anchor="middle" style="font-size:18px">22.000</text>
-          <text x="482.5" y="160" text-anchor="middle" font-size="14">CAEM</text>
-          <text x="77.5" y="272" text-anchor="middle">2024</text>
-          <text x="212.5" y="272" text-anchor="middle">2025 · récord</text>
-          <text x="347.5" y="272" text-anchor="middle">2030</text>
-          <text x="482.5" y="272" text-anchor="middle">2035</text>
-          <text x="415" y="296" text-anchor="middle" font-size="14">escenarios proyectados</text>
+          <desc id="exp-d">2024: 4.673. 2025: 6.073, récord. 2026 estimado por CAEM: 9.000. Escenario oficial 2030: 15.411. Escenario 2035: entre 22.000 según CAEM y 36.250 según la Secretaría de Minería.</desc>
+          <line x1="8" x2="472" y1="250" y2="250" stroke="var(--rule)" stroke-width="1"/>
+          <rect x="20" y="221.6" width="72" height="28.4" fill="var(--fg-soft)" opacity=".55"/>
+          <rect x="110" y="213.1" width="72" height="36.9" fill="var(--lime)"/>
+          <rect x="200" y="195.4" width="72" height="54.6" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <rect x="290" y="156.5" width="72" height="93.5" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <rect x="380" y="30" width="72" height="220" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <rect x="380" y="116.5" width="72" height="133.5" fill="var(--fg-soft)" opacity=".18"/>
+          <line x1="380" x2="452" y1="116.5" y2="116.5" stroke="var(--fg)" stroke-width="1.5"/>
+          <text class="val" x="56" y="212" text-anchor="middle">4.673</text>
+          <text class="val key" x="146" y="204" text-anchor="middle">6.073</text>
+          <text class="val" x="236" y="186" text-anchor="middle">9.000</text>
+          <text class="val" x="326" y="147" text-anchor="middle">15.411</text>
+          <text class="val" x="416" y="20" text-anchor="middle">36.250</text>
+          <text x="416" y="62" text-anchor="middle" font-size="13">Secretaría</text>
+          <text class="val" x="416" y="142" text-anchor="middle" style="font-size:18px">22.000</text>
+          <text x="416" y="160" text-anchor="middle" font-size="14">CAEM</text>
+          <text x="56" y="272" text-anchor="middle">2024</text>
+          <text x="146" y="272" text-anchor="middle">2025</text>
+          <text x="146" y="289" text-anchor="middle" font-size="13">récord</text>
+          <text x="236" y="272" text-anchor="middle">2026</text>
+          <text x="236" y="289" text-anchor="middle" font-size="13">estimado</text>
+          <text x="326" y="272" text-anchor="middle">2030</text>
+          <text x="416" y="272" text-anchor="middle">2035</text>
+          <text x="371" y="289" text-anchor="middle" font-size="13">escenarios</text>
         </svg>
         <svg class="chart chart-m" viewBox="0 0 340 262" role="img" aria-labelledby="exp-tm exp-dm">
           <title id="exp-tm">Exportaciones mineras de Argentina, en millones de dólares</title>
-          <desc id="exp-dm">2024: 4.673. 2025: 6.073, récord. Escenario oficial 2030: 15.411. Escenario 2035: entre 22.000 según CAEM y 36.250 según la Secretaría de Minería.</desc>
-          <line x1="8" x2="332" y1="200" y2="200" stroke="var(--rule)" stroke-width="1"/>
-          <rect x="20" y="178" width="60" height="22" fill="var(--fg-soft)" opacity=".55"/>
-          <rect x="100" y="171.5" width="60" height="28.5" fill="var(--lime)"/>
-          <rect x="180" y="127.7" width="60" height="72.3" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
-          <rect x="260" y="30" width="60" height="170" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
-          <rect x="260" y="96.8" width="60" height="103.2" fill="var(--fg-soft)" opacity=".18"/>
-          <line x1="260" x2="320" y1="96.8" y2="96.8" stroke="var(--fg)" stroke-width="1.5"/>
-          <text class="val" x="50" y="170" text-anchor="middle" style="font-size:16px">4.673</text>
-          <text class="val key" x="130" y="163" text-anchor="middle" style="font-size:16px">6.073</text>
-          <text class="val" x="210" y="120" text-anchor="middle" style="font-size:16px">15.411</text>
-          <text class="val" x="290" y="22" text-anchor="middle" style="font-size:16px">36.250</text>
-          <text class="val" x="290" y="118" text-anchor="middle" style="font-size:15px">22.000</text>
-          <text x="50" y="220" text-anchor="middle" style="font-size:14px">2024</text>
-          <text x="130" y="220" text-anchor="middle" style="font-size:14px">2025</text>
-          <text x="130" y="237" text-anchor="middle" style="font-size:13px">récord</text>
-          <text x="210" y="220" text-anchor="middle" style="font-size:14px">2030</text>
-          <text x="290" y="220" text-anchor="middle" style="font-size:14px">2035</text>
-          <text x="250" y="254" text-anchor="middle" style="font-size:13px">escenarios proyectados</text>
+          <desc id="exp-dm">2024: 4.673. 2025: 6.073, récord. 2026 estimado por CAEM: 9.000. Escenario oficial 2030: 15.411. Escenario 2035: entre 22.000 según CAEM y 36.250 según la Secretaría de Minería.</desc>
+          <line x1="6" x2="334" y1="200" y2="200" stroke="var(--rule)" stroke-width="1"/>
+          <rect x="12" y="178.1" width="52" height="21.9" fill="var(--fg-soft)" opacity=".55"/>
+          <rect x="78" y="171.5" width="52" height="28.5" fill="var(--lime)"/>
+          <rect x="144" y="157.8" width="52" height="42.2" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <rect x="210" y="127.7" width="52" height="72.3" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <rect x="276" y="30" width="52" height="170" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <rect x="276" y="96.8" width="52" height="103.2" fill="var(--fg-soft)" opacity=".18"/>
+          <line x1="276" x2="328" y1="96.8" y2="96.8" stroke="var(--fg)" stroke-width="1.5"/>
+          <text class="val" x="38" y="170" text-anchor="middle" style="font-size:15px">4.673</text>
+          <text class="val key" x="104" y="163" text-anchor="middle" style="font-size:15px">6.073</text>
+          <text class="val" x="170" y="150" text-anchor="middle" style="font-size:15px">9.000</text>
+          <text class="val" x="236" y="120" text-anchor="middle" style="font-size:15px">15.411</text>
+          <text class="val" x="302" y="22" text-anchor="middle" style="font-size:15px">36.250</text>
+          <text class="val" x="302" y="118" text-anchor="middle" style="font-size:14px">22.000</text>
+          <text x="38" y="220" text-anchor="middle" style="font-size:14px">2024</text>
+          <text x="104" y="220" text-anchor="middle" style="font-size:14px">2025</text>
+          <text x="104" y="237" text-anchor="middle" style="font-size:13px">récord</text>
+          <text x="170" y="220" text-anchor="middle" style="font-size:14px">2026</text>
+          <text x="170" y="237" text-anchor="middle" style="font-size:13px">est.</text>
+          <text x="236" y="220" text-anchor="middle" style="font-size:14px">2030</text>
+          <text x="302" y="220" text-anchor="middle" style="font-size:14px">2035</text>
+          <text x="236" y="256" text-anchor="middle" style="font-size:13px">estimación y escenarios</text>
         </svg>
-        <p class="src chart-m" style="font-size:14px">2035: 22.000 según CAEM y 36.250 según la Secretaría de Minería.</p>
-        <figcaption class="src">Exportaciones mineras, millones de USD. 1.er semestre de 2026: USD 4.742 M, +74% en valor, en parte por el precio del oro.</figcaption>
+        <p class="src chart-m" style="font-size:14px">2026: estimación de CAEM. 2035: 22.000 según CAEM y 36.250 según la Secretaría de Minería.</p>
+        <figcaption class="src">Exportaciones mineras, millones de USD. 1.er semestre de 2026: USD 4.742 M, +74% en valor, en parte por el precio del oro; CAEM estima USD 9.000 M para el año.</figcaption>
       </figure>
       <div class="stack">
         <div class="stat key"><span class="t">Hay proyectos aprobados.</span><span class="s"><strong>USD 28.000 M</strong> en 13 proyectos mineros aprobados en el RIGI, el régimen de incentivo a grandes inversiones. Se invierten en varios años.</span></div>
@@ -514,7 +525,7 @@ body.speaker .slot.next .notes{display:none}
   </div>
 </section>
 <aside class="notes"><h4>Qué decir · 45 segundos</h4>
-<p>«La minería argentina exportó más de seis mil millones de dólares en 2025, un récord. Para 2035, los escenarios van de veintidós mil millones, según la cámara minera, a treinta y seis mil, según el gobierno.»</p>
+<p>«La minería argentina exportó más de seis mil millones de dólares en 2025, un récord. Y 2026 viene mejor: en el primer semestre ya exportó cuatro mil setecientos millones, setenta y cuatro por ciento más que un año antes, y la cámara minera espera nueve mil millones para todo el año. Para 2035, los escenarios van de veintidós mil millones, según la cámara minera, a treinta y seis mil, según el gobierno.»</p>
 <p>«Además, hay veintiocho mil millones de dólares en proyectos mineros aprobados en el RIGI. Más obras y más camiones necesitan más control.»</p>
 <p>«Y la tecnología ya está: Codelco, en Chile, usa cámaras con IA en sus minas más grandes. Para una mina mediana, los sistemas grandes suelen ser caros y largos de implementar. Esa es la ventana.»</p></aside>
 </div>
@@ -731,7 +742,7 @@ body.speaker .slot.next .notes{display:none}
       <div><b>«¿Hay permanencia mínima? ¿Y si un cliente se da de baja?»</b><span>Plazo del contrato: <em class="fill">a definir</em>. Si se da de baja, retiramos el equipo de proceso, que es nuestro, y el registro queda para el cliente.</span></div>
       <div><b>«¿Cuánto cuesta instalarlo?»</b><span>La instalación se cobra dentro del piloto. Si falta una cámara, la prestamos durante el piloto; después la pone el cliente. El equipo de proceso va incluido en el abono.</span></div>
       <div><b>«¿Una cantera paga USD 1.200 por mes por una cámara de seguridad?»</b><span>Un accidente o un robo de combustible cuesta más que eso. La cámara deja evidencia para prevenir. El valor del punto de seguridad se valida en los pilotos desde el mes 6.</span></div>
-      <div><b>«¿Quién más hace esto? ¿Y si entra una empresa grande?»</b><span>Afuera: Softlabs (camiones en canteras de Australia) y Verkada (colas de vehículos). En el país: <em class="fill">nombres relevados</em>. Nuestra apuesta: canteras y minas medianas, servicio local, piloto pago con informe de ahorro. Nos defienden los casos medidos.</span></div>
+      <div><b>«¿Quién más hace esto? ¿Y si entra una empresa grande?»</b><span>Afuera: Softlabs (camiones en canteras de Australia) y Verkada (colas de vehículos). En el país: <em class="fill">nombres relevados</em>. Nuestra apuesta: canteras y minas medianas, servicio local, piloto pago con informe de ahorro y crecer dentro de cada cliente. Nos defienden los casos medidos.</span></div>
       <div><b>«Las cámaras ya cuentan vehículos.»</b><span>Contar no es medir la espera de cada camión. Voxxel registra llegada, espera, carga y salida, y lo cruza con balanza y partes.</span></div>
       <div><b>«¿Y si el cliente no ahorra?»</b><span>El piloto lo muestra antes del abono: sin ahorro medible, no hay contrato. Por eso cobramos el piloto y no prometemos un número.</span></div>
       <div><b>«¿Ya tienen al socio minero? ¿Y si no llega en el mes 0?»</b><span><em class="fill">Estado de la búsqueda</em>. Mientras tanto, el CEO lleva los primeros pilotos y el plan se corre lo que tarde la incorporación.</span></div>
@@ -752,7 +763,7 @@ body.speaker .slot.next .notes{display:none}
     <ol class="sources">
       <li><span class="ref">[05]</span> Exportaciones 2024 (USD 4.673 M) y 2025 (USD 6.073 M): Secretaría de Minería, EITI. <a href="https://www.argentina.gob.ar/economia/mineria/eiti/exportaciones-mineras" target="_blank" rel="noopener">argentina.gob.ar</a>. Otras fuentes informan entre USD 6.037 M y 6.075 M para 2025.</li>
       <li><span class="ref">[05]</span> 1.er semestre 2026 (USD 4.742 M, +74,4%): CAEM y BCR con datos de la Secretaría, vía Infobae, 25/09/2026. <a href="https://www.infobae.com/economia/2026/09/25/el-sector-que-no-frena-acumula-64-meses-consecutivos-de-crecimiento-y-logro-un-record-exportador/" target="_blank" rel="noopener">infobae.com</a></li>
-      <li><span class="ref">[05]</span> Escenarios 2030 (USD 15.411 M) y 2035 (USD 36.250 M): Secretaría de Minería, abril 2026, vía <a href="https://www.bloomberglinea.com/latinoamerica/argentina/tras-el-record-a-cuanto-podrian-subir-las-exportaciones-mineras-argentinas-en-10-anos/" target="_blank" rel="noopener">Bloomberg Línea</a>. CAEM, 2035 (USD 22.000 M): <a href="https://www.mineriaydesarrollo.com/noticias/2026/05/04/24183-estiman-que-las-exportaciones-mineras-en-argentina-superaran-los-usd-9000-millones-en-2026" target="_blank" rel="noopener">Minería &amp; Desarrollo</a>, 04/05/2026.</li>
+      <li><span class="ref">[05]</span> Escenarios 2030 (USD 15.411 M) y 2035 (USD 36.250 M): Secretaría de Minería, abril 2026, vía <a href="https://www.bloomberglinea.com/latinoamerica/argentina/tras-el-record-a-cuanto-podrian-subir-las-exportaciones-mineras-argentinas-en-10-anos/" target="_blank" rel="noopener">Bloomberg Línea</a>. CAEM, 2026 (más de USD 9.000 M, estimado) y 2035 (USD 22.000 M): <a href="https://www.mineriaydesarrollo.com/noticias/2026/05/04/24183-estiman-que-las-exportaciones-mineras-en-argentina-superaran-los-usd-9000-millones-en-2026" target="_blank" rel="noopener">Minería &amp; Desarrollo</a>, 04/05/2026.</li>
       <li><span class="ref">[05, 06]</span> RIGI: 13 proyectos mineros aprobados por USD 28.000 M: <a href="https://www.argentina.gob.ar/noticias/milei-inauguro-una-nueva-planta-de-litio-en-catamarca-y-destaco-el-impulso-las-inversiones" target="_blank" rel="noopener">argentina.gob.ar</a>, 28/10/2026. Detalle por proyecto, anterior y con un total menor (más de USD 25.000 M; incluye ampliaciones de minas existentes): <a href="https://www.mineriaydesarrollo.com/noticias/2026/10/05/26985-los-13-proyectos-mineros-que-ya-ingresaron-al-rigi-en-argentina-y-suman-mas-de-us25000-millones-en-inversiones" target="_blank" rel="noopener">Minería &amp; Desarrollo</a>, 05/10/2026. El total vigente es el oficial.</li>
       <li><span class="ref">[08, 14]</span> Competidores: <a href="https://www.softlabsgroup.com/case-studies/ai-powered-quarry-truck-tracking" target="_blank" rel="noopener">Softlabs</a> (registro de camiones en canteras, caso propio) y <a href="https://help.verkada.com/verkada-cameras/analytics/camera-stats/smart-trends-dashboards" target="_blank" rel="noopener">Verkada</a> (medición de colas de vehículos), consultados en noviembre de 2026.</li>
       <li><span class="ref">[05]</span> Codelco y videoanalítica de riesgos: <a href="https://eldesconcierto.cl/2025/11/21/innovacion-en-codelco-la-tecnologia-y-la-ia-vienen-a-aportar-al-dia-a-dia-de-las-personas-a-empoderarlas" target="_blank" rel="noopener">El Desconcierto</a>, 21/11/2025.</li>
